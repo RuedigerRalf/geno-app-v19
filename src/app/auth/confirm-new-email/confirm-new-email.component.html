@@ -1,0 +1,30 @@
+<div class="min-h-full flex items-center justify-center flex-col py-12 px-6 lg:px-8">
+
+    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+        <img class="mx-auto w-auto" src="/call to action/gd-logo-200.png" alt="genogramm-designer logo" />
+    </div>
+
+    <h1 class="py-8 text-center text-xl md:text-2xl">
+        {{ pageTitle }}
+    </h1>
+
+    <div class="bg-white sm:mx-auto sm:w-full sm:max-w-md">
+
+        <div class="py-8">
+            <div class="text-center text-xl">Sie können Ihre neue E-Mail ab sofort benutzen</div>
+        </div>
+
+        <div class="p-2">
+            <div class="py-2">
+                <button mat-raised-button class="form-field-full-width" [routerLink]="['/login']" color="primary">
+                    Zum Log in
+                </button>
+            </div>
+            <div class="py-2">
+                <button mat-raised-button class="form-field-full-width" [routerLink]="['/home']" color="accent">
+                    Zur Hauptseite
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

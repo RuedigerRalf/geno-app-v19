@@ -1,0 +1,36 @@
+<div class="slides">
+  <div class="slide" [ngStyle]="{
+      'background-image': 'url(' + slides[currentSlide].url + ')',
+      opacity: hidden ? 0 : 1,
+      transition: 'opacity ' + animationSpeed + 'ms ease-in-out'
+    }">
+  </div>
+
+  <div class="controls-bar">
+    <button mat-mini-fab color="primary" (click)="previous()" class="previousButton"
+      aria-label="Vorheriges Bild">
+      <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+
+    @if (indicatorsVisible) {
+    <div id="indicators">
+      @for(slide of slides; track $index; ){
+      <div (click)="jumpToSlide($index)" class="indicator" [ngClass]="{ active: $index == currentSlide }"></div>
+      }
+    </div>
+    }
+
+    @if (showPlayControls) {
+    <button mat-mini-fab color="primary" (click)="togglePlayPause()" class="playPauseButton"
+      [attr.aria-label]="isPlaying ? 'Pause' : 'Play'">
+      <mat-icon>{{ isPlaying ? 'pause' : 'play_arrow' }}</mat-icon>
+    </button>
+    }
+
+    <button mat-mini-fab color="primary" (click)="next()" class="nextButton" 
+      aria-label="Nächstes Bild">
+      <mat-icon>arrow_forward_ios</mat-icon>
+    </button>
+  </div>
+
+</div>

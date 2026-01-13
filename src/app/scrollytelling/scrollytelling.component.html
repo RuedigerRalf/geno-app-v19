@@ -1,0 +1,34 @@
+<p>scrollytelling works!</p>
+
+<div style="height: 150vh; background: #eee;"></div>
+
+<div style="position: sticky; top: 0; height: 200px; background: red;">
+  STICKY TEST
+</div>
+
+<div style="height: 150vh; background: #eee;"></div>
+
+
+<div class="scrollytelling">
+
+    <!-- Sticky Visual -->
+    <div class="visual">
+        @for (img of images; track $index) {
+        <img [src]="img" [class.active]="$index === activeIndex" alt="" />
+        }
+    </div>
+
+    <!-- Scroll Text -->
+    <div class="text">
+        @for (img of images; track $index) {
+        <section #step class="step" [attr.data-index]="$index">
+            <h2>Abschnitt {{ $index + 1 }}</h2>
+            <p>
+                Das ist erklärender Text für Abschnitt {{ $index + 1 }}.
+                Beim Scrollen wechselt das Bild.
+            </p>
+        </section>
+        }
+    </div>
+
+</div>

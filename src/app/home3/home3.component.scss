@@ -1,0 +1,73 @@
+/* Leaflet im Tailwind-Container - Responsive für alle Breakpoints */
+.leaflet-wrapper {
+  width: 100%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  background: #f8f9fa;
+}
+
+#imageMap {
+  width: 100%;
+  height: 400px;  // Mobile
+  cursor: grab;
+  
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+// Responsive Höhen für alle Breakpoints
+@media (min-width: 640px) { // sm
+  #imageMap {
+    height: 500px;
+  }
+}
+
+@media (min-width: 768px) { // md
+  #imageMap {
+    height: 600px;
+  }
+}
+
+// @media (min-width: 1024px) { // lg
+//   #imageMap {
+//     height: 700px;
+//   }
+// }
+
+// @media (min-width: 1280px) { // xl
+//   #imageMap {
+//     height: 800px;
+//   }
+// }
+
+// @media (min-width: 1536px) { // 2xl
+//   #imageMap {
+//     height: 900px;
+//   }
+// }
+
+// Leaflet Control Styling
+:host ::ng-deep {
+  .leaflet-container {
+    border-radius: 0.5rem;
+  }
+
+  .leaflet-control-zoom {
+    border: none;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    
+    a {
+      background-color: white;
+      color: #374151;
+      font-weight: 600;
+      border: 1px solid #e5e7eb !important;
+      transition: background-color 0.2s;
+      
+      &:hover {
+        background-color: #f3f4f6 !important;
+      }
+    }
+  }
+}

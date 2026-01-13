@@ -1,0 +1,19 @@
+# Suchmaschinen-Bots Konfiguration
+
+# Standard Crawling erlauben
+User-agent: *
+Allow: /
+
+# Auth-Routen blockieren (keine SEO-relevanten Inhalte)
+Disallow: /login
+Disallow: /register
+Disallow: /auth/
+Disallow: /change-password
+Disallow: /reset-password
+Disallow: /reset-email
+Disallow: /confirm-mail
+Disallow: /confirm-new-email
+Disallow: /confirm-termination
+
+# Optional: Sitemap hinzufügen (wenn vorhanden)
+# Sitemap: https://ihre-domain.de/sitemap.xml

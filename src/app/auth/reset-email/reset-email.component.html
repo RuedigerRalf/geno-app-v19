@@ -1,0 +1,60 @@
+<div class="min-h-full flex flex-col justify-center py-6 px-6 lg:px-8">
+
+    <div class="sm:mx-auto sm:w-full sm:max-w-lg">
+        <img class="mx-auto w-auto" src="/call to action/gd-logo-200.png" alt="genogramm-designer logo" />
+    </div>
+
+    <h1 class="py-8 text-center text-xl md:text-2xl">
+        {{ pageTitle }}
+    </h1>
+
+    <mat-card class="mx-auto max-w-md mat-elevation-z4">
+        <form #regForm="ngForm" novalidate [formGroup]="form" (ngSubmit)="submitForm(form.value)">
+            <mat-card-content class="flex flex-col">
+                <mat-form-field class="w-full" appearance="fill">
+                    <mat-label>Alte E-Mail</mat-label>
+                    <input readonly='true' matInput placeholder="Alte E-Mail" formControlName="old_mail">
+                    <mat-hint align="end">Schreibgeschützt</mat-hint>
+                </mat-form-field>
+
+                <mat-form-field class="w-full" appearance="fill">
+                    <mat-label>Neue E-Mail</mat-label>
+                    <input matInput matInput #_email placeholder="Neue E-Mail" formControlName="email">
+                    <mat-hint align="end" aria-live="polite">
+                        {{_email.value.length}} / 50 Zeichen
+                    </mat-hint>
+                    @if (errorHandling('email', 'required')) {
+                    <mat-error>Pflichteingabefeld</mat-error>
+                    }
+                    @if (errorHandling('email', 'maxlength')) {
+                    <mat-error>Die max. Länge für dieses Feld beträgt 50 Zeichen!</mat-error>
+                    }
+                    @if (errorHandling('email', 'pattern')) {
+                    <mat-error>Das ist keine gültige E-Mail!</mat-error>
+                    }
+                </mat-form-field>
+
+                <mat-form-field class="w-full" appearance="fill">
+                    <mat-label>Bestätigung E-Mail</mat-label>
+                    <input matInput matInput #_password placeholder="Bestätigung E-Mail" formControlName="confirmMail">
+                    <mat-hint align="end" aria-live="polite">
+                        {{_password.value.length}} / 50 Zeichen
+                    </mat-hint>
+                    @if (errorHandling('confirmMail', 'NoEmailMatch')) {
+                    <mat-error>Die E-Mail's stimmen nicht überein</mat-error>
+                    }
+                </mat-form-field>
+
+                <label class="ohnohoney" for="feld"></label>
+                <input class="ohnohoney" autocomplete="off" type="text" placeholder="Fliegenfalle"
+                    formControlName="feld">
+            </mat-card-content>
+
+            <mat-card-actions align="end">
+                <button mat-raised-button type="submit" color="primary" [disabled]="!form.valid">
+                    Übernehmen
+                </button>
+            </mat-card-actions>
+        </form>
+    </mat-card>
+</div>

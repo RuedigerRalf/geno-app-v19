@@ -1,0 +1,85 @@
+<div class="p-8 flex flex-col justify-center relative overflow-hidden">
+    <div class="relative px-8 py-8 bg-white shadow-lg rounded-lg md:max-w-5xl md:mx-auto ">
+        <div class="max-w-5xl mx-auto">
+
+            <h1 class="text-xl md:text-2xl">
+                {{ pageTitle }}
+            </h1>
+
+            <div class="text-base mb-4">
+                <p class="my-4">
+                    Genogramme und Familienstammbäume werden in den verschiedensten Fachbereichen, wie z.B. der
+                    systemischen Familienhilfe, der Psychologie, der Medizin und ganz allgemein in der Familien- und
+                    Ahnenforschung eingesetzt. Der Genogramm Designer passt sich dabei den unterschiedlichen
+                    fachlichen Anforderungen des jeweiligen Nutzers an.
+                </p>
+                <p class="my-4">
+                    Anhand der auf dieser Seite dargestellten Genogramme und Stammbäume können Sie sich einen ersten
+                    Eindruck vom Leistungsvermögen des Genogramm Designers verschaffen.
+                </p>
+                <p class="my-4">
+                    Bitte beachten Sie:<br>
+                    Die hier dargestellten Diagramme erheben keinen Anspruch auf Vollständigkeit oder Richtigkeit.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="p-8 flex flex-col justify-center relative overflow-hidden">
+    <div
+        class="relative px-4 md:px-8 py-6 md:py-8 bg-white shadow-lg rounded-lg w-full max-w-full md:max-w-5xl mx-auto">
+        <div class="max-w-5xl mx-auto">
+
+            <p class="text-base mt-6">
+                Familie Mustermann
+            </p>
+
+            <div class="flex justify-center items-center mt-8 h-auto max-w-full">
+                <!-- <app-image-slider [indicatorsVisible]="true" [animationSpeed]="100" [slides]="images" [autoPlay]="true" [autoPlaySpeed]="3000">
+                </app-image-slider> -->
+                <!-- Mit Play/Pause Controls und Stop nach einer Sequenz -->
+                <app-image-slider [slides]="images" [autoPlay]="true" [stopAfterSequence]="true"
+                    [showPlayControls]="true">
+                </app-image-slider>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="p-8 flex flex-col justify-center relative overflow-hidden">
+    <div class="relative px-8 py-8 bg-white shadow-lg rounded-lg md:max-w-5xl md:mx-auto ">
+        <div class="max-w-5xl mx-auto">
+
+            <div class="container mx-auto flex px-4 py-4 md:flex-row flex-col items-center">
+                <div class="w-full md:w-1/2">
+                    <img class="object-cover object-center rounded" src="/call to action/665shots_so.png"
+                        alt="genogramm designer logo">
+                </div>
+
+                <div class="flex flex-col w-full md:w-1/2 md:items-start md:text-left items-center text-center">
+                    <div class="mb-6 text-xl md:text-2xl">
+                        Fordern Sie Ihre <br> persönliche Testversion an!
+                    </div>
+                    <p class="text-base mt-4">
+                        Überzeugen Sie sich vor dem Kauf von der Leistungsfähigkeit des ‘Genogramm Designer’. Fordern
+                        Sie Ihre kostenlose Testversion an und testen Sie das Programm 14 Tage auf ‘Herz und Nieren’.
+                        <br>
+                        Kostenfrei und natürlich ohne Verbindlichkeiten.
+                    </p>
+                    <p class="text-base mt-4">
+                        Nach der Registrierung erhalten Sie Ihre Zugangsdaten und weitere Informationen per E-Mail.
+                    </p>
+                    <button [routerLink]="['/register']"
+                        class="flex mx-auto mt-10 py-2 px-8 text-lg text-white focus:outline-none bg-green-700 hover:bg-amber-700 border-0">
+                        Zur Testversion
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

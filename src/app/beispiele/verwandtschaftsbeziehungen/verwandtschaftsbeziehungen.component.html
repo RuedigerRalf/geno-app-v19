@@ -1,0 +1,79 @@
+<!-- trump -->
+<div class="p-8 flex flex-col justify-center relative overflow-hidden">
+    <div class="relative px-8 py-8 bg-white shadow-lg rounded-lg md:max-w-5xl md:mx-auto ">
+        <div class="max-w-5xl mx-auto">
+
+            <h1 class="text-xl md:text-2xl">
+                {{ pageTitle }}
+            </h1>
+
+            <div class="text-base mb-4">
+                <p class="my-4">
+                    In der Bundesrepublik Deutschland wird das Grad- und Verwandtschaftsbezeichnungssystem verwendet, um
+                    Verwandtschaftsgrade darzustellen. Es basiert auf dem Grad der Blutsverwandtschaft oder der
+                    Eheverbindung zwischen Personen und wird verwendet, um die Beziehung zwischen Familienmitgliedern
+                    und Verwandten zu beschreiben.
+                </p>
+                <p class="mb-4">
+                    Das System gliedert sich in verschiedene Grade, die den Grad der Verwandtschaft angeben. Zum
+                    Beispiel sind Eltern und Kinder im ersten Grad verwandt, Großeltern und Enkel im zweiten Grad, und
+                    so weiter. Es gibt auch eine Unterscheidung zwischen gerader Linie (Eltern, Großeltern, Kinder,
+                    Enkel) und Seitenlinie (Geschwister, Onkel, Tante, Neffen, Nichten) Verwandtschaft.
+                </p>
+                <p class="mb-4">
+                    Das Grad- und Verwandtschaftsbezeichnungssystem wird häufig in rechtlichen Angelegenheiten wie
+                    Erbschaftsfragen oder Unterhaltsansprüchen verwendet, um den Verwandtschaftsgrad zwischen den
+                    beteiligten Personen klar zu definieren. Es ist auch im Alltag nützlich, um die Beziehung zwischen
+                    Familienmitgliedern zu beschreiben oder um herauszufinden, wie Personen miteinander verwandt sind.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="p-8 flex flex-col justify-center relative overflow-hidden">
+    <div
+        class="relative px-4 md:px-8 py-6 md:py-8 bg-white shadow-lg rounded-lg w-full max-w-full md:max-w-5xl mx-auto">
+        <div class="max-w-5xl mx-auto">
+
+            <app-leaflet-viewer [images]="images" [showNavigation]="true" [showDownloadButton]="true"
+                (downloadClicked)="onDownload($event)">
+            </app-leaflet-viewer>
+
+        </div>
+    </div>
+</div>
+
+<div class="p-8 flex flex-col justify-center relative overflow-hidden">
+    <div class="relative px-8 py-8 bg-white shadow-lg rounded-lg md:max-w-5xl md:mx-auto ">
+        <div class="max-w-5xl mx-auto">
+
+            <div class="container mx-auto flex px-4 py-4 md:flex-row flex-col items-center">
+                <div class="w-full md:w-1/2">
+                    <img class="object-cover object-center rounded" src="/call to action/665shots_so.png"
+                        alt="genogramm designer logo">
+                </div>
+
+                <div class="flex flex-col w-full md:w-1/2 md:items-start md:text-left items-center text-center">
+                    <div class="mb-6 text-xl md:text-2xl">
+                        Fordern Sie Ihre <br> persönliche Testversion an!
+                    </div>
+                    <p class="text-base mt-4">
+                        Überzeugen Sie sich vor dem Kauf von der Leistungsfähigkeit des ‘Genogramm Designer’. Fordern
+                        Sie Ihre kostenlose Testversion an und testen Sie das Programm 14 Tage auf ‘Herz und Nieren’.
+                        <br>
+                        Kostenfrei und natürlich ohne Verbindlichkeiten.
+                    </p>
+                    <p class="text-base mt-4">
+                        Nach der Registrierung erhalten Sie Ihre Zugangsdaten und weitere Informationen per E-Mail.
+                    </p>
+                    <button [routerLink]="['/register']"
+                        class="flex mx-auto mt-10 py-2 px-8 text-lg text-white focus:outline-none bg-green-700 hover:bg-amber-700 border-0">
+                        Zur Testversion
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

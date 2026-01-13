@@ -1,0 +1,92 @@
+<!-- roayls -->
+<div class="p-8 flex flex-col justify-center relative overflow-hidden">
+    <div class="relative px-8 py-8 bg-white shadow-lg rounded-lg md:max-w-5xl md:mx-auto ">
+        <div class="max-w-5xl mx-auto">
+
+            <h1 class="text-xl md:text-2xl">
+                {{ pageTitle }}
+            </h1>
+
+            <div class="text-base leading-snug mb-4">
+                <p class="my-4">
+                    Seit Heinrich VIII. hat die britische Monarchie eine reiche und wechselvolle Geschichte erlebt. Nach
+                    Heinrichs VIII. Tod folgten ihm seine Kinder auf den Thron, darunter seine berühmte Tochter
+                    Elisabeth I., die eine bedeutende Herrschaftszeit hatte und das Elisabethanische Zeitalter prägte.
+                </p>
+                <p class="mb-3">
+                    Die Stuart-Dynastie folgte auf die Tudors, und mit ihr kam eine Zeit der Konflikte, die schließlich
+                    in den englischen Bürgerkrieg mündeten. Dieser endete mit der Hinrichtung von König Karl I. und der
+                    kurzzeitigen Abschaffung der Monarchie, gefolgt von der Herrschaft von Oliver Cromwell als
+                    Lordprotektor.
+                </p>
+                <p class="mb-3">
+                    Die Monarchie wurde jedoch nach Cromwells Tod restauriert, und die Stuart-Linie setzte ihre
+                    Herrschaft fort, bis sie schließlich mit dem kinderlosen Tod von Königin Anne endete. Dies führte
+                    zum Aufstieg des Hauses Hannover mit König Georg I., der der erste britische Monarch aus dem Haus
+                    Hannover war.
+                </p>
+                <p class="mb-3">
+                    Seitdem haben britische Monarchen eine relative Stabilität erlebt, obwohl es in verschiedenen
+                    Perioden politische Herausforderungen gab, wie etwa die Reformakte von 1832 und die Abdankungskrise
+                    von König Eduard VIII. 1936. Die Monarchie hat sich im Laufe der Zeit weiterentwickelt und spielt
+                    auch heute noch eine wichtige zeremonielle und repräsentative Rolle im Vereinigten Königreich und
+                    den Commonwealth-Reichen.
+                </p>
+                <p class="mb-3">
+                    Der aktuelle König Charles III hat betont, dass er eine aktive Rolle als Monarch spielen möchte,
+                    indem er sich in verschiedene Angelegenheiten einbringt und seine Position nutzt, um positive
+                    Veränderungen zu bewirken. Er hat sich stark für Bildung und Ausbildung eingesetzt und verschiedene
+                    Wohltätigkeitsorganisationen unterstützt.
+                </p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="p-8 flex flex-col justify-center relative overflow-hidden">
+    <div
+        class="relative px-4 md:px-8 py-6 md:py-8 bg-white shadow-lg rounded-lg w-full max-w-full md:max-w-5xl mx-auto">
+        <div class="max-w-5xl mx-auto">
+
+            <app-leaflet-viewer [images]="images" [showNavigation]="true" [showDownloadButton]="true"
+                (downloadClicked)="onDownload($event)">
+            </app-leaflet-viewer>
+
+        </div>
+    </div>
+</div>
+
+<div class="p-8 flex flex-col justify-center relative overflow-hidden">
+    <div class="relative px-8 py-8 bg-white shadow-lg rounded-lg md:max-w-5xl md:mx-auto ">
+        <div class="max-w-5xl mx-auto">
+
+            <div class="container mx-auto flex px-4 py-4 md:flex-row flex-col items-center">
+                <div class="w-full md:w-1/2">
+                    <img class="object-cover object-center rounded" src="/call to action/665shots_so.png"
+                        alt="genogramm designer logo">
+                </div>
+
+                <div class="flex flex-col w-full md:w-1/2 md:items-start md:text-left items-center text-center">
+                    <div class="mb-6 text-xl md:text-2xl">
+                        Fordern Sie Ihre <br> persönliche Testversion an!
+                    </div>
+                    <p class="text-base leading-snug mt-4">
+                        Überzeugen Sie sich vor dem Kauf von der Leistungsfähigkeit des ‘Genogramm Designer’. Fordern
+                        Sie Ihre kostenlose Testversion an und testen Sie das Programm 14 Tage auf ‘Herz und Nieren’.
+                        <br>
+                        Kostenfrei und natürlich ohne Verbindlichkeiten.
+                    </p>
+                    <p class="text-base leading-snug mt-4">
+                        Nach der Registrierung erhalten Sie Ihre Zugangsdaten und weitere Informationen per E-Mail.
+                    </p>
+                    <button [routerLink]="['/register']"
+                        class="flex mx-auto mt-10 py-2 px-8 text-lg text-white focus:outline-none bg-green-700 hover:bg-amber-700 border-0">
+                        Zur Testversion
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

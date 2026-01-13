@@ -1,0 +1,23 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { FunktionenComponent } from './funktionen.component';
+
+describe('FunktionenComponent', () => {
+  let component: FunktionenComponent;
+  let fixture: ComponentFixture<FunktionenComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [FunktionenComponent]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(FunktionenComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

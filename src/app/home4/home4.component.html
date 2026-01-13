@@ -1,0 +1,111 @@
+<!-- weasley -->
+<div class="p-8 flex flex-col justify-center relative overflow-hidden">
+    <div class="relative px-8 py-8 bg-white shadow-lg rounded-lg md:max-w-5xl md:mx-auto ">
+        <div class="max-w-5xl mx-auto">
+
+            <h1 class="text-xl md:text-2xl">
+                {{ pageTitle }}
+            </h1>
+
+            <p class="text-base mt-6">
+                Frei nach dem Roman ‘Harry Potter’ von Joanne K. Rowling
+            </p>
+
+            <div class="text-base mb-4">
+                <p class="my-4">
+                    Die Harry Potter-Romane von J.K. Rowling sind eine Reihe von sieben Büchern, die die Abenteuer eines
+                    jungen Zauberers namens Harry Potter und seiner Freunde an der Hogwarts-Schule für Hexerei und
+                    Zauberei erzählen. Die Geschichten folgen Harrys Reise, wie er die Geheimnisse seiner eigenen
+                    Vergangenheit entdeckt, sich gegen dunkle Mächte stellt und letztendlich versucht, den bösen
+                    Zauberer Lord Voldemort zu besiegen.
+                </p>
+                <p class="mb-3">
+                    Die Weasley-Familie spielt eine bedeutende Rolle in der Serie, insbesondere durch ihre Mitglieder
+                    Ron, Ginny, Fred, George, Percy, Bill und Charlie. Sie sind bekannt für ihre roten Haare und ihre
+                    herzliche, liebevolle Natur. Die Weasleys repräsentieren den starken Zusammenhalt und die Bedeutung
+                    von Familie, Freundschaft und Tapferkeit in der Welt von Harry Potter.
+                </p>
+            </div>
+
+            <!-- <div class="flex flex-row justify-between items-center">
+                <p></p>
+                <button mat-stroked-button color="primary" (click)="getImage()">Download</button>
+            </div>
+
+            <img class="h-auto max-w-full" src="/web/Familie Weasley web.png" alt="familie Weasley"> -->
+
+
+
+        </div>
+    </div>
+</div>
+
+<!-- <div class="p-8 flex flex-col justify-center relative overflow-hidden">
+    <div class="relative px-4 md:px-8 py-6 md:py-8 bg-white shadow-lg rounded-lg w-full max-w-full md:max-w-5xl mx-auto">
+        <div class="w-full mx-auto">
+
+            <app-leaflet-viewer [images]="images" [showNavigation]="true" [showDownloadButton]="true"
+                (downloadClicked)="onDownload($event)">
+            </app-leaflet-viewer>
+
+        </div>
+    </div>
+</div> -->
+
+<div class="p-8 flex flex-col justify-center relative overflow-hidden">
+    <div class="relative px-4 md:px-8 py-6 md:py-8 bg-white shadow-lg rounded-lg w-full max-w-full md:max-w-5xl mx-auto">
+        <div class="w-full mx-auto">
+
+            <app-leaflet-viewer [images]="images" [showNavigation]="true" [showDownloadButton]="true"
+                (downloadClicked)="onDownload($event)">
+            </app-leaflet-viewer>
+
+        </div>
+    </div>
+</div>
+
+<div class="p-8 flex flex-col justify-center relative overflow-hidden">
+    <div class="relative px-4 md:px-8 py-6 md:py-8 bg-white shadow-lg rounded-lg w-full max-w-full md:max-w-5xl mx-auto">
+        <div class="w-full mx-auto">
+
+            <app-leaflet-viewer2 [images]="images1" [showNavigation]="true" [showDownloadButton]="true"
+                (downloadClicked)="onDownload($event)">
+            </app-leaflet-viewer2>
+
+        </div>
+    </div>
+</div>
+
+<div class="p-8 flex flex-col justify-center relative overflow-hidden">
+    <div class="relative px-8 py-8 bg-white shadow-lg rounded-lg md:max-w-5xl md:mx-auto ">
+        <div class="max-w-5xl mx-auto">
+
+            <div class="container mx-auto flex px-4 py-4 md:flex-row flex-col items-center">
+                <div class="w-full md:w-1/2">
+                    <img class="object-cover object-center rounded" src="/call to action/665shots_so.png"
+                        alt="genogramm designer logo">
+                </div>
+
+                <div class="flex flex-col w-full md:w-1/2 md:items-start md:text-left items-center text-center">
+                    <div class="mb-6 text-xl md:text-2xl">
+                        Fordern Sie Ihre <br> persönliche Testversion an!
+                    </div>
+                    <p class="text-base mt-4">
+                        Überzeugen Sie sich vor dem Kauf von der Leistungsfähigkeit des ‘Genogramm Designer’. Fordern
+                        Sie Ihre kostenlose Testversion an und testen Sie das Programm 14 Tage auf ‘Herz und Nieren’.
+                        <br>
+                        Kostenfrei und natürlich ohne Verbindlichkeiten.
+                    </p>
+                    <p class="text-base mt-4">
+                        Nach der Registrierung erhalten Sie Ihre Zugangsdaten und weitere Informationen per E-Mail.
+                    </p>
+                    <button [routerLink]="['/register']"
+                        class="flex mx-auto mt-10 py-2 px-8 text-lg text-white focus:outline-none bg-green-700 hover:bg-amber-700 border-0">
+                        Zur Testversion
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

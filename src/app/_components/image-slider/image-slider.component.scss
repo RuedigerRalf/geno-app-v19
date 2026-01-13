@@ -1,0 +1,71 @@
+:host {
+  display: block;
+  width: 100%;
+
+  .slides {
+    width: 100%;
+    height: 550px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #b6b2b2;
+    
+    .slide {
+      width: 100%;
+      height: 90%;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+
+    .controls-bar {
+      margin-top: 8px;
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 8px 15px;
+      border-radius: 25px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      z-index: 100;
+    }
+
+    .nextButton, .previousButton, .playPauseButton {
+      width: 40px !important;
+      height: 40px !important;
+      min-width: 40px !important;
+      
+      ::ng-deep mat-icon {
+        font-size: 20px;
+      }
+    }
+
+    #indicators {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+
+      .indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #b6b2b2;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &.active {
+          background-color: #4f4f4f;
+        }
+        
+        &:hover {
+          background-color: #888;
+        }
+      }
+    }
+  }
+}

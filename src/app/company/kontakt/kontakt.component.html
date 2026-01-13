@@ -1,0 +1,124 @@
+<div class="p-8 flex flex-col justify-center relative overflow-hidden">
+    <div class="relative px-8 py-8 bg-white shadow-lg rounded-lg md:max-w-5xl md:mx-auto ">
+        <div class="max-w-4xl mx-auto">
+
+            <form #regForm="ngForm" novalidate [formGroup]="form" (ngSubmit)="saveData(form.value)">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 ">
+
+                    <mat-card class="w-full mat-elevation-z2">
+
+                        <mat-card-content class="flex flex-row flex-wrap">
+                            <h1 class="title-font text-2xl text-gray-900 mb-4">eDoc Systems</h1>
+
+                            <ul class="menu bg-base-200 rounded-box mb-5">
+                                <li> <a class="text-base text-gray-600 ">An der Weide 43</a> </li>
+                                <li> <a class="text-base text-gray-600 ">27211 Bassum</a> </li>
+                                <li> <a class="text-base text-gray-600 ">Deutschland</a> </li>
+                            </ul>
+
+                            <ul class="menu bg-base-200 rounded-box mb-5">
+                                <li> <a class="text-base text-gray-600 ">Telefon: +49 (0)4241 8239 691</a> </li>
+                                <li> <a class="text-base text-gray-600 ">Fax: +49 (0)4241 8239 692</a> </li>
+                                <li> <a class="text-base text-gray-600 ">E-Mail: info(at)edoc-systems.de</a> </li>
+                            </ul>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <mat-card class="md:col-span-2">
+                        <mat-card-content class="flex flex-row flex-wrap">
+                            <h1 class="text-xl md:text-2xl mb-4">
+                                {{ pageTitle }}
+                            </h1>
+
+                            <p class="text-base text-gray-600 mb-6">
+                                Auf dieser Seite können Sie mit uns in Verbindung treten. Bitte geben Sie Ihre
+                                persönlichen Daten und Ihre Nachricht an uns ein. Wir werden dann umgehend
+                                persönlich Kontakt mit Ihnen aufnehmen.<br>
+                                Wenn Ihnen dieser Weg zu lange dauert, rufen Sie einfach an. Wir freuen uns auf das
+                                Gespräch mit Ihnen.
+                            </p>
+
+                            <p class="text-base text-gray-600 mb-6">
+                                Bitte geben Sie uns zwei Werktage zur Beantwortung. Danke.
+                            </p>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Name</mat-label>
+                                    <input matInput #_name placeholder="Name" formControlName="user">
+                                    <mat-hint align="end">
+                                        {{_name.value.length}} / 100 Zeichen
+                                    </mat-hint>
+                                    @if (errorHandling('user', 'required')) {
+                                    <mat-error>
+                                        Pflichteingabefeld
+                                    </mat-error>
+                                    }
+                                    @if (errorHandling('user', 'maxlength')) {
+                                    <mat-error>
+                                        Die max. Länge für dieses Feld beträgt 100 Zeichen !
+                                    </mat-error>
+                                    }
+                                </mat-form-field>
+
+                                <mat-form-field appearance="fill">
+                                    <mat-label>E-Mail</mat-label>
+                                    <input matInput #_mail placeholder="E-Mail" formControlName="userMail">
+
+                                    <mat-hint align="end">
+                                        {{_mail.value.length}} / 100 Zeichen
+                                    </mat-hint>
+                                    @if (errorHandling('userMail', 'required')) {
+                                    <mat-error>
+                                        Pflichteingabefeld
+                                    </mat-error>
+                                    }
+                                    @if (errorHandling('userMail', 'maxlength')) {
+                                    <mat-error>
+                                        Die max. Länge für dieses Feld beträgt 100 Zeichen !
+                                    </mat-error>
+                                    }
+                                </mat-form-field>
+                            </div>
+
+                            <div class="grid grid-cols-1 ">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Nachricht</mat-label>
+                                    <textarea matInput #_nachricht placeholder="Deine Nachricht"
+                                        formControlName="text"></textarea>
+                                    <mat-hint align="end">
+                                        {{_nachricht.value.length}} / 500 Zeichen
+                                    </mat-hint>
+                                    @if (errorHandling('text', 'required')) {
+                                    <mat-error>
+                                        Pflichteingabefeld
+                                    </mat-error>
+                                    }
+                                    @if (errorHandling('text', 'maxlength')) {
+                                    <mat-error>
+                                        Die max. Länge für dieses Feld beträgt 1000 Zeichen !
+                                    </mat-error>
+                                    }
+                                </mat-form-field>
+                            </div>
+
+                            <label class="ohnohoney" for="feld"></label>
+                            <input class="ohnohoney" autocomplete="off" type="text" placeholder="Fliegenfalle"
+                                formControlName="feld">
+
+                        </mat-card-content>
+
+                        <mat-card-actions align="end">
+                            <button type="submit" mat-raised-button color="primary"
+                                [disabled]="(!form.valid || form.pristine)" style="margin-right:16px">Speichern</button>
+                            <button type="button" (click)="cancelEdit()" mat-raised-button color="warn"
+                                [disabled]="(!form.valid)">Löschen</button>
+                        </mat-card-actions>
+
+                    </mat-card>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

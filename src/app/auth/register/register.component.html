@@ -1,0 +1,257 @@
+<div class="container mx-auto pt-1">
+    <div
+        class="bg-white text-gray-800 leading-normal shadow-xl md:max-w-5xl md:mx-auto md:rounded-lg md:px-10 px-4 md:mt-8 mb-16 ">
+
+        <div class="max-w-3xl flex flex-col mx-auto">
+
+            <img class="mt-6 mx-auto w-auto" src="/call to action/gd-logo-200.png" alt="genogramm-designer logo" />
+
+            <div class="flex py-6 flex-col justify-items-center">
+                <h1 class="text-center text-xl md:text-2xl">
+                    {{ pageTitle }}
+                </h1>
+
+                <p class="mt-4 text-center text-sm">
+                    Sie sind schon registriert?
+                    <a class="mt-2 text-sm text-green-700" [routerLink]="['/login']">
+                        Hier entlang
+                    </a>
+                </p>
+            </div>
+
+            <form #regForm="ngForm" class="mt-6 mb-6" novalidate [formGroup]="form" (ngSubmit)="registerUser(form.value)">
+                <mat-card class="mat-elevation-z2">
+
+                    <mat-card-content>
+
+                        <!-- anrede -->
+                        <div class="grid overflow-hidden md:grid-cols-2 md:gap-4 w-auto">
+                            <mat-form-field class="w-full">
+                                <mat-select placeholder="Anrede" formControlName="anrede">
+                                    <mat-option [value]="'Frau'">Frau</mat-option>
+                                    <mat-option [value]="'Herr'">Herr</mat-option>
+                                </mat-select>
+                                @if (errorHandling('anrede', 'required')) {
+                                <mat-error>Pflichteingabefeld</mat-error>
+                                }
+                            </mat-form-field>
+                        </div>
+
+                        <!-- vorname, nachname -->
+                        <div class="grid overflow-hidden md:grid-cols-2 md:gap-4 w-auto">
+                            <mat-form-field class="w-full">
+                                <mat-label>Vorname</mat-label>
+                                <input matInput matInput #_vorname placeholder="Vorname" formControlName="vorname">
+                                <mat-hint align="end" aria-live="polite">
+                                    {{_vorname.value.length}} / 50 Zeichen
+                                </mat-hint>
+                                @if (errorHandling('vorname', 'required')) {
+                                <mat-error>Pflichteingabefeld</mat-error>
+                                }
+                                @if (errorHandling('vorname', 'maxlength')) {
+                                <mat-error>Die max. Länge für dieses Feld beträgt 50 Zeichen!</mat-error>
+                                }
+                                @if (errorHandling('vorname', 'pattern')) {
+                                <mat-error>Keine gültige Eingabe</mat-error>
+                                }
+                            </mat-form-field>
+
+                            <mat-form-field class="w-full">
+                                <mat-label>Nachname</mat-label>
+                                <input matInput matInput #_nachname placeholder="Nachname" formControlName="nachname">
+                                <mat-hint align="end" aria-live="polite">
+                                    {{_nachname.value.length}} / 50 Zeichen
+                                </mat-hint>
+                                @if (errorHandling('nachname', 'required')) {
+                                <mat-error>Pflichteingabefeld</mat-error>
+                                }
+                                @if (errorHandling('nachname', 'maxlength')) {
+                                <mat-error>Die max. Länge für dieses Feld beträgt 50 Zeichen!</mat-error>
+                                }
+                                @if (errorHandling('nachname', 'pattern')) {
+                                <mat-error>Keine gültige Eingabe</mat-error>
+                                }
+                            </mat-form-field>
+                        </div>
+
+                        <!-- firma -->
+                        <div class="grid overflow-hidden md:grid-cols-2 md:gap-4 w-auto">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Firma 1</mat-label>
+                                <input matInput #_firma1 placeholder="Firma 1" formControlName="firma1">
+                                <mat-hint align="end" aria-live="polite">
+                                    {{_firma1.value.length}} / 100 Zeichen
+                                </mat-hint>
+
+                            </mat-form-field>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Firma 2</mat-label>
+                                <input matInput #_firma2 placeholder="Firma 2" formControlName="firma2">
+                                <mat-hint align="end" aria-live="polite">
+                                    {{_firma2.value.length}} / 100 Zeichen
+                                </mat-hint>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- plz / stadt -->
+                        <div class="grid overflow-hidden md:grid-cols-2 md:gap-4 w-auto">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Postleitzahl</mat-label>
+                                <input matInput placeholder="Postleitzahl" formControlName="plz">
+                                @if (errorHandling('plz', 'required')) {
+                                <mat-error>Pflichteingabefeld</mat-error>
+                                }
+                                @if (errorHandling('plz', 'maxlength')) {
+                                <mat-error>Die max. Länge für dieses Feld beträgt 100 Zeichen!</mat-error>
+                                }
+                                @if (errorHandling('plz', 'pattern')) {
+                                <mat-error>Keine gültige Eingabe</mat-error>
+                                }
+                            </mat-form-field>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Stadt</mat-label>
+                                <input matInput #_stadt placeholder="Stadt" formControlName="stadt">
+                                <mat-hint align="end" aria-live="polite">
+                                    {{_stadt.value.length}} / 50 Zeichen
+                                </mat-hint>
+                                @if (errorHandling('stadt', 'required')) {
+                                <mat-error>Pflichteingabefeld</mat-error>
+                                }
+                                @if (errorHandling('stadt', 'maxlength')) {
+                                <mat-error>Die max. Länge für dieses Feld beträgt 100 Zeichen!</mat-error>
+                                }
+                                @if (errorHandling('stadt', 'pattern')) {
+                                <mat-error>Keine gültige Eingabe</mat-error>
+                                }
+                            </mat-form-field>
+                        </div>
+
+                        <!-- anschrift -->
+                        <div class="grid overflow-hidden md:grid-cols-2 md:gap-4 w-auto">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Anschrift</mat-label>
+                                <input matInput #_anschrift placeholder="Strasse & Hausnummer"
+                                    formControlName="strasse">
+                                <mat-hint align="end" aria-live="polite">
+                                    {{_anschrift.value.length}} / 50 Zeichen
+                                </mat-hint>
+                                @if (errorHandling('strasse', 'required')) {
+                                <mat-error>Pflichteingabefeld</mat-error>
+                                }
+                                @if (errorHandling('strasse', 'maxlength')) {
+                                <mat-error>Die max. Länge für dieses Feld beträgt 100 Zeichen!</mat-error>
+                                }
+                                @if (errorHandling('strasse', 'pattern')) {
+                                <mat-error>Keine gültige Eingabe</mat-error>
+                                }
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill">
+                                <mat-label>Land</mat-label>
+                                <input matInput #_land placeholder="Land" formControlName="staat">
+                                <mat-hint align="end" aria-live="polite">
+                                    {{_land.value.length}} / 50 Zeichen
+                                </mat-hint>
+                                @if (errorHandling('staat', 'required')) {
+                                <mat-error>Pflichteingabefeld</mat-error>
+                                }
+                                @if (errorHandling('staat', 'maxlength')) {
+                                <mat-error>Die max. Länge für dieses Feld beträgt 100 Zeichen!</mat-error>
+                                }
+                                @if (errorHandling('staat', 'pattern')) {
+                                <mat-error>Keine gültige Eingabe</mat-error>
+                                }
+                            </mat-form-field>
+                        </div>
+
+                        <!-- mail -->
+                        <div class="grid overflow-hidden md:grid-cols-2 md:gap-4 w-auto">
+                            <mat-form-field class="w-full">
+                                <mat-label>E-Mail</mat-label>
+                                <input matInput matInput #_email placeholder="E-Mail" formControlName="email">
+                                <mat-hint align="end" aria-live="polite">
+                                    {{_email.value.length}} / 50 Zeichen
+                                </mat-hint>
+                                @if (errorHandling('email', 'required')) {
+                                <mat-error>Pflichteingabefeld</mat-error>
+                                }
+                                @if (errorHandling('email', 'maxlength')) {
+                                <mat-error>Die max. Länge für dieses Feld beträgt 100 Zeichen!</mat-error>
+                                }
+                                @if (errorHandling('email', 'pattern')) {
+                                <mat-error>Keine gültige Eingabe</mat-error>
+                                }
+                            </mat-form-field>
+                        </div>
+
+                        <!-- kennwort -->
+                        <div class="grid overflow-hidden md:grid-cols-2 md:gap-4 w-auto">
+                            <mat-form-field class="w-full text-wrap">
+                                <mat-label>Kennwort</mat-label>
+                                <input matInput matInput #_password placeholder="Kennwort" formControlName="password">
+                                <mat-hint align="end" aria-live="polite">
+                                    {{_password.value.length}} / 50 Zeichen
+                                </mat-hint>
+                                @if (errorHandling('password', 'required')) {
+                                <mat-error>Pflichteingabefeld</mat-error>
+                                }
+                                @if (errorHandling('password', 'maxlength')) {
+                                <mat-error>Die max. Länge für dieses Feld beträgt 50 Zeichen!</mat-error>
+                                }
+                                @if (errorHandling('password', 'minlength')) {
+                                <mat-error>Die minimale Länge für ein Kennwort beträgt 8 Zeichen!</mat-error>
+                                }
+                                @if (errorHandling('password', 'hasNumber')) {
+                                <mat-error>Das Kennwort muss mindestens eine Zahl enthalten</mat-error>
+                                }
+                                @if (errorHandling('password', 'hasCapitalCase')) {
+                                <mat-error>Das Kennwort muss mindestens einen Großbuchstaben enthalten</mat-error>
+                                }
+                                @if (errorHandling('password', 'hasSmallCase')) {
+                                <mat-error>Das Kennwort muss mindestens einen Kleinbuchstaben enthalten</mat-error>
+                                }
+                                @if (errorHandling('password', 'hasSpecialCharacters')) {
+                                <mat-error>Das Kennwort muss mindestens ein Sonderzeichen enthalten</mat-error>
+                                }
+                            </mat-form-field>
+
+                            <mat-form-field class="w-full">
+                                <mat-label>Kennwort Bestätigung</mat-label>
+                                <input matInput matInput #_confirmPassword placeholder="Kennwort Bestätigung"
+                                    formControlName="confirmPassword">
+                                <mat-hint align="end" aria-live="polite">
+                                    {{_confirmPassword.value.length}} / 50 Zeichen
+                                </mat-hint>
+                                @if (errorHandling('confirmPassword', 'NoPassswordMatch')) {
+                                <mat-error>Die Kennworte stimmen nicht überein!</mat-error>
+                                }
+                            </mat-form-field>
+                        </div>
+
+                        <label class="ohnohoney" for="feld"></label>
+                        <input class="ohnohoney" autocomplete="off" type="text" placeholder="Fliegenfalle"
+                            formControlName="feld">
+
+                        <div class="flex items-center my-4">
+                            <input formControlName="accept" id="terms-and-privacy" name="terms-and-privacy"
+                                type="checkbox" />
+                            <label for="terms-and-privacy" class="ml-2 block text-sm text-gray-900">
+                                Ich stimme den <a [routerLink]="['/gdpr']" class="text-green-700">
+                                    Allgemeine Geschäftsbedingungen (AGB)</a> und <a [routerLink]="['/gdpr']"
+                                    class="text-green-700">Datenschutz-Bestimmungen</a> zu.
+                            </label>
+                        </div>
+                    </mat-card-content>
+
+                    <mat-card-actions align="end">
+                        <button mat-raised-button type="submit" color="primary"
+                            [disabled]="(!form.valid || form.pristine)" style="margin-right:16px">Speichern</button>
+                        <button mat-raised-button type="button" (click)="cancelEdit()">Abbrechen</button>
+                    </mat-card-actions>
+
+                </mat-card>
+            </form>
+
+        </div>
+    </div>
+</div>

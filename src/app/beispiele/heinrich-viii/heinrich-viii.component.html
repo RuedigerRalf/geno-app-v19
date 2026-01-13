@@ -1,0 +1,91 @@
+<!-- heinrich -->
+<div class="p-8 flex flex-col justify-center relative overflow-hidden">
+    <div class="relative px-8 py-8 bg-white shadow-lg rounded-lg md:max-w-5xl md:mx-auto ">
+        <div class="max-w-5xl mx-auto">
+
+            <h1 class="text-xl md:text-2xl">
+                {{ pageTitle }}
+            </h1>
+
+            <div class="text-base mb-4">
+                <p class="my-4">
+                    Heinrich VIII., König von England von 1509 bis 1547, regierte über eine der turbulentesten Perioden
+                    in der englischen Geschichte.
+                    Heinrich VIII. übernimmt die Herrschaft im Alter von 17 Jahren nach dem Tod seines Vaters, Heinrich
+                    VII.
+                    Er heiratet Katharina von Aragon, die zuvor mit seinem Bruder Arthur verheiratet war, der jedoch
+                    jung verstarb.
+                    Innenpolitisch ist seine Regierung relativ stabil, aber er führt Kriege gegen Frankreich.
+                    Heinrich VIII. entwickelt sich zu einem führenden europäischen Herrscher und tritt in Konflikte mit
+                    Frankreich und Spanien ein.
+
+                </p>
+                <p class="mb-4">
+                    Seine Beziehung zu Katharina von Aragon verschlechtert sich, da sie keine männlichen Erben
+                    hervorbringt, und er beginnt, nach Möglichkeiten zu suchen, die Ehe zu annullieren. Heinrich VIII.
+                    bricht mit der römisch-katholischen Kirche, nachdem Papst Clemens VII. seine Ehe mit Katharina von
+                    Aragon nicht annulliert. Er gründet die Kirche von England und wird ihr Oberhaupt, was zur
+                    Reformation in England führt.
+                    Heinrich heiratet Anne Boleyn, und ihre Tochter, die spätere Königin Elisabeth I., wird geboren.
+                </p>
+                <p class="mb-4">
+                    Die Ehe mit Anne Boleyn endet tragisch mit ihrer Hinrichtung wegen Hochverrats. Heinrich VIII.
+                    heiratet Jane Seymour, die ihm endlich einen männlichen Erben, Eduard VI., gebiert. Die englische
+                    Reformation setzt sich fort, mit der Auflösung der Klöster und der Enteignung kirchlichen Besitzes.
+                    Heinrich VIII. heiratet dreimal: Anne von Kleve, Katharina Howard und Katharina Parr.
+                    Seine letzten Jahre sind von gesundheitlichen Problemen gezeichnet.
+                    Heinrich VIII. stirbt 1547 im Alter von 55 Jahren und hinterlässt seinem Sohn, Eduard VI., den
+                    Thron.
+                </p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="p-8 flex flex-col justify-center relative overflow-hidden">
+    <div
+        class="relative px-4 md:px-8 py-6 md:py-8 bg-white shadow-lg rounded-lg w-full max-w-full md:max-w-5xl mx-auto">
+        <div class="max-w-5xl mx-auto">
+
+            <app-leaflet-viewer [images]="images" [showNavigation]="true" [showDownloadButton]="true"
+                (downloadClicked)="onDownload($event)">
+            </app-leaflet-viewer>
+
+        </div>
+    </div>
+</div>
+
+<div class="p-8 flex flex-col justify-center relative overflow-hidden">
+    <div class="relative px-8 py-8 bg-white shadow-lg rounded-lg md:max-w-5xl md:mx-auto ">
+        <div class="max-w-5xl mx-auto">
+
+            <div class="container mx-auto flex px-4 py-4 md:flex-row flex-col items-center">
+                <div class="w-full md:w-1/2">
+                    <img class="object-cover object-center rounded" src="/call to action/665shots_so.png"
+                        alt="genogramm designer logo">
+                </div>
+
+                <div class="flex flex-col w-full md:w-1/2 md:items-start md:text-left items-center text-center">
+                    <div class="mb-6 text-xl md:text-2xl">
+                        Fordern Sie Ihre <br> persönliche Testversion an!
+                    </div>
+                    <p class="text-base mt-4">
+                        Überzeugen Sie sich vor dem Kauf von der Leistungsfähigkeit des ‘Genogramm Designer’. Fordern
+                        Sie Ihre kostenlose Testversion an und testen Sie das Programm 14 Tage auf ‘Herz und Nieren’.
+                        <br>
+                        Kostenfrei und natürlich ohne Verbindlichkeiten.
+                    </p>
+                    <p class="text-base mt-4">
+                        Nach der Registrierung erhalten Sie Ihre Zugangsdaten und weitere Informationen per E-Mail.
+                    </p>
+                    <button [routerLink]="['/register']"
+                        class="flex mx-auto mt-10 py-2 px-8 text-lg text-white focus:outline-none bg-green-700 hover:bg-amber-700 border-0">
+                        Zur Testversion
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

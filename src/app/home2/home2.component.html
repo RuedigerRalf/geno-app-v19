@@ -1,0 +1,78 @@
+<section class="relative bg-white py-20">
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Überschrift -->
+    <div class="mb-16 text-center max-w-3xl mx-auto">
+      <h2 class="text-3xl font-bold text-slate-900 sm:text-4xl">
+        So funktioniert der Genogramm Designer
+      </h2>
+    </div>
+
+    <!-- MAIN GRID -->
+    <!-- 'items-start' ist zwingend, damit die rechte Spalte nicht gestreckt wird -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+
+      <!-- LINKER BEREICH: Scrollbarer Text -->
+      <div class="flex flex-col">
+        
+        @for (step of steps; track step.id; let i = $index) {
+          <div 
+            #stepSection
+            [attr.data-index]="i"
+            class="min-h-[80vh] flex flex-col justify-center p-6 transition-opacity duration-500"
+            [class.opacity-40]="activeStepIndex() !== i"
+            [class.opacity-100]="activeStepIndex() === i"
+          >
+            <!-- Nummer & Titel -->
+            <div class="flex items-center gap-4 mb-4">
+              <span class="flex items-center justify-center w-12 h-12 rounded-full bg-slate-100 text-slate-900 font-bold text-xl border border-slate-200 shadow-sm">
+                {{ i + 1 }}
+              </span>
+              <h3 class="text-2xl font-bold text-slate-900">
+                {{ step.title }}
+              </h3>
+            </div>
+            
+            <!-- Beschreibung -->
+            <div class="ml-16">
+              <p class="text-lg text-slate-600 leading-relaxed">
+                {{ step.description }}
+              </p>
+            </div>
+          </div>
+        }
+        
+        <!-- Spacer am Ende für sauberes Ausscrollen -->
+        <div class="h-[20vh]"></div>
+      </div>
+
+      <!-- RECHTER BEREICH: Sticky Images -->
+      <!-- sticky top-32: Klebt am oberen Rand -->
+      <div class="hidden lg:block sticky top-32 h-[500px] w-full rounded-2xl shadow-2xl border-4 border-red-700 overflow-hidden bg-slate-50">
+        
+        <div class="relative w-full h-full">
+          
+          @for (step of steps; track step.id; let i = $index) {
+            <!-- Container für das Bild mit Cross-Fade Logik -->
+            <div 
+              class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out bg-white"
+              [class.opacity-0]="activeStepIndex() !== i"
+              [class.opacity-100]="activeStepIndex() === i"
+              [style.z-index]="activeStepIndex() === i ? 10 : 0"
+            >
+              <!-- Das eigentliche Bild -->
+              <img 
+                [src]="step.imageUrl" 
+                [alt]="step.title"
+                class="object-cover w-full h-full"
+              >
+            </div>
+          }
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

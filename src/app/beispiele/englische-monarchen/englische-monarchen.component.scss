@@ -1,0 +1,61 @@
+// .viewer-wrapper {
+//   width: 100%;
+//   height: 100%;
+//   position: relative;
+// }
+
+// #osd-viewer {
+//   width: 100%;
+//   height: 100%;
+// }
+
+// :host {
+//   display: block;
+//   height: 100vh;
+// }
+
+// .loading-indicator {
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   font-size: 1.5em;
+//   color: #555;
+// }
+
+// .viewer-container {
+//   width: 100%;
+//   height: 0;
+//   padding-bottom: 75%; // 4:3 Aspect Ratio
+//   position: relative;
+//   margin: 0 auto;
+//   background: #f0f0f0;
+
+//   // Für kleinere Bildschirme
+//   @media (max-width: 768px) {
+//     padding-bottom: 100%; // Quadratisch auf mobil
+//   }
+// }
+
+// .viewer-wrapper {
+//   width: 100%;
+//   height: 0;
+//   padding-bottom: 75%; // 4:3 Aspect Ratio
+//   position: relative;
+//   margin: 0 auto;
+//   background: #f0f0f0;
+//   border: 1px solid #ddd;
+
+//   // Für kleinere Bildschirme
+//   @media (max-width: 768px) {
+//     padding-bottom: 100%; // Quadratisch auf mobil
+//   }
+// }
+
+// .viewer-container {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+// }

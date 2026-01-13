@@ -1,0 +1,27 @@
+<mat-card class="rounded-xl overflow-hidden shadow-sm bg-white cursor-pointer p-0 h-[300px]" (click)="openDialog()">
+
+    <!-- Bildbereich -->
+    <div class="w-full h-[60%]">
+        <img [src]="inputData.imageUrl" alt='inputData.imageAlt' class="w-full h-full object-cover" />
+    </div>
+
+    <!-- Contentbereich -->
+    <div class="p-4 h-[40%] flex flex-col justify-between">
+        <h3 class="text-base font-semibold leading-tight">
+            {{ inputData.title }}
+        </h3>
+
+        <p class="text-sm text-gray-600 line-clamp-1">
+            {{ inputData.text }}
+        </p>
+
+        <div class="flex flex-wrap gap-2 mt-2">
+            @for (tag of inputData.tags; track tag) {
+            <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-md">
+                {{ tag }}
+            </span>
+            }
+        </div>
+    </div>
+
+</mat-card>
