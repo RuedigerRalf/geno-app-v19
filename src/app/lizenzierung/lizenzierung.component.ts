@@ -5,11 +5,13 @@ import { Meta, Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { SeoService } from '../_service/seo.service';
 
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 @Component({
     selector: 'app-lizenzierung',
     templateUrl: './lizenzierung.component.html',
     styleUrl: './lizenzierung.component.scss',
-    imports: [RouterLink, CommonModule]
+    imports: [RouterLink, CommonModule, MatTooltipModule]
 })
 export class LizenzierungComponent {
 

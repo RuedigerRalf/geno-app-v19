@@ -41,9 +41,10 @@
 
                         <!-- Optional: Mobil-Bild (nur sichtbar auf kleinen Screens) -->
                         <div class="lg:hidden mt-6 rounded-xl overflow-hidden shadow-md border border-slate-200 bg-slate-50">
-                            <div class="aspect-video flex items-center justify-center bg-slate-100 text-slate-400">
+                            <!-- <div class="aspect-video flex items-center justify-center bg-slate-100 text-slate-400"> -->
+                            <div class="aspect-video relativ">
                                 <!-- Hier später das echte Bild für Mobile -->
-                                <span>Bild für Step {{ i + 1 }}</span>
+                                <img [src]="step.imageUrl" [alt]="step.title" class="object-cover w-full h-full object-top">
                             </div>
                         </div>
                     </div>
@@ -68,7 +69,7 @@
                         [class.opacity-0]="activeStepIndex() !== i" [class.opacity-100]="activeStepIndex() === i"
                         [class]="'bg-slate-50'">
 
-                        <img [src]="step.imageUrl" class="object-cover w-full h-full">
+                        <img [src]="step.imageUrl" [alt]="step.title" class="object-cover w-full h-full object-top">
                     </div>
                     }
 

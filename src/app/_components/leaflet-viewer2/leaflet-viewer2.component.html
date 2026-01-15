@@ -11,16 +11,13 @@
 <!-- Bild-Navigation -->
 @if (showNavigation && images.length > 1) {
 <div class="flex flex-wrap gap-2 mb-4">
-  <button 
-    *ngFor="let img of images; let i = index"
-    (click)="selectImage(i)"
-    [class.bg-blue-600]="i === currentImageIndex"
-    [class.text-white]="i === currentImageIndex"
-    [class.bg-gray-200]="i !== currentImageIndex"
-    [class.text-gray-700]="i !== currentImageIndex"
-    class="px-3 py-1.5 text-sm rounded hover:bg-blue-500 hover:text-white transition">
+  @for (img of images; track $index; let i = $index) {
+  <button class="px-3 py-1.5 text-sm rounded hover:bg-blue-500 hover:text-white transition" (click)="selectImage(i)"
+    [class.bg-blue-600]="i === currentImageIndex" [class.text-white]="i === currentImageIndex"
+    [class.bg-gray-200]="i !== currentImageIndex" [class.text-gray-700]="i !== currentImageIndex">
     {{ img.title }}
   </button>
+  }
 </div>
 }
 
@@ -32,25 +29,17 @@
 <!-- Vor/Zurück Navigation -->
 @if (images.length > 1) {
 <div class="flex justify-between items-center mt-4">
-  <button 
-    (click)="previousImage()"
-    [disabled]="!hasPrevious"
-    [class.opacity-50]="!hasPrevious"
+  <button (click)="previousImage()" [disabled]="!hasPrevious" [class.opacity-50]="!hasPrevious"
     [class.cursor-not-allowed]="!hasPrevious"
     class="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800 disabled:hover:bg-gray-700 transition">
     ← Zurück
   </button>
   @if (showDownloadButton) {
-  <button 
-    (click)="onDownload()"
-    class="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800 transition">
+  <button (click)="onDownload()" class="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800 transition">
     Download
   </button>
   }
-  <button 
-    (click)="nextImage()"
-    [disabled]="!hasNext"
-    [class.opacity-50]="!hasNext"
+  <button (click)="nextImage()" [disabled]="!hasNext" [class.opacity-50]="!hasNext"
     [class.cursor-not-allowed]="!hasNext"
     class="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800 disabled:hover:bg-gray-700 transition">
     Weiter →

@@ -1,0 +1,243 @@
+<section class="relative bg-gray-50 py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Überschrift Bereich -->
+        <div class="mb-10 text-center max-w-3xl mx-auto">
+            <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
+                {{ pageTitle }}
+            </h1>
+
+            <p class="mt-4 text-center text-lg text-slate-600">
+                Ihr Werkzeug zur professionellen Erstellung von Genogrammen.<br>Vergessen Sie komplizierte
+                Grafikprogramme.
+            </p>
+        </div>
+
+        <!-- <div class="mb-16 text-center max-w-4xl mx-auto">
+            <p class="mt-4 text-center text-lg text-slate-600">
+                Ein Genogramm visualisiert Familienstrukturen über mindestens drei Generationen hinweg. Es nutzt
+                standardisierte Symbole, um Informationen kompakt und übersichtlich darzustellen
+            </p>
+            <p>
+                Basierend auf den anerkannten Arbeiten von Monica McGoldrick, bietet unser Programm alle notwendigen
+                Symbole, um Ihnen eine präzise und umfassende Darstellung von Familienstrukturen und -dynamiken zu
+                ermöglichen.
+            </p>
+            <p>
+                Das Programm wurde gemeinsam mit einer großen sozialpädagogischen Familienhilfen Einrichtung entwickelt,
+                die sowohl fachlich als auch mit ganz praktischen Hinweisen betratend tätig war. Auf
+                Benutzerfreundlichkeit und einfache Bedienung wurde seit dem Entwicklungsstart geachtet.
+            </p>
+            <p>
+                Der Genogramm Designer verfügt über eine intuitive Benutzeroberfläche und ist im Stil der
+                Office-Produkte gestaltet, was sofort eine vertraute und benutzerfreundliche Umgebung bietet.
+            </p>
+        </div> -->
+
+    </div>
+</section>
+
+<section class="relative bg-gray-50 py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- MAIN GRID -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+
+            <!-- ========================================== -->
+            <!-- LINKER BEREICH: TEXTE (Scrollbar)          -->
+            <!-- ========================================== -->
+            <div class="flex flex-col">
+
+                <!-- class="min-h-[80vh] flex flex-col justify-center p-6 transition-opacity duration-500" -->
+
+                <!-- SCHRITT 1 -->
+                <div #stepSection data-index="0"
+                    class="py-16 lg:py-0 lg:min-h-[80vh] flex flex-col justify-center px-6 transition-opacity duration-500 lg:mb-16"
+                    [class.opacity-40]="activeStepIndex() !== 0" 
+                    [class.opacity-100]="activeStepIndex() === 0">
+                    <!-- <div class="flex items-center gap-4 mb-4">
+                        <span
+                            class="flex items-center justify-center w-12 h-12 rounded-full bg-slate-100 text-slate-900 font-bold text-xl border border-slate-200">1</span>
+                        <h3 class="text-2xl font-bold text-slate-900">Intuitives Drag & Drop</h3>
+                    </div> -->
+                    <div class="ml-16">
+                        <p class="text-lg text-slate-600">
+                            Für die Erstellung eines Genogramms gibt es keine feste Regeln. Allerdings haben sich im
+                            Laufe der Zeit einige Richtlinien entwickelt, die bei der Entwicklung des Genogramm Designer
+                            Berücksichtigung fanden.
+
+                            Die im Folgenden dargestellten Inhalte der Symbolpaletten entsprechen dem ‘allgemeinen
+                            Verständnis’, wie welche Inhalte in einem Genogramm dargestellt werden können; es wird
+                            jedoch kein Anspruch auf Ausschließlichkeit erhoben. Deshalb kann und sollte jeder Nutzer
+                            des Genogramm Designer die zur Verfügung gestellten Funktionen und Werkzeuge nutzen, um ein
+                            Genogramm und jedes Symbol eines Genogramms so anzupassen, dass es seinen Vorstellungen
+                            entspricht.
+
+                            Auf der linken Seite der Programmoberfläche befinden sich die verfügbaren Symbolpaletten in
+                            einem gesonderten Symbol-Container. Dieser Container kann in der Breite angepasst oder bei
+                            Bedarf komplett ausgeblendet werden, um die Diagrammfläche zu vergrößern.
+                        </p>
+                        <!-- Beispiel für unterschiedlichen Inhalt: Ein Button -->
+                        <!-- <button class="mt-4 text-blue-600 font-semibold">Mehr erfahren ></button> -->
+
+                        <!-- Mobile Bild für Schritt 1 (nur sichtbar auf Handy) -->
+                        <div class="lg:hidden mt-6 rounded-xl overflow-hidden shadow-md">
+                            <img src="/screenshots 2026/symbolcontainer.png" class="w-full object-cover">
+                        </div>
+                    </div>
+                </div>
+                <!-- Spacer am Ende -->
+                <div class="hidden lg:block h-[20vh]"></div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- RECHTER BEREICH: STICKY BILDER (Desktop)   -->
+            <!-- ========================================== -->
+            <div
+                class="hidden lg:block sticky top-32 h-[500px] w-full rounded-2xl shadow-2xl border border-slate-200 overflow-hidden bg-slate-50">
+                <div class="relative w-full h-full">
+
+                    <!-- BILD FÜR SCHRITT 1 (Index 0) -->
+                    <div class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out"
+                        [class.opacity-0]="activeStepIndex() !== 0" [class.opacity-100]="activeStepIndex() === 0">
+                        <img src="/screenshots 2026/symbolcontainer.png" alt="Drag and Drop"
+                            class="w-full h-full object-scale-down">
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section class="relative bg-gray-50 py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Überschrift für den gesamten Block -->
+        <div class="mb-8 px-6">
+            <h3 class="text-2xl font-bold text-slate-900 mb-2">
+                Im Genogramm Designer enthaltene Symbole
+            </h3>
+            <p class="text-lg text-slate-600">
+                Für die Erstellung eines Genogramms gibt es keine feste Regeln. Allerdings haben sich im Laufe der Zeit
+                einige Richtlinien entwickelt, die bei der Entwicklung des Genogramm Designer Berücksichtigung fanden.
+
+                Die im Folgenden dargestellten Inhalte der Symbolpaletten entsprechen dem ‘allgemeinen Verständnis’, wie
+                welche Inhalte in einem Genogramm dargestellt werden können; es wird jedoch kein Anspruch auf
+                Ausschließlichkeit erhoben. Deshalb kann und sollte jeder Nutzer des Genogramm Designer die zur
+                Verfügung gestellten Funktionen und Werkzeuge nutzen, um ein Genogramm und jedes Symbol eines Genogramms
+                so anzupassen, dass es seinen Vorstellungen entspricht.
+
+                Auf der linken Seite der Programmoberfläche befinden sich die verfügbaren Symbolpaletten in einem
+                gesonderten Symbol-Container. Dieser Container kann in der Breite angepasst oder bei Bedarf komplett
+                ausgeblendet werden, um die Diagrammfläche zu vergrößern.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start my-32">
+
+            <!-- LINKER BEREICH (TEXTE) -->
+            <div class="flex flex-col">
+
+                <!-- Container mit Linie links (Verbindet die 3 Teile optisch) -->
+                <div class="relative ml-6 lg:ml-10 border-l-2 border-slate-200">
+
+                    <!-- TEIL 1: OBEN (Index 4) -->
+                    <div #stepSection data-index="4"
+                        class="min-h-[50vh] flex flex-col justify-center pl-8 -ml-[2px] border-l-4 transition-all duration-500 py-12 lg:py-0"
+                        [class.border-blue-600]="activeStepIndex() === 4"
+                        [class.border-transparent]="activeStepIndex() !== 4">
+                        <h4 class="text-xl font-bold text-slate-900">1. Die emotionale Basis</h4>
+                        <p class="mt-2 text-slate-600">
+                            Im oberen Bereich sehen wir die Kernfamilie. Grüne Linien symbolisieren hier starke,
+                            positive Bindungen.
+                            Beachten Sie die doppelte Linie zwischen den Eltern – ein Zeichen für eine sehr enge
+                            Verbindung.
+                        </p>
+
+                        <!-- MOBILE BILD 1 (Wird nur auf Handy angezeigt) -->
+                        <div class="lg:hidden mt-6 rounded-lg overflow-hidden shadow-md border border-slate-100">
+                            <img src="/screenshots 2026/emotionale beziehungen 600_1.png" alt="Oberer Teil"
+                                class="w-full h-auto">
+                        </div>
+                    </div>
+
+                    <!-- TEIL 2: MITTE (Index 5) -->
+                    <div #stepSection data-index="5"
+                        class="min-h-[50vh] flex flex-col justify-center pl-8 -ml-[2px] border-l-4 transition-all duration-500 py-12 lg:py-0"
+                        [class.border-blue-600]="activeStepIndex() === 5"
+                        [class.border-transparent]="activeStepIndex() !== 5">
+                        <h4 class="text-xl font-bold text-slate-900">2. Konfliktfelder</h4>
+                        <p class="mt-2 text-slate-600">
+                            Ein Blick in die mittlere Generation offenbart Spannungen.
+                            Die rote Zick-Zack-Linie stellt eine akute Konfliktbeziehung dar.
+                            Diese Visualisierung hilft sofort, Problemfelder in der Beratung anzusprechen.
+                        </p>
+
+                        <!-- MOBILE BILD 2 -->
+                        <div class="lg:hidden mt-6 rounded-lg overflow-hidden shadow-md border border-slate-100">
+                            <img src="/screenshots 2026/emotionale beziehungen 600_2.png" alt="Mittlerer Teil"
+                                class="w-full h-auto">
+                        </div>
+                    </div>
+
+                    <!-- TEIL 3: UNTEN (Index 6) -->
+                    <div #stepSection data-index="6"
+                        class="min-h-[50vh] flex flex-col justify-center pl-8 -ml-[2px] border-l-4 transition-all duration-500 py-12 lg:py-0"
+                        [class.border-blue-600]="activeStepIndex() === 6"
+                        [class.border-transparent]="activeStepIndex() !== 6">
+                        <h4 class="text-xl font-bold text-slate-900">3. Medizinische & Soziale Faktoren</h4>
+                        <p class="mt-2 text-slate-600">
+                            Ganz unten finden sich die individuellen Attribute.
+                            Symbole für Suchterkrankungen (halb gefüllt) oder psychische Belastungen werden
+                            standardkonform dargestellt.
+                        </p>
+
+                        <!-- MOBILE BILD 3 -->
+                        <div class="lg:hidden mt-6 rounded-lg overflow-hidden shadow-md border border-slate-100">
+                            <img src="/screenshots 2026/emotionale beziehungen 600_3.png" alt="Unterer Teil"
+                                class="w-full h-auto">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- RECHTER BEREICH (STICKY BILDER) -->
+            <!-- Wir nutzen hier object-contain oder object-top, je nachdem was besser aussieht -->
+            <div
+                class="hidden lg:block sticky top-32 h-[500px] w-full rounded-2xl shadow-2xl border border-slate-200 overflow-hidden bg-white">
+                <div class="relative w-full h-full">
+
+                    <!-- BILD 1: TOP -->
+                    <div class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out bg-white flex items-center justify-center"
+                        [class.opacity-0]="activeStepIndex() !== 4" [class.opacity-100]="activeStepIndex() === 4">
+                        <!-- object-contain sorgt dafür, dass nichts abgeschnitten wird, wenn das Teilbild breiter ist -->
+                        <img src="/screenshots 2026/emotionale beziehungen 600_1.png"
+                            class="object-contain max-h-full w-full">
+                    </div>
+
+                    <!-- BILD 2: MID -->
+                    <div class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out bg-white flex items-center justify-center"
+                        [class.opacity-0]="activeStepIndex() !== 5" [class.opacity-100]="activeStepIndex() === 5">
+                        <img src="/screenshots 2026/emotionale beziehungen 600_2.png"
+                            class="object-contain max-h-full w-full">
+                    </div>
+
+                    <!-- BILD 3: BOTTOM -->
+                    <div class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out bg-white flex items-center justify-center"
+                        [class.opacity-0]="activeStepIndex() !== 6" [class.opacity-100]="activeStepIndex() === 6">
+                        <img src="/screenshots 2026/emotionale beziehungen 600_3.png"
+                            class="object-contain max-h-full w-full">
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>

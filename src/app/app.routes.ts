@@ -25,6 +25,12 @@ import { ScrollytellingComponent } from './scrollytelling/scrollytelling.compone
 import { Workflow1Component } from './workflow1/workflow1.component';
 import { Workflow2Component } from './workflow2/workflow2.component';
 import { Workflow3Component } from './workflow3/workflow3.component';
+import { Workflow4Component } from './workflow4/workflow4.component';
+import { HeroComponent } from './hero/hero.component';
+import { Workflow5Component } from './workflow5/workflow5.component';
+import { Workflow6Component } from './workflow6/workflow6.component';
+import { Workflow7Component } from './workflow7/workflow7.component';
+import { ProgramComponent } from './program/program.component';
 
 export const routes: Routes = [
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -32,11 +38,12 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'funktionen', component: FunktionenComponent },
   { path: 'darstellung', component: DarstellungComponent },
+  { path: 'program', component: ProgramComponent },
   { path: 'programm', loadChildren: () => import('./programm/programm.routes').then((m) => m.PROGRAMM_ROUTES) },
   { path: 'lizenzierung', component: LizenzierungComponent },
-  { path: 'technische-voraussetzungen', component: TechnischeVoraussetzungenComponent },
+  // { path: 'technische-voraussetzungen', component: TechnischeVoraussetzungenComponent },
   { path: 'beispiele', loadChildren: () => import('./beispiele/beispiele.routes').then((m) => m.BEISPIELE_ROUTES) },
-  
+
   { path: 'home2', component: Home2Component },
   { path: 'home3', component: Home3Component },
   { path: 'home4', component: Home4Component },
@@ -44,6 +51,12 @@ export const routes: Routes = [
   { path: 'workflow1', component: Workflow1Component },
   { path: 'workflow2', component: Workflow2Component },
   { path: 'workflow3', component: Workflow3Component },
+  { path: 'workflow4', component: Workflow4Component },
+  { path: 'workflow5', component: Workflow5Component },
+  { path: 'workflow6', component: Workflow6Component },
+  { path: 'workflow7', component: Workflow7Component },
+  
+  { path: 'hero', component: HeroComponent },
 
   // company
   { path: 'impressum', component: ImpressComponent },

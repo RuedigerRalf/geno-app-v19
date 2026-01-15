@@ -23,7 +23,7 @@ export class LeafletViewerComponent implements AfterViewInit, OnDestroy {
   currentOverlay: any;
   
   private map: any;
-  private L: any;
+  private leafletImages: any;
   private initialBounds: any;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
@@ -31,10 +31,10 @@ export class LeafletViewerComponent implements AfterViewInit, OnDestroy {
   async ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId) && this.images.length > 0) {
       setTimeout(async () => {
-        this.L = await import('leaflet');
+        this.leafletImages = await import('leaflet');
         
-        this.map = this.L.map(this.mapId, {
-          crs: this.L.CRS.Simple,
+        this.map = this.leafletImages.map(this.mapId, {
+          crs: this.leafletImages.CRS.Simple,
           minZoom: -2,
           maxZoom: 4,
           zoomControl: true,
@@ -93,16 +93,16 @@ export class LeafletViewerComponent implements AfterViewInit, OnDestroy {
   }
 
   private addResetViewControl() {
-    const L = this.L;
+    const leafletImages = this.leafletImages;
     const map = this.map;
     const component = this;
 
-    const ResetViewControl = L.Control.extend({
+    const ResetViewControl = leafletImages.Control.extend({
       options: { position: 'topleft' },
 
       onAdd: function () {
-        const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
-        const button = L.DomUtil.create('a', '', container);
+        const container = leafletImages.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
+        const button = leafletImages.DomUtil.create('a', '', container);
 
         button.innerHTML = '⌂';
         button.href = '#';
@@ -117,9 +117,9 @@ export class LeafletViewerComponent implements AfterViewInit, OnDestroy {
         button.style.textDecoration = 'none';
         button.style.color = '#333';
 
-        L.DomEvent.on(button, 'click', function (e: Event) {
-          L.DomEvent.stopPropagation(e);
-          L.DomEvent.preventDefault(e);
+        leafletImages.DomEvent.on(button, 'click', function (e: Event) {
+          leafletImages.DomEvent.stopPropagation(e);
+          leafletImages.DomEvent.preventDefault(e);
           if (component.initialBounds) {
             map.fitBounds(component.initialBounds);
           }
@@ -133,7 +133,7 @@ export class LeafletViewerComponent implements AfterViewInit, OnDestroy {
   }
 
   private switchImage() {
-    if (!this.map || !this.L) return;
+    if (!this.map || !this.leafletImages) return;
 
     if (this.currentOverlay) {
       this.map.removeLayer(this.currentOverlay);
@@ -142,7 +142,7 @@ export class LeafletViewerComponent implements AfterViewInit, OnDestroy {
     const img = this.currentImage;
     const bounds: any = [[0, 0], [img.height, img.width]];
 
-    this.currentOverlay = this.L.imageOverlay(img.imageUrl, bounds);
+    this.currentOverlay = this.leafletImages.imageOverlay(img.imageUrl, bounds);
     this.currentOverlay.addTo(this.map);
     this.map.fitBounds(bounds);
 

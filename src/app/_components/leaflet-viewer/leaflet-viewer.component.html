@@ -1,22 +1,22 @@
 <div class="leaflet-viewer-container">
   @if (images.length >= 1) {
-  <div class="title-row">
-    <h2 class="viewer-title">
-      {{ currentImage.title }}
-    </h2>
-    <span class="image-counter">{{ currentImageIndex + 1 }} / {{ images.length }}</span>
-  </div>
+    <div class="title-row">
+      <h2 class="viewer-title">
+        {{ currentImage.title }}
+      </h2>
+      <span class="image-counter">{{ currentImageIndex + 1 }} / {{ images.length }}</span>
+    </div>
 
-  <!-- Bild-Navigation -->
-  @if (showNavigation && images.length >= 1) {
-  <div class="image-navigation">
-    @for (img of images; track $index) {
-    <button (click)="selectImage($index)" [class.active]="$index === currentImageIndex" class="nav-button">
-      {{ img.title }}
-    </button>
+    <!-- Bild-Navigation -->
+    @if (showNavigation && images.length >= 1) {
+    <div class="image-navigation">
+      @for (img of images; track $index) {
+      <button (click)="selectImage($index)" [class.active]="$index === currentImageIndex" class="nav-button">
+        {{ img.title }}
+      </button>
+      }
+    </div>
     }
-  </div>
-  }
   }
 
   <!-- Leaflet Map -->

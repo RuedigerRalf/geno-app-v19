@@ -1,7 +1,7 @@
 import { afterNextRender, Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet, NavigationEnd, Scroll } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { AsyncPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,7 +24,7 @@ import { AuthActions } from './_store/auth.actions';
 
 @Component({
   selector: 'app-root',
-  imports: [MatSidenavModule, MatToolbarModule, MatButtonModule, MatIconModule, MatListModule, MatMenuModule, AsyncPipe, RouterLink, RouterLinkActive, RouterOutlet, FooterComponent],
+  imports: [CommonModule, MatSidenavModule, MatToolbarModule, MatButtonModule, MatIconModule, MatListModule, MatMenuModule, RouterLink, RouterLinkActive, RouterOutlet, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -52,20 +52,28 @@ export class AppComponent implements OnInit {
 
   navMain: NavItem[] = [
     { title: 'Home', route: '/home', icon: 'dashboard' },
+    { title: 'Programm', route: '/program', icon: 'screenshot_monitor' },
     { title: 'Funktionen', route: '/funktionen', icon: 'keyboard_command_key' },
     { title: 'Darstellung & Ausgabe', route: '/darstellung', icon: 'display_settings' },
-    { title: 'Lizenzierung & Preise', route: '/lizenzierung', icon: 'gavel' },   
-    { title: 'Das Programm', route: '/programm', icon: 'foundation' },
+    { title: 'Lizenzierung & Preise', route: '/lizenzierung', icon: 'gavel' },
+
     { title: 'Beispiele', route: '/beispiele', icon: 'preview' },
 
+    { title: 'Das Programm', route: '/programm', icon: 'foundation' },    
     { title: 'Home 2', route: '/home2', icon: 'dashboard' },
     { title: 'scrollytelling', route: '/scrollytelling', icon: 'dashboard' },
     { title: 'Workflow 1', route: '/workflow1', icon: 'dashboard' },
     { title: 'Workflow 2', route: '/workflow2', icon: 'dashboard' },
     { title: 'Workflow 3', route: '/workflow3', icon: 'dashboard' },
+    { title: 'Workflow 4', route: '/workflow4', icon: 'dashboard' },
+    { title: 'Workflow 5', route: '/workflow5', icon: 'dashboard' },
+    { title: 'Workflow 6', route: '/workflow6', icon: 'dashboard' },
+    { title: 'Workflow 7', route: '/workflow7', icon: 'dashboard' },
+
+    { title: 'Hero', route: '/hero', icon: 'dashboard' },
     // { title: 'Home 4', route: '/home4', icon: 'dashboard' },
 
-    { title: 'Voraussetzungen', route: '/technische-voraussetzungen', icon: 'handyman' },
+    // { title: 'Voraussetzungen', route: '/technische-voraussetzungen', icon: 'handyman' },
   ];
 
   navUser: NavItem[] = [

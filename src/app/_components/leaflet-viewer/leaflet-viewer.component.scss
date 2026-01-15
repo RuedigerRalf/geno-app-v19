@@ -15,8 +15,8 @@
 }
 
 .viewer-title {
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1.875rem;
+  font-weight: 300;
   margin: 0;
   color: #1f2937;
   
@@ -54,17 +54,17 @@
   border-radius: 0.25rem;
   border: none;
   background-color: #e5e7eb;
-  color: #374151;
+  color: #2E7D32;
   cursor: pointer;
   transition: all 0.2s;
   
   &:hover {
-    background-color: #3b82f6;
+    background-color: #66BB6A;
     color: white;
   }
   
   &.active {
-    background-color: #2563eb;
+    background-color: #2E7D32;
     color: white;
   }
 }
@@ -130,7 +130,7 @@
 
 .control-button {
   padding: 0.5rem 1rem;
-  background-color: #374151;
+  background-color: #2E7D32;
   color: white;
   border: none;
   border-radius: 0.25rem;
@@ -138,7 +138,7 @@
   transition: background-color 0.2s;
   
   &:hover:not(:disabled) {
-    background-color: #1f2937;
+    background-color: #7CB342;
   }
   
   &:disabled {

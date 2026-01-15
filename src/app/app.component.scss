@@ -15,9 +15,8 @@ mat-toolbar {
         ));
 }
 
-.menu {
-    @include mat.icon-button-overrides((icon-color: var(--mat-sys-on-tertiary),
-        ));
+.menu { @include mat.icon-button-overrides(
+    (icon-color: var(--mat-sys-on-tertiary),));
 }
 
 
@@ -33,6 +32,13 @@ icon-color // STICKY - killer overflow
 .button-row {
     margin: 0px 16px;
 }
+
+// mat-sidenav-container {
+//     height: calc(100vh - 65px);
+//     @include mat.sidenav-overrides((container-shape: 0px,
+//             container-elevation-shadow: 10px,
+//         ));
+// }
 
 mat-sidenav-container {
     height: calc(100vh - 65px);

@@ -1,0 +1,133 @@
+<!-- ======================================================= -->
+<!-- SZENARIO: LANGES BILD AUFGETEILT (Index 4, 5, 6)        -->
+<!-- ======================================================= -->
+<section class="relative bg-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Überschrift für den gesamten Block -->
+        <div class="mb-8 px-6">
+            <h3 class="text-3xl font-bold text-slate-900 mb-2">
+                Beziehungsdynamiken im Detail
+            </h3>
+            <p class="text-lg text-slate-600">
+                Ein Genogramm ist mehr als nur ein Stammbaum. Sehen wir uns die Ebenen einer komplexen
+                Familiendiagnostik an.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start my-32">
+
+            <!-- LINKER BEREICH (TEXTE) -->
+            <div class="flex flex-col">
+
+                <!-- Container mit Linie links (Verbindet die 3 Teile optisch) -->
+                <div class="relative ml-6 lg:ml-10 border-l-2 border-slate-200">
+
+                    <!-- TEIL 1: OBEN (Index 4) -->
+                    <div #stepSection data-index="4"
+                        class="min-h-[50vh] flex flex-col justify-center pl-8 -ml-[2px] border-l-4 transition-all duration-500 py-12 lg:py-0"
+                        [class.border-blue-600]="activeStepIndex() === 4"
+                        [class.border-transparent]="activeStepIndex() !== 4">
+                        <h4 class="text-xl font-bold text-slate-900">1. Die emotionale Basis</h4>
+                        <p class="mt-2 text-slate-600">
+                            Im oberen Bereich sehen wir die Kernfamilie. Grüne Linien symbolisieren hier starke,
+                            positive Bindungen.
+                            Beachten Sie die doppelte Linie zwischen den Eltern – ein Zeichen für eine sehr enge
+                            Verbindung.
+                        </p>
+
+                        <!-- MOBILE BILD 1 (Wird nur auf Handy angezeigt) -->
+                        <div class="lg:hidden mt-6 rounded-lg overflow-hidden shadow-md border border-slate-100">
+                            <img src="/screenshots 2026/emotionale beziehungen 600_1.png" alt="Oberer Teil"
+                                class="w-full h-auto">
+                        </div>
+                    </div>
+
+                    <!-- TEIL 2: MITTE (Index 5) -->
+                    <div #stepSection data-index="5"
+                        class="min-h-[50vh] flex flex-col justify-center pl-8 -ml-[2px] border-l-4 transition-all duration-500 py-12 lg:py-0"
+                        [class.border-blue-600]="activeStepIndex() === 5"
+                        [class.border-transparent]="activeStepIndex() !== 5">
+                        <h4 class="text-xl font-bold text-slate-900">2. Konfliktfelder</h4>
+                        <p class="mt-2 text-slate-600">
+                            Ein Blick in die mittlere Generation offenbart Spannungen.
+                            Die rote Zick-Zack-Linie stellt eine akute Konfliktbeziehung dar.
+                            Diese Visualisierung hilft sofort, Problemfelder in der Beratung anzusprechen.
+                        </p>
+
+                        <!-- MOBILE BILD 2 -->
+                        <div class="lg:hidden mt-6 rounded-lg overflow-hidden shadow-md border border-slate-100">
+                            <img src="/screenshots 2026/emotionale beziehungen 600_2.png" alt="Mittlerer Teil"
+                                class="w-full h-auto">
+                        </div>
+                    </div>
+
+                    <!-- TEIL 3: UNTEN (Index 6) -->
+                    <div #stepSection data-index="6"
+                        class="min-h-[50vh] flex flex-col justify-center pl-8 -ml-[2px] border-l-4 transition-all duration-500 py-12 lg:py-0"
+                        [class.border-blue-600]="activeStepIndex() === 6"
+                        [class.border-transparent]="activeStepIndex() !== 6">
+                        <h4 class="text-xl font-bold text-slate-900">3. Medizinische & Soziale Faktoren</h4>
+                        <p class="mt-2 text-slate-600">
+                            Ganz unten finden sich die individuellen Attribute.
+                            Symbole für Suchterkrankungen (halb gefüllt) oder psychische Belastungen werden
+                            standardkonform dargestellt.
+                        </p>
+
+                        <!-- MOBILE BILD 3 -->
+                        <div class="lg:hidden mt-6 rounded-lg overflow-hidden shadow-md border border-slate-100">
+                            <img src="/screenshots 2026/emotionale beziehungen 600_3.png" alt="Unterer Teil"
+                                class="w-full h-auto">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- RECHTER BEREICH (STICKY BILDER) -->
+            <!-- Wir nutzen hier object-contain oder object-top, je nachdem was besser aussieht -->
+            <div
+                class="hidden lg:block sticky top-32 h-[500px] w-full rounded-2xl shadow-2xl border border-slate-200 overflow-hidden bg-white">
+                <div class="relative w-full h-full">
+
+                    <!-- BILD 1: TOP -->
+                    <div class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out bg-white flex items-center justify-center"
+                        [class.opacity-0]="activeStepIndex() !== 4" [class.opacity-100]="activeStepIndex() === 4">
+                        <!-- object-contain sorgt dafür, dass nichts abgeschnitten wird, wenn das Teilbild breiter ist -->
+                        <img src="/screenshots 2026/emotionale beziehungen 600_1.png"
+                            class="object-contain max-h-full w-full">
+                    </div>
+
+                    <!-- BILD 2: MID -->
+                    <div class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out bg-white flex items-center justify-center"
+                        [class.opacity-0]="activeStepIndex() !== 5" [class.opacity-100]="activeStepIndex() === 5">
+                        <img src="/screenshots 2026/emotionale beziehungen 600_2.png"
+                            class="object-contain max-h-full w-full">
+                    </div>
+
+                    <!-- BILD 3: BOTTOM -->
+                    <div class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out bg-white flex items-center justify-center"
+                        [class.opacity-0]="activeStepIndex() !== 6" [class.opacity-100]="activeStepIndex() === 6">
+                        <img src="/screenshots 2026/emotionale beziehungen 600_3.png"
+                            class="object-contain max-h-full w-full">
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+                <!-- Überschrift für den gesamten Block -->
+        <div class="mb-8 px-6">
+            <h3 class="text-3xl font-bold text-slate-900 mb-2">
+                Beziehungsdynamiken im Detail
+            </h3>
+            <p class="text-lg text-slate-600">
+                Ein Genogramm ist mehr als nur ein Stammbaum. Sehen wir uns die Ebenen einer komplexen
+                Familiendiagnostik an.
+            </p>
+        </div>
+
+    </div>
+</section>
