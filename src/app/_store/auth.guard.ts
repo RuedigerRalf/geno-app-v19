@@ -3,7 +3,7 @@ import { CanActivateFn, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { selectIsLoggedIn } from './auth.selectors';
 
-export const authGuard: CanActivateFn = (route, state) => {
+export const AuthGuard: CanActivateFn = (route, state) => {
   let retval = false;
 
   const store = inject(Store);

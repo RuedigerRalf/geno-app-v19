@@ -1,7 +1,7 @@
 @use '@angular/material' as mat;
 
 mat-sidenav {
-    width: 300px;
+    width: 250px;
 }
 
 mat-toolbar {
@@ -10,13 +10,17 @@ mat-toolbar {
     // z-index: -1;
     justify-content: space-between;
 
-    @include mat.toolbar-overrides((container-background-color: var(--mat-sys-primary),
-            container-text-color: var(--mat-sys-on-primary),
-        ));
+    @include mat.toolbar-overrides(
+    (
+        container-background-color: var(--mat-sys-primary),
+        container-text-color: var(--mat-sys-on-primary),
+    ));
 }
 
-.menu { @include mat.icon-button-overrides(
-    (icon-color: var(--mat-sys-on-tertiary),));
+.menu { 
+    @include mat.icon-button-overrides(
+        (icon-color: var(--mat-sys-on-tertiary),
+    ));
 }
 
 
@@ -40,13 +44,20 @@ icon-color // STICKY - killer overflow
 //         ));
 // }
 
+// Gray 50 #FAFAFA
+// 100 #F5F5F5
+// 200 #EEEEEE
+
 mat-sidenav-container {
     height: calc(100vh - 65px);
-    @include mat.sidenav-overrides((container-shape: 0px,
-            container-elevation-shadow: 10px,
-            container-divider-color: var(--mat-sys-primary),
+    @include mat.sidenav-overrides(
+        (
+        container-shape: 0px,
+        container-elevation-shadow: 10px,
+        container-divider-color: var(--mat-sys-primary),
         ));
 }
+
 
 .example-action-buttons {
     padding-bottom: 20px;

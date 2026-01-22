@@ -15,5 +15,8 @@ Disallow: /confirm-mail
 Disallow: /confirm-new-email
 Disallow: /confirm-termination
 
-# Optional: Sitemap hinzufügen (wenn vorhanden)
-# Sitemap: https://ihre-domain.de/sitemap.xml
+# User-Bereich blockieren (geschützte Inhalte)
+Disallow: /userdata
+
+# Sitemap
+Sitemap: https://genogramm-designer.de/sitemap.xml

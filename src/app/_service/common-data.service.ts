@@ -88,8 +88,8 @@ export const getImageSliderDataMustermann: ImageSliderData[] = [
 
   { url: '/mustermann/2013_Mustermann_farbe.png', alt: 'Familie Mustermann im Jahr 2013' },
   { url: '/mustermann/2013_Mustermann_farbe2.png', alt: 'Familie Mustermann im Jahr 2013' },
-  // { url: '/mustermann/2013_Mustermann_farbe3.png', alt: 'Familie Mustermann im Jahr 2013' },
-  // { url: '/mustermann/2013_Mustermann_farbe4.png', alt: 'Familie Mustermann im Jahr 2013' },
+  { url: '/mustermann/2013_Mustermann_farbe3.png', alt: 'Familie Mustermann im Jahr 2013' },
+  { url: '/mustermann/2013_Mustermann_farbe4.png', alt: 'Familie Mustermann im Jahr 2013' },
   
 ];
 

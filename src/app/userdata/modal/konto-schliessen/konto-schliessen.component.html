@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Konto schließen</h1>
+
+<div mat-dialog-content>
+    <p class="mb-6 text-lg">
+        Schade!
+    </p>
+    <p class="text-base">
+        Sie werden gute Gründe haben warum Sie die Zusammenarbeit mit uns beenden wollen. <br/>
+        Wir akzeptieren Ihre Entscheidung.
+    </p>
+    <p class="mt-6 mb-2 text-base">
+        Bitte beachten Sie:
+    </p>
+    <div class="text-base ml-8">
+        <ul class="list-disc">
+            <li>Sie werden von uns eine Bestätigungsmail erhalten. Nur durch diese zusätzliche Bestätigung wird Ihre
+                Kündigung wirksam.</li>
+            <li>Nach Ihrer Bestätigung werden Ihre Daten gelöscht und Ihr Konto wird geschlossen.</li>
+        </ul>
+    </div>
+</div>
+
+<div mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" (click)="confirm()">Ja, Konto schließen</button>
+    <button mat-raised-button color="accent" cdkFocusInitial (click)="cancel()">Abbrechen</button>
+</div>

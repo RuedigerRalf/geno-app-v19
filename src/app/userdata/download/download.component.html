@@ -1,0 +1,132 @@
+<div class="bg-gray-100 p-8 flex flex-col justify-center relative overflow-hidden">
+  <div class="relative px-8 py-8 bg-white shadow-lg rounded-lg md:max-w-5xl md:mx-auto ">
+      <div class="max-w-4xl mx-auto">
+
+      <h1 class="text-2xl mt-10">
+        {{ pageTitle }}
+      </h1>
+
+      <section class="text-gray-600 body-font overflow-hidden">
+        <div class="container px-5 py-24 mx-auto">
+          <div class="-my-8 divide-y-2 divide-gray-100">
+
+            <div class="py-8 flex flex-wrap md:flex-nowrap">
+              <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+                <span class="text-xl text-gray-700">
+                  Genogramm Designer
+                </span>
+                <span class="text-gray-700">
+                  Version 2024
+                </span>
+                <span class="mt-1 text-gray-500 text-sm">
+                  Stand September 2024
+                </span>
+              </div>
+              <div class="md:flex-grow">
+                <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">
+                  Einzelplatzversion
+                </h2>
+                <p class="leading-relaxed">
+                  Die aktuelle Version des Genogramm Designer mit allen auf dieser Website dargestellten Merkmalen und
+                  Eigenschaften. Interessenten sollten diese Version herunterladen und nutzen.
+                </p>
+                <br>
+                <p class="leading-relaxed">
+                  Hinweis für alle Kunden mit einer Genogramm Designer Lizenz 2019:
+                </p>
+                <p class="leading-relaxed">
+                  Ihre Lizenz ist weiterhin gültig, auch für die Version 2024.
+                </p>
+                <button mat-raised-button class="mt-4" color="primary" (click)="download2024()">
+                  Download
+                </button>
+
+                @if (progress2024) {
+                  <div class="progress mt-4">
+                    <mat-progress-bar mode="buffer" color="primary" value="progress2024"></mat-progress-bar>
+                    <div class="mt-4">
+                      {{ progress2024 }}%
+                    </div>
+                  </div>
+                  }
+              </div>
+            </div>
+
+            <div class="py-8 flex flex-wrap md:flex-nowrap">
+              <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+                <span class="text-xl text-gray-700">
+                  Genogramm Designer
+                </span>
+                <span class="text-gray-700">
+                  Version 2019
+                </span>
+                <span class="mt-1 text-gray-500 text-sm">
+                  Stand Februar 2019
+                </span>
+              </div>
+              <div class="md:flex-grow">
+                <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">
+                  Einzelplatzversion
+                </h2>
+                <p class="leading-relaxed">
+                  Diese Version wird nicht mehr gepflegt und steht noch aus Vollständigkeitsgründen zur Verfügung.
+                </p>
+                <button mat-raised-button class="mt-4" color="primary" (click)="download2019()">
+                  Download
+                </button>
+
+                @if (progress2019) {
+                <div class="progress mt-4">
+                  <mat-progress-bar mode="buffer" color="primary" value="progress2019"></mat-progress-bar>
+                  <div class="mt-4">
+                    {{ progress2019 }}%
+                  </div>
+                </div>
+                }
+
+              </div>
+            </div>
+
+            <!-- <div class="py-8 flex flex-wrap md:flex-nowrap">
+              <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+                <span class="text-xl text-gray-700">
+                  Genogramm Designer
+                </span>
+                <span class="text-gray-700">
+                  Version 2015
+                </span>
+                <span class="mt-1 text-gray-500 text-sm">
+                  Stand April 2015
+                </span>
+              </div>
+              <div class="md:flex-grow">
+                <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">
+                  Einzelplatzversion
+                </h2>
+                <p class="leading-relaxed">
+                  Für alle Kunden mit einer gültigen Lizenz für diese Version.
+                  <br>
+                  Diese Version wird nicht mehr gepflegt und steht noch aus Vollständigkeitsgründen zur Verfügung.
+                </p>
+                <button mat-raised-button class="mt-4" color="primary" (click)="download2015()">
+                  Download
+                </button>
+
+                @if (progress2015) {
+                  <div class="progress mt-4">
+                    <mat-progress-bar mode="buffer" color="primary" value="progress2015"></mat-progress-bar>
+                    <div class="mt-4">
+                      {{ progress2015 }}%
+                    </div>
+                  </div>
+                  }
+              </div>
+            </div> -->
+
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>

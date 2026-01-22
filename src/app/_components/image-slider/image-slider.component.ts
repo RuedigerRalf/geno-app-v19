@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Input, OnInit, OnDestroy, inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -24,15 +24,17 @@ export class ImageSliderComponent implements OnInit, OnDestroy {
   isPlaying = false;
   private autoPlayInterval: any;
   private startSlide = 0;
+  private platformId = inject(PLATFORM_ID);
+  private isBrowser = isPlatformBrowser(this.platformId);
 
   ngOnInit() {
-    if (this.autoPlay) {
+    if (this.autoPlay && this.isBrowser) {
       this.startAutoPlay();
     }
   }
 
   startAutoPlay() {
-    if (this.autoPlayInterval) return;
+    if (!this.isBrowser || this.autoPlayInterval) return;
     
     this.isPlaying = true;
     this.startSlide = this.currentSlide;
@@ -76,10 +78,15 @@ export class ImageSliderComponent implements OnInit, OnDestroy {
 
   jumpToSlide(index: number) {
     this.hidden = true;
-    setTimeout(() => {
+    if (this.isBrowser) {
+      setTimeout(() => {
+        this.currentSlide = index;
+        this.hidden = false;
+      }, this.animationSpeed);
+    } else {
       this.currentSlide = index;
       this.hidden = false;
-    }, this.animationSpeed);
+    }
   }
 
   ngOnDestroy() {

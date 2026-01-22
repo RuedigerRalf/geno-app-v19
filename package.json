@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "19.2.17",
     "@angular/cdk": "^19.2.19",
     "@angular/common": "^19.2.0",
     "@angular/compiler": "^19.2.0",
@@ -30,6 +31,7 @@
     "@ngrx/store-devtools": "^19.2.1",
     "@tailwindcss/postcss": "^4.1.18",
     "@types/file-saver": "^2.0.7",
+    "date-fns": "^4.1.0",
     "express": "^4.18.2",
     "file-saver": "^2.0.5",
     "leaflet": "^1.9.4",
@@ -37,15 +39,15 @@
     "ngx-filesaver": "^21.0.0",
     "postcss": "^8.5.6",
     "rxjs": "~7.8.0",
-    "tailwindcss": "^4.1.18",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.2.17",
-    "@angular/cli": "^19.2.17",
+    "@angular/cli": "^21.1.0",
     "@angular/compiler-cli": "^19.2.0",
     "@ngrx/schematics": "^19.2.1",
+    "@tailwindcss/typography": "^0.5.19",
     "@types/express": "^4.17.17",
     "@types/jasmine": "~5.1.0",
     "@types/leaflet": "^1.9.21",
@@ -56,6 +58,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "tailwindcss": "^4.1.18",
     "typescript": "~5.7.2"
   }
 }

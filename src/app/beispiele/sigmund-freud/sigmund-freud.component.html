@@ -1,41 +1,36 @@
+
 <!-- freund -->
-<div class="p-8 bg-gray-50 flex flex-col justify-center relative overflow-hidden">
-    <div class="relative px-8 py-8 bg-white shadow-lg rounded-lg md:max-w-5xl md:mx-auto ">
-        <div class="max-w-5xl mx-auto">
+<section class="py-12 bg-gray-50">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <article class="prose prose-lg max-w-none">
+            <h1>{{ pageTitle }}</h1>
 
-            <h1 class="text-xl md:text-2xl">
-                {{ pageTitle }}
-            </h1>
-
-            <div class="text-base mb-4">
-                <p class="my-4">
-                    Sigmund Freud war ein österreichischer Neurologe und der Begründer der Psychoanalyse, einer
-                    bahnbrechenden Theorie über die menschliche Psyche und das Unbewusste. Sigmund Freud wurde am 6. Mai
-                    1856 in Freiberg, Mähren (heute Teil von
-                    Tschechien), geboren. Seine Familie zog später nach Wien, wo er den Großteil seines Lebens
-                    verbrachte.
-                </p>
-                <p class="mb-4">
-                    Freud studierte Medizin an der Universität Wien und spezialisierte sich auf Neurologie. Er arbeitete
-                    zunächst als Kliniker und forscht über das Nervensystem, bevor er sich auf die Behandlung von
-                    psychischen Störungen konzentrierte.
-                </p>
-                <p class="mb-4">
-                    In den 1890er Jahren begann Freud, seine bahnbrechende Theorie der Psychoanalyse zu entwickeln. Er
-                    postulierte, dass das Unbewusste einen entscheidenden Einfluss auf das menschliche Verhalten hat und
-                    dass psychische Probleme oft auf unterdrückte Konflikte und Triebe zurückzuführen sind.
-                </p>
-                <p class="mb-4">
-                    Während des Dritten Reichs wurde die Familie Freud, wie viele andere jüdische Familien, von den
-                    Nationalsozialisten verfolgt. Während Sigmund Freud, seine Frau Martha und seine Tochter Anna 1938
-                    aus Wien fliehen konnten, wurden die zurückgebliebenen vier seiner fünf Schwestern, Regine Debora,
-                    Marie, Esther Adolfine und Pauline Regina 1942/43 Opfer des Holocaust.
-                </p>
-
-            </div>
-        </div>
+            <p>
+                Sigmund Freud war ein österreichischer Neurologe und der Begründer der Psychoanalyse, einer
+                bahnbrechenden Theorie über die menschliche Psyche und das Unbewusste. Sigmund Freud wurde am 6. Mai
+                1856 in Freiberg, Mähren (heute Teil von
+                Tschechien), geboren. Seine Familie zog später nach Wien, wo er den Großteil seines Lebens
+                verbrachte.
+            </p>
+            <p>
+                Freud studierte Medizin an der Universität Wien und spezialisierte sich auf Neurologie. Er arbeitete
+                zunächst als Kliniker und forscht über das Nervensystem, bevor er sich auf die Behandlung von
+                psychischen Störungen konzentrierte.
+            </p>
+            <p>
+                In den 1890er Jahren begann Freud, seine bahnbrechende Theorie der Psychoanalyse zu entwickeln. Er
+                postulierte, dass das Unbewusste einen entscheidenden Einfluss auf das menschliche Verhalten hat und
+                dass psychische Probleme oft auf unterdrückte Konflikte und Triebe zurückzuführen sind.
+            </p>
+            <p>
+                Während des Dritten Reichs wurde die Familie Freud, wie viele andere jüdische Familien, von den
+                Nationalsozialisten verfolgt. Während Sigmund Freud, seine Frau Martha und seine Tochter Anna 1938
+                aus Wien fliehen konnten, wurden die zurückgebliebenen vier seiner fünf Schwestern, Regine Debora,
+                Marie, Esther Adolfine und Pauline Regina 1942/43 Opfer des Holocaust.
+            </p>
+        </article>
     </div>
-</div>
+</section>
 
 <div class="p-8 bg-gray-50 flex flex-col justify-center relative overflow-hidden">
     <div
@@ -50,36 +45,4 @@
     </div>
 </div>
 
-<div class="p-8 bg-gray-50 flex flex-col justify-center relative overflow-hidden">
-    <div class="relative px-8 py-8 bg-white shadow-lg rounded-lg md:max-w-5xl md:mx-auto ">
-        <div class="max-w-5xl mx-auto">
-
-            <div class="container mx-auto flex px-4 py-4 md:flex-row flex-col items-center">
-                <div class="w-full md:w-1/2">
-                    <img class="object-cover object-center rounded" src="/call to action/665shots_so.png"
-                        alt="genogramm designer logo">
-                </div>
-
-                <div class="flex flex-col w-full md:w-1/2 md:items-start md:text-left items-center text-center">
-                    <div class="mb-6 text-xl md:text-2xl">
-                        Fordern Sie Ihre <br> persönliche Testversion an!
-                    </div>
-                    <p class="text-base mt-4">
-                        Überzeugen Sie sich vor dem Kauf von der Leistungsfähigkeit des ‘Genogramm Designer’. Fordern
-                        Sie Ihre kostenlose Testversion an und testen Sie das Programm 14 Tage auf ‘Herz und Nieren’.
-                        <br>
-                        Kostenfrei und natürlich ohne Verbindlichkeiten.
-                    </p>
-                    <p class="text-base mt-4">
-                        Nach der Registrierung erhalten Sie Ihre Zugangsdaten und weitere Informationen per E-Mail.
-                    </p>
-                    <button [routerLink]="['/register']"
-                        class="flex mx-auto mt-10 py-2 px-8 text-lg text-white focus:outline-none bg-green-700 hover:bg-amber-700 border-0">
-                        Zur Testversion
-                    </button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
+<app-call-to-action />

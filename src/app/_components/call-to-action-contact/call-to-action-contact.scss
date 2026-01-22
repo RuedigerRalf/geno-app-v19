@@ -1,0 +1,9 @@
+.cta-button {
+    // background-color: var(--mat-sys-primary);
+    background-color: #2E7D32;
+
+    &:hover {
+        // background-color: var(--mat-sys-tertiary);
+        background-color: #7CB342; // amber-700
+    }
+}

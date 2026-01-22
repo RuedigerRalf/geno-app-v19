@@ -13,7 +13,7 @@ import { MatMenuModule } from '@angular/material/menu';
 
 import { SsrCookieService } from 'ngx-cookie-service-ssr';
 import { select, Store } from '@ngrx/store';
-import { SeoService } from './_service/seo.service';
+
 import { NavItem } from './_interface/NavItem';
 import { filter, map, Observable, of, shareReplay } from 'rxjs';
 import { selectIsLoggedIn } from './_store/auth.selectors';
@@ -36,7 +36,6 @@ export class AppComponent implements OnInit {
   private dialog = inject(MatDialog);
   private ssrCookieService = inject(SsrCookieService);
   private breakpointObserver = inject(BreakpointObserver);
-  private seoService = inject(SeoService);
   private router = inject(Router);
 
   navCompany: NavItem[] = [
@@ -52,28 +51,13 @@ export class AppComponent implements OnInit {
 
   navMain: NavItem[] = [
     { title: 'Home', route: '/home', icon: 'dashboard' },
-    { title: 'Programm', route: '/program', icon: 'screenshot_monitor' },
-    { title: 'Funktionen', route: '/funktionen', icon: 'keyboard_command_key' },
-    { title: 'Darstellung & Ausgabe', route: '/darstellung', icon: 'display_settings' },
+    { title: 'Das Programm', route: '/programm', icon: 'screenshot_monitor' },
+    { title: 'Symbolpaletten', route: '/symbolpaletten', icon: 'palette' },
+    { title: 'Texte & Bilder', route: '/texte-bilder', icon: 'text_fields' },
+    { title: 'Druck & Export', route: '/druck-export', icon: 'print' },
     { title: 'Lizenzierung & Preise', route: '/lizenzierung', icon: 'gavel' },
-
-    { title: 'Beispiele', route: '/beispiele', icon: 'preview' },
-
-    { title: 'Das Programm', route: '/programm', icon: 'foundation' },    
-    { title: 'Home 2', route: '/home2', icon: 'dashboard' },
-    { title: 'scrollytelling', route: '/scrollytelling', icon: 'dashboard' },
-    { title: 'Workflow 1', route: '/workflow1', icon: 'dashboard' },
-    { title: 'Workflow 2', route: '/workflow2', icon: 'dashboard' },
-    { title: 'Workflow 3', route: '/workflow3', icon: 'dashboard' },
-    { title: 'Workflow 4', route: '/workflow4', icon: 'dashboard' },
-    { title: 'Workflow 5', route: '/workflow5', icon: 'dashboard' },
-    { title: 'Workflow 6', route: '/workflow6', icon: 'dashboard' },
-    { title: 'Workflow 7', route: '/workflow7', icon: 'dashboard' },
-
-    { title: 'Hero', route: '/hero', icon: 'dashboard' },
-    // { title: 'Home 4', route: '/home4', icon: 'dashboard' },
-
-    // { title: 'Voraussetzungen', route: '/technische-voraussetzungen', icon: 'handyman' },
+    { title: 'Dienstleistung', route: '/dienstleistung', icon: 'support_agent' },
+    { title: 'Beispiele', route: '/beispiele', icon: 'preview' }
   ];
 
   navUser: NavItem[] = [
@@ -97,7 +81,6 @@ export class AppComponent implements OnInit {
     );
 
   ngOnInit(): void {
-    this.seoService.updateCanonicalUrl(this.pageUrl);
     this.store.pipe(select(selectIsLoggedIn))
       .subscribe((res) => {
         this.IsLoggedIn$ = of(res);

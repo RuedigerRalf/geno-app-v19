@@ -1,0 +1,32 @@
+<div class="p-8 bg-gray-50 flex flex-col justify-center relative overflow-hidden">
+    <div class="relative px-8 py-8 bg-white shadow-lg rounded-lg md:max-w-5xl md:mx-auto">
+        <div class="not-prose max-w-5xl mx-auto">
+
+            <div class="container mx-auto flex px-4 py-4 md:flex-row flex-col items-center">
+                <div class="w-full md:w-1/2">
+                    <img class="object-cover object-center rounded" src="/call to action/cta-image.png"
+                        alt="call to action image">
+                </div>
+
+                <div class="flex flex-col w-full md:w-1/2 md:items-start md:text-left items-center text-center">
+                    <article class="prose prose-lg">
+                        <h2>Fordern Sie Ihre persönliche Testversion an!</h2>
+                        <p>
+                            Überzeugen Sie sich vor dem Kauf von der Leistungsfähigkeit des 'Genogramm Designer'. Fordern
+                            Sie Ihre kostenlose Testversion an und testen Sie das Programm 14 Tage auf 'Herz und Nieren'.
+                            <br>
+                            Kostenfrei und natürlich ohne Verbindlichkeiten.
+                        </p>
+                        <p>
+                            Nach der Registrierung erhalten Sie Ihre Zugangsdaten und weitere Informationen per E-Mail.
+                        </p>
+                    </article>
+                    <button [routerLink]="['/register']"
+                        class="cta-button flex mx-auto mt-10 py-2 px-8 text-lg text-white focus:outline-none border-0">
+                        Zur Testversion
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

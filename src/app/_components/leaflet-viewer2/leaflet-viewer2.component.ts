@@ -1,12 +1,12 @@
 import { Component, Input, AfterViewInit, OnDestroy, PLATFORM_ID, Inject, Output, EventEmitter } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 
 import { LeafletImage } from '../../_interface/leaflet-image';
 
 @Component({
   selector: 'app-leaflet-viewer2',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './leaflet-viewer2.component.html',
   styleUrl: './leaflet-viewer2.component.scss'
 })

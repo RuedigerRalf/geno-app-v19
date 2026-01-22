@@ -1,6 +1,6 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.dev/guide/theming
-@use 'tailwindcss';
+
 
 @use '@angular/material' as mat;
 
@@ -35,6 +35,36 @@ body {
 .insight-dialog-panel .mat-dialog-container {
   border-radius: 12px;
   padding: 0;
+}
+
+.mat-mdc-snack-bar-container {
+    white-space: pre-wrap;
+    
+    &.error {
+        --mdc-snackbar-container-color: rgb(248, 112, 112);
+        --mat-mdc-snack-bar-button-color: #fff;
+        --mdc-snackbar-supporting-text-color: #fff;
+    }
+    &.info {
+        --mdc-snackbar-container-color: rgb(138, 138, 253);
+        --mat-mdc-snack-bar-button-color: #fff;
+        --mdc-snackbar-supporting-text-color: #fff;
+    }
+    &.warn {
+        --mdc-snackbar-container-color: rgb(3, 3, 192);
+        --mat-mdc-snack-bar-button-color: #fff;
+        --mdc-snackbar-supporting-text-color: #fff;
+    }
+    &.success {
+        --mdc-snackbar-container-color: rgb(72, 153, 72);
+        --mat-mdc-snack-bar-button-color: #fff;
+        --mdc-snackbar-supporting-text-color: #fff;
+    }
+    &.default {
+        --mdc-snackbar-container-color: rgb(201, 201, 201);
+        --mat-mdc-snack-bar-button-color: #fff;
+        --mdc-snackbar-supporting-text-color: #fff;
+    }
 }
 
 @keyframes pulseHighlight {

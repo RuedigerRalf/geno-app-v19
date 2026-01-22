@@ -4,7 +4,6 @@ import { EnvironmentService } from './environment.service';
 import { rsaPublicKey } from './common-data.service';
 import * as forge from 'node-forge';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -57,24 +56,20 @@ export class MailService {
     return this.encryptWithPublicKey(_date);
   }
 
-  private getEncrytedDate() {
-    let _date = new Date().getDate().toString();
-    return this.encryptWithPublicKey(_date);
-  }
+  // alt
+  // public sendMail(UserMailAdress: string, UserName: string, UserMessage: string) {
+  //   let body = {
+  //     "userMailAdress": this.encryptWithPublicKey(UserMailAdress),
+  //     "userName": this.encryptWithPublicKey(UserName),
+  //     "userMessage": this.encryptWithPublicKey(UserMessage),
+  //     "pylon": this.getPylon()
+  //   };
 
-  public sendMail(UserMailAdress: string, UserName: string, UserMessage: string) {
-    let body = {
-      "userMailAdress": this.encryptWithPublicKey(UserMailAdress),
-      "userName": this.encryptWithPublicKey(UserName),
-      "userMessage": this.encryptWithPublicKey(UserMessage),
-      "pylon": this.getEncrytedDate()
-    };
+  //   let url = `${this.baseUrl}` + '/ContactMail';
+  //   return this._http.post(url, body, { headers: this.headers });
+  // }
 
-    let url = `${this.baseUrl}` + '/ContactMail';
-    return this._http.post(url, body, { headers: this.headers });
-  }
-
-  public _sendMail(MailType: number, UserMailAdress: string, UserName: string, UserMessage: string) {
+  public sendMail(MailType: number, UserMailAdress: string, UserName: string, UserMessage: string) {
     // MailType:
     // 1 -> Supportanfrage
     // 2 -> Gedenktag Vorschlag

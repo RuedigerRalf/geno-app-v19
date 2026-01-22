@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { MatTabNav, MatTabLink, MatTabNavPanel } from '@angular/material/tabs';
@@ -9,7 +9,7 @@ import { SeoService } from '../_service/seo.service';
   selector: 'app-beispiele',
   templateUrl: './beispiele.component.html',
   styleUrl: './beispiele.component.scss',
-  imports: [CommonModule, MatTabNav, MatTabLink, RouterLinkActive, RouterLink, MatTabNavPanel, RouterOutlet]
+  imports: [MatTabNav, MatTabLink, RouterLinkActive, RouterLink, MatTabNavPanel, RouterOutlet]
 })
 export class BeispieleComponent {
 

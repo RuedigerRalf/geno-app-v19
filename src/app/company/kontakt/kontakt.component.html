@@ -1,48 +1,51 @@
-<div class="p-8 flex flex-col justify-center relative overflow-hidden">
-    <div class="relative px-8 py-8 bg-white shadow-lg rounded-lg md:max-w-5xl md:mx-auto ">
+<div class="p-8 bg-gray-50 flex flex-col justify-center relative overflow-hidden">
+    <div class="relative px-8 py-8 bg-white shadow-lg rounded-lg md:max-w-5xl md:mx-auto">
         <div class="max-w-4xl mx-auto">
 
+            <article class="prose prose-lg max-w-none mb-6">
+                <h1>{{ pageTitle }}</h1>
+                <p>
+                    Auf dieser Seite können Sie mit uns in Verbindung treten. Bitte geben Sie Ihre
+                    persönlichen Daten und Ihre Nachricht an uns ein. Wir werden dann umgehend
+                    persönlich Kontakt mit Ihnen aufnehmen.<br>
+                    Wenn Ihnen dieser Weg zu lange dauert, rufen Sie einfach an. Wir freuen uns auf das
+                    Gespräch mit Ihnen.
+                </p>
+                <p>
+                    Bitte geben Sie uns zwei Werktage zur Beantwortung. Danke.
+                </p>
+            </article>
+
             <form #regForm="ngForm" novalidate [formGroup]="form" (ngSubmit)="saveData(form.value)">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 ">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
 
                     <mat-card class="w-full mat-elevation-z2">
-
                         <mat-card-content class="flex flex-row flex-wrap">
-                            <h1 class="title-font text-2xl text-gray-900 mb-4">eDoc Systems</h1>
+                            <article class="prose prose-lg max-w-none">
+                                <h2>eDoc Systems</h2>
 
-                            <ul class="menu bg-base-200 rounded-box mb-5">
-                                <li> <a class="text-base text-gray-600 ">An der Weide 43</a> </li>
-                                <li> <a class="text-base text-gray-600 ">27211 Bassum</a> </li>
-                                <li> <a class="text-base text-gray-600 ">Deutschland</a> </li>
-                            </ul>
+                                <p>
+                                    An der Weide 43<br>
+                                    27211 Bassum<br>
+                                    Deutschland
+                                </p>
 
-                            <ul class="menu bg-base-200 rounded-box mb-5">
-                                <li> <a class="text-base text-gray-600 ">Telefon: +49 (0)4241 8239 691</a> </li>
-                                <li> <a class="text-base text-gray-600 ">Fax: +49 (0)4241 8239 692</a> </li>
-                                <li> <a class="text-base text-gray-600 ">E-Mail: info(at)edoc-systems.de</a> </li>
-                            </ul>
+                                <p>
+                                    Telefon: +49 (0)4241 8239 691<br>
+                                    Fax: +49 (0)4241 8239 692<br>
+                                    E-Mail: info(at)edoc-systems.de
+                                </p>
+                            </article>
                         </mat-card-content>
                     </mat-card>
 
                     <mat-card class="md:col-span-2">
                         <mat-card-content class="flex flex-row flex-wrap">
-                            <h1 class="text-xl md:text-2xl mb-4">
-                                {{ pageTitle }}
-                            </h1>
+                            <article class="prose prose-lg max-w-none mb-6">
+                                <h2>Ihre Nachricht</h2>
+                            </article>
 
-                            <p class="text-base text-gray-600 mb-6">
-                                Auf dieser Seite können Sie mit uns in Verbindung treten. Bitte geben Sie Ihre
-                                persönlichen Daten und Ihre Nachricht an uns ein. Wir werden dann umgehend
-                                persönlich Kontakt mit Ihnen aufnehmen.<br>
-                                Wenn Ihnen dieser Weg zu lange dauert, rufen Sie einfach an. Wir freuen uns auf das
-                                Gespräch mit Ihnen.
-                            </p>
-
-                            <p class="text-base text-gray-600 mb-6">
-                                Bitte geben Sie uns zwei Werktage zur Beantwortung. Danke.
-                            </p>
-
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ">
+                            <div class="not-prose grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
                                 <mat-form-field appearance="fill">
                                     <mat-label>Name</mat-label>
                                     <input matInput #_name placeholder="Name" formControlName="user">
@@ -81,13 +84,13 @@
                                 </mat-form-field>
                             </div>
 
-                            <div class="grid grid-cols-1 ">
+                            <div class="not-prose grid grid-cols-1 w-full">
                                 <mat-form-field appearance="fill">
                                     <mat-label>Nachricht</mat-label>
                                     <textarea matInput #_nachricht placeholder="Deine Nachricht"
                                         formControlName="text"></textarea>
                                     <mat-hint align="end">
-                                        {{_nachricht.value.length}} / 500 Zeichen
+                                        {{_nachricht.value.length}} / 1000 Zeichen
                                     </mat-hint>
                                     @if (errorHandling('text', 'required')) {
                                     <mat-error>

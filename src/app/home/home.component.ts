@@ -1,18 +1,18 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { SeoService } from '../_service/seo.service';
-import { RouterLink } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { CallToActionRegister } from '../_components/call-to-action/call-to-action';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, MatButtonModule, MatIconModule],
+  imports: [MatButtonModule, MatIconModule, CallToActionRegister],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   pageTitle = 'Genogramm Designer';
   pageUrl = '/';
 
@@ -20,21 +20,51 @@ export class HomeComponent {
   private title = inject(Title);
   private seoService = inject(SeoService);
 
-  constructor() {
-    this.title.setTitle(this.pageTitle);
-
-    this.meta.addTags([
-      { name: 'keywords', content: 'Genogramm Designer, Genogramm, Soziogramm, Stammbaum, Familienaufstellung, Genealogie, Ahnenforschung, Familienchronik, Verwandtschaftsanalyse, Verwandtschaftsdiagramm, Familienstammbaum' },
-      { name: 'description', content: 'Die führende Genogramm Software für detaillierte Familienaustellungen und die Visualisierung von Familiengeschichten. Ein einfach zu bedienende Tools für die Erstellung, Anpassung und Analyse von Genogrammen. Starten Sie noch heute und erfassen Sie komplexe Zusammenhänge mit Leichtigkeit' },
-      { name: 'robots', content: 'index, follow' },
-      { name: 'author', content: 'eDoc Systems' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { name: 'date', content: '2025-10-10', scheme: 'YYYY-MM-DD' },
-    ]);
-  }
+  constructor() { }
 
   ngOnInit(): void {
+    // SEO: Title und Meta-Tags setzen
+    this.title.setTitle(this.pageTitle);
+    this.updateMeta();
     this.seoService.updateCanonicalUrl(this.pageUrl);
+  }
+
+  updateMeta() {
+    // Robots Tag
+    this.meta.updateTag({ name: 'robots', content: 'index, follow' });
+    
+    // Keywords
+    this.meta.updateTag({ 
+      name: 'keywords', 
+      content: 'Genogramm Designer, Genogramm erstellen, Genogramm Software, Stammbaum, Familienaufstellung, Familienstammbaum, Genogramm online, Soziogramm, Genealogie, Ahnenforschung, Verwandtschaftsdiagramm' 
+    });
+    
+    // Description (optimal: 150-160 Zeichen)
+    this.meta.updateTag({ 
+      name: 'description', 
+      content: 'Genogramm Designer: Die führende Software für Familienaufstellungen und Stammbäume. Erstellen, anpassen und analysieren Sie Genogramme einfach und intuitiv.' 
+    });
+    
+    // Author
+    this.meta.updateTag({ name: 'author', content: 'eDoc Systems' });
+    
+    // Open Graph Tags für Social Media
+    this.meta.updateTag({ property: 'og:title', content: 'Genogramm Designer - Professionelle Genogramm Software' });
+    this.meta.updateTag({ 
+      property: 'og:description', 
+      content: 'Erstellen Sie professionelle Genogramme und Familienstammbäume mit der führenden Genogramm Software. Einfach, intuitiv und leistungsstark.' 
+    });
+    this.meta.updateTag({ property: 'og:type', content: 'website' });
+    this.meta.updateTag({ property: 'og:url', content: 'https://genogramm-designer.de' });
+    this.meta.updateTag({ property: 'og:site_name', content: 'Genogramm Designer' });
+    
+    // Twitter Card Tags
+    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+    this.meta.updateTag({ name: 'twitter:title', content: 'Genogramm Designer - Professionelle Genogramm Software' });
+    this.meta.updateTag({ 
+      name: 'twitter:description', 
+      content: 'Die führende Software für Genogramme und Familienstammbäume. Professionell, einfach, intuitiv.' 
+    });
   }
 
 }

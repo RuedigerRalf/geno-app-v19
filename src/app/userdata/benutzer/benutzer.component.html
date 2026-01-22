@@ -1,0 +1,190 @@
+<div class="container mx-auto pt-1">
+    <div class="bg-white text-gray-800 leading-normal shadow-xl 
+                md:max-w-5xl md:mx-auto md:rounded-lg md:px-10 px-4 md:mt-8 mb-16 ">
+
+    <div class="max-w-4xl flex flex-col mx-auto">
+
+      <h1 class="text-2xl mt-10">
+        {{ pageTitle }}
+      </h1>
+
+      <div class="text-center md:text-xl text-base text-gray-700 pt-6">
+        <div class="mt-2">{{ displayName }}</div>
+        <div class="mt-2">{{ statusText }}</div>
+      </div>
+
+      <form novalidate [formGroup]="form" (ngSubmit)="saveData(form.value)">
+        <mat-card class="example-container1 mat-elevation-z2">
+
+          <div class="grid overflow-hidden md:grid-cols-2 md:gap-4 w-auto">
+            <mat-form-field appearance="fill">
+              <mat-label>Anrede</mat-label>
+              <input readonly='true' matInput placeholder="Anrede" formControlName="anrede">
+              <mat-hint align="end">Schreibgeschützt</mat-hint>
+            </mat-form-field>
+          </div>
+
+          <div class="grid overflow-hidden md:grid-cols-2 md:gap-4 w-auto">
+            <mat-form-field appearance="fill">
+              <mat-label>Vorname</mat-label>
+              <input readonly='true' matInput placeholder="Vorname" formControlName="vorname">
+              <mat-hint align="end">Schreibgeschützt</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Nachname</mat-label>
+              <input readonly='true' matInput placeholder="Nachname" formControlName="nachname">
+              <mat-hint align="end">Schreibgeschützt</mat-hint>
+            </mat-form-field>
+          </div>
+
+          <div class="grid overflow-hidden md:grid-cols-2 md:gap-4 w-auto">
+            <mat-form-field appearance="fill">
+              <mat-label>Firma 1</mat-label>
+              <input matInput #_firma1 placeholder="Firma 1" formControlName="firma1">
+              <mat-hint align="end" aria-live="polite">
+                {{_firma1.value.length}} / 100 Zeichen
+              </mat-hint>
+
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Firma 2</mat-label>
+              <input matInput #_firma2 placeholder="Firma 2" formControlName="firma2">
+              <mat-hint align="end" aria-live="polite">
+                {{_firma2.value.length}} / 100 Zeichen
+              </mat-hint>
+            </mat-form-field>
+          </div>
+
+          <div class="grid overflow-hidden md:grid-cols-2 md:gap-4 w-auto">
+            <mat-form-field appearance="fill">
+              <mat-label>Postleitzahl</mat-label>
+              <input matInput placeholder="Postleitzahl" formControlName="plz">
+              @if (form.controls['plz'].hasError('required')) {
+                <mat-error>
+                  Pflichteingabefeld
+                </mat-error>
+              }
+              @if (form.controls['plz'].hasError('pattern')) {
+                <mat-error>
+                  Keine gültige Eingabe
+                </mat-error>
+              }
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Stadt</mat-label>
+              <input matInput #_stadt placeholder="Stadt" formControlName="stadt">
+              <mat-hint align="end" aria-live="polite">
+                {{_stadt.value.length}} / 50 Zeichen
+              </mat-hint>
+              @if (form.controls['stadt'].hasError('required')) {
+                <mat-error>
+                  Pflichteingabefeld
+                </mat-error>
+              }
+              @if (form.controls['stadt'].hasError('maxlength')) {
+                <mat-error>
+                  Die max. Länge für dieses Feld beträgt 50 Zeichen !
+                </mat-error>
+              }
+              @if (form.controls['stadt'].hasError('pattern')) {
+                <mat-error>
+                  Keine gültige Eingabe
+                </mat-error>
+              }
+            </mat-form-field>
+          </div>
+
+          <div class="grid overflow-hidden md:grid-cols-2 md:gap-4 w-auto">
+            <mat-form-field appearance="fill">
+              <mat-label>Anschrift</mat-label>
+              <input matInput #_anschrift placeholder="Anschrift" formControlName="strasse">
+              <mat-hint align="end" aria-live="polite">
+                {{_anschrift.value.length}} / 50 Zeichen
+              </mat-hint>
+              @if (form.controls['strasse'].hasError('required')) {
+                <mat-error>
+                  Pflichteingabefeld
+                </mat-error>
+              }
+              @if (form.controls['strasse'].hasError('maxlength')) {
+                <mat-error>
+                  Die max. Länge für dieses Feld beträgt 50 Zeichen !
+                </mat-error>
+              }
+              @if (form.controls['strasse'].hasError('pattern')) {
+                <mat-error>
+                  Keine gültige Eingabe
+                </mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Land</mat-label>
+              <input matInput #_land placeholder="Land" formControlName="staat">
+              <mat-hint align="end" aria-live="polite">
+                {{_land.value.length}} / 50 Zeichen
+              </mat-hint>
+              @if (form.controls['staat'].hasError('required')) {
+                <mat-error>
+                  Pflichteingabefeld
+                </mat-error>
+              }
+              @if (form.controls['staat'].hasError('maxlength')) {
+                <mat-error>
+                  Die max. Länge für dieses Feld beträgt 50 Zeichen !
+                </mat-error>
+              }
+              @if (form.controls['staat'].hasError('pattern')) {
+                <mat-error>
+                  Keine gültige Eingabe
+                </mat-error>
+              }
+            </mat-form-field>
+          </div>
+
+          <div class="grid overflow-hidden md:grid-cols-2 md:gap-4 w-auto">
+            <!-- <mat-form-field appearance="fill">
+              <mat-label>Registriert am</mat-label>
+              <input readonly='true' matInput [matDatepicker]="registeredOn"
+                formControlName="registeredOn">
+              <mat-datepicker #registeredOn></mat-datepicker>
+              <mat-hint align="end">Schreibgeschützt</mat-hint>
+            </mat-form-field> -->
+          
+            <mat-form-field class="w-full">
+            <mat-label>Registriert am</mat-label>
+            <input matInput placeholder="Nächstes auftreten" formControlName="registeredOn">
+            <mat-hint align="end">Schreibgeschützt</mat-hint>
+          </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>E-Mail</mat-label>
+              <input matInput readonly='true' placeholder="E-mail" formControlName="email">
+              <mat-hint align="end">Schreibgeschützt</mat-hint>
+            </mat-form-field>
+          </div>
+
+          <div class="flex flex-row-reverse py-4">
+            <button mat-raised-button type="submit" [disabled]="(!form.valid || form.pristine)"
+              color="primary">
+              Speichern
+            </button>
+          </div>
+
+          <div class="flex flex-col lg:flex-row justify-between">
+            <button mat-raised-button type="button" [routerLink]="['/reset-email']">
+              E-Mail ändern
+            </button>
+            <button mat-raised-button type="button" (click)="downloadDaten()">
+              Download persönliche Daten
+            </button>
+            <button mat-raised-button type="button" (click)="kontoSchliessen()">
+              Konto schließen
+            </button>
+          </div>
+
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>

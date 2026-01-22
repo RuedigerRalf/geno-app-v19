@@ -1,8 +1,7 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, ViewChild, ElementRef, inject, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
-import { RouterLink } from '@angular/router';
 
 import saveAs from 'file-saver';
 import { SeoService } from '../../_service/seo.service';
@@ -12,12 +11,13 @@ import { BritischeMonarchenImages, FeatureData } from '../../_service/common-dat
 
 import { LeafletViewerComponent } from '../../_components/leaflet-viewer/leaflet-viewer.component';
 import { LeafletImage } from '../../_interface/leaflet-image';
+import { CallToActionRegister } from '../../_components/call-to-action/call-to-action';
 
 @Component({
   selector: 'app-englische-monarchen',
   templateUrl: './englische-monarchen.component.html',
   styleUrl: './englische-monarchen.component.scss',
-  imports: [CommonModule, RouterLink, LeafletViewerComponent]
+  imports: [CallToActionRegister, LeafletViewerComponent]
 })
 export class EnglischeMonarchenComponent implements OnInit {
 
@@ -44,9 +44,37 @@ export class EnglischeMonarchenComponent implements OnInit {
   }
 
   updateMeta() {
+    // Robots Tag
     this.meta.updateTag({ name: 'robots', content: 'index, follow' });
-    this.meta.updateTag({ name: 'keywords', content: 'Genogramm-Designer, Britische und Englische Monarchen, Charls III, Heinrich VIII, Englisches Königshaus, Elisabeth II' });
-    this.meta.updateTag({ name: 'description', content: 'Die britische Monarchie von Heinrich VIII. bis zum heutigen König Charls III. Eine der ältesten Dynastin der Welt in einer klaren, sofort zu erfassenden Darstellung.' });
+    
+    // Keywords (Tippfehler korrigiert: Charles statt Charls)
+    this.meta.updateTag({ 
+      name: 'keywords', 
+      content: 'Genogramm Designer, Britische Monarchen, Englische Monarchen, Charles III, Heinrich VIII, Elisabeth II, Königshaus England, Britische Königsfamilie, Stammbaum Monarchen' 
+    });
+    
+    // Description (optimal: 150-160 Zeichen, Tippfehler korrigiert)
+    this.meta.updateTag({ 
+      name: 'description', 
+      content: 'Britische Monarchie von Heinrich VIII. bis König Charles III. Übersichtliche Darstellung einer der ältesten Dynastien der Welt im Genogramm Designer.' 
+    });
+    
+    // Open Graph Tags für Social Media
+    this.meta.updateTag({ property: 'og:title', content: this.pageTitle });
+    this.meta.updateTag({ 
+      property: 'og:description', 
+      content: 'Britische und englische Monarchen seit 1485: Von den Tudors bis zu Charles III. Komplette Visualisierung der königlichen Dynastie.' 
+    });
+    this.meta.updateTag({ property: 'og:type', content: 'article' });
+    this.meta.updateTag({ property: 'og:url', content: `https://genogramm-designer.de${this.pageUrl}` });
+    
+    // Twitter Card Tags
+    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+    this.meta.updateTag({ name: 'twitter:title', content: this.pageTitle });
+    this.meta.updateTag({ 
+      name: 'twitter:description', 
+      content: 'Britische Monarchie: Heinrich VIII. bis Charles III. - Übersichtlich visualisiert im Genogramm.' 
+    });
   }
 
   onDownload(image: LeafletImage) {

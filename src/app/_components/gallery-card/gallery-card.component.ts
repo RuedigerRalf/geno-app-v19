@@ -1,5 +1,5 @@
 import { Component, inject, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -10,7 +10,7 @@ import { ProdData } from '../../_service/common-data.service';
 
 @Component({
   selector: 'gallery-card',
-  imports: [CommonModule, MatCardModule],
+  imports: [MatCardModule],
   templateUrl: './gallery-card.component.html',
   styleUrl: './gallery-card.component.scss'
 })

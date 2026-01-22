@@ -34,12 +34,11 @@ export class KontaktComponent {
   form = this.fb.group({
     user: ['', [Validators.required, Validators.maxLength(100)]],
     userMail: ['', [Validators.required, Validators.maxLength(100)]],
-    text: ['', [Validators.required, Validators.maxLength(500)]],
+    text: ['', [Validators.required, Validators.maxLength(1000)]],
     feld: ['']
   });
 
-  constructor() {
-  }
+  constructor() { }
 
   ngOnInit() {
     this.title.setTitle(this.pageTitle);
@@ -48,14 +47,37 @@ export class KontaktComponent {
   }
 
   updateMeta() {
+    // Robots Tag - Kontaktseite sollte indexiert werden (Erreichbarkeit & Vertrauen)
     this.meta.updateTag({ name: 'robots', content: 'index, follow' });
-    this.meta.updateTag({ name: 'keywords', content: 'Genogramm Designer, Kontaktformular' });
-    this.meta.updateTag({ name: 'description', content: 'Kontaktformular' });
-  }
-
-  cancelEdit() {
-    this.form.reset();
-    this.myForm.resetForm();
+    
+    // Keywords
+    this.meta.updateTag({ 
+      name: 'keywords', 
+      content: 'Genogramm Designer Kontakt, Kontaktformular, Support, Kundenservice, Hilfe, Anfrage, E-Mail Kontakt, Kontaktaufnahme, Genogramm Software Support' 
+    });
+    
+    // Description (optimal: 150-160 Zeichen)
+    this.meta.updateTag({ 
+      name: 'description', 
+      content: 'Kontakt zum Genogramm Designer: Stellen Sie Fragen, erhalten Sie Support oder senden Sie Feedback per Kontaktformular. Wir helfen Ihnen gerne weiter!' 
+    });
+    
+    // Open Graph Tags für Social Media
+    this.meta.updateTag({ property: 'og:title', content: `${this.pageTitle} - Genogramm Designer` });
+    this.meta.updateTag({ 
+      property: 'og:description', 
+      content: 'Kontaktieren Sie uns bei Fragen zum Genogramm Designer. Schneller Support und kompetente Hilfe per Kontaktformular.' 
+    });
+    this.meta.updateTag({ property: 'og:type', content: 'website' });
+    this.meta.updateTag({ property: 'og:url', content: `https://genogramm-designer.de${this.pageUrl}` });
+    
+    // Twitter Card Tags
+    this.meta.updateTag({ name: 'twitter:card', content: 'summary' });
+    this.meta.updateTag({ name: 'twitter:title', content: `${this.pageTitle} - Genogramm Designer` });
+    this.meta.updateTag({ 
+      name: 'twitter:description', 
+      content: 'Kontaktformular für Fragen und Support zum Genogramm Designer. Wir helfen Ihnen gerne!' 
+    });
   }
 
   saveData(value: any) {
@@ -66,7 +88,7 @@ export class KontaktComponent {
       return
     }
 
-    this.mailService.sendMail(value.userMail, value.user, value.text).subscribe({
+    this.mailService.sendMail(1, value.userMail, value.user, value.text).subscribe({
       next: () => this.notificationService.showNotification(
         `Vielen Dank für Ihre Nachricht`, 'success'
       ),
@@ -74,6 +96,11 @@ export class KontaktComponent {
         this.cancelEdit();
       }
     });
+  }
+
+  cancelEdit() {
+    this.form.reset();
+    this.myForm.resetForm();
   }
 
   public errorHandling = (control: string, error: string) => {

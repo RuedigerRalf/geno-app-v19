@@ -1,8 +1,7 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
-import { RouterLink } from '@angular/router';
 
 import saveAs from 'file-saver';
 import { SeoService } from '../../_service/seo.service';
@@ -13,12 +12,13 @@ import { FeatureData, SigmundFreudImages } from '../../_service/common-data.serv
 
 import { LeafletViewerComponent } from '../../_components/leaflet-viewer/leaflet-viewer.component';
 import { LeafletImage } from '../../_interface/leaflet-image';
+import { CallToActionRegister } from '../../_components/call-to-action/call-to-action';
 
 @Component({
   selector: 'app-sigmund-freud',
   templateUrl: './sigmund-freud.component.html',
   styleUrl: './sigmund-freud.component.scss',
-  imports: [CommonModule, RouterLink, LeafletViewerComponent]
+  imports: [CallToActionRegister, LeafletViewerComponent]
 })
 export class SigmundFreudComponent {
 
@@ -43,9 +43,37 @@ export class SigmundFreudComponent {
   }
 
   updateMeta() {
+    // Robots Tag
     this.meta.updateTag({ name: 'robots', content: 'index, follow' });
-    this.meta.updateTag({ name: 'keywords', content: 'Genogramm-Designer, Sigmund Freud, Genogramm' });
-    this.meta.updateTag({ name: 'description', content: 'Der Genogramm Designer visualisiert selbst große Familienverbünde mit Leichtigkeit. Als Beispiel die Familien von Sigmund Freud über insgesamt sieben Generationen.' });
+    
+    // Keywords
+    this.meta.updateTag({ 
+      name: 'keywords', 
+      content: 'Genogramm Designer, Sigmund Freud, Familie Freud, Psychoanalyse, Stammbaum Freud, Martha Freud, Anna Freud, Freud Genogramm, Sieben Generationen' 
+    });
+    
+    // Description (optimal: 150-160 Zeichen)
+    this.meta.updateTag({ 
+      name: 'description', 
+      content: 'Sigmund Freud Genogramm über 7 Generationen: Visualisierung der Familie des Begründers der Psychoanalyse mit dem Genogramm Designer.' 
+    });
+    
+    // Open Graph Tags für Social Media
+    this.meta.updateTag({ property: 'og:title', content: 'Sigmund Freud - Familie über 7 Generationen' });
+    this.meta.updateTag({ 
+      property: 'og:description', 
+      content: 'Familienaufstellung von Sigmund Freud über sieben Generationen: Von Martha und Anna Freud bis zu den heutigen Nachkommen visualisiert.' 
+    });
+    this.meta.updateTag({ property: 'og:type', content: 'article' });
+    this.meta.updateTag({ property: 'og:url', content: `https://genogramm-designer.de${this.pageUrl}` });
+    
+    // Twitter Card Tags
+    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+    this.meta.updateTag({ name: 'twitter:title', content: this.pageTitle });
+    this.meta.updateTag({ 
+      name: 'twitter:description', 
+      content: 'Sigmund Freud Familie über 7 Generationen - vom Begründer der Psychoanalyse bis heute.' 
+    });
   }
 
   onDownload(image: LeafletImage) {
