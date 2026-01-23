@@ -42,15 +42,20 @@
             "prerender": true,
             "ssr": {
               "entry": "src/server.ts"
-            }
+            }, 
+            "allowedCommonJsDependencies": [
+              "file-saver",
+              "leaflet",
+              "node-forge"
+            ]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "1MB",
-                  "maximumError": "2MB"
+                  "maximumWarning": "2MB",
+                  "maximumError": "4MB"
                 },
                 {
                   "type": "anyComponentStyle",

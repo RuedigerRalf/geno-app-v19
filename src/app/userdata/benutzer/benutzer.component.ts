@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 import { Store, select } from '@ngrx/store';
 
-import { saveAs } from 'file-saver';
+import saveAs from 'file-saver';
 
 import { selectGetUserDisplayName, selectGetUserDisplayNameWithKd, selectSex, selectStatus } from '../../_store/auth.selectors';
 
