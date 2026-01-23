@@ -31,7 +31,8 @@ export class LeafletViewer2Component implements AfterViewInit, OnDestroy {
   async ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId) && this.images.length > 0) {
       setTimeout(async () => {
-        this.L = await import('leaflet');
+        const leafletModule = await import('leaflet');
+        this.L = (leafletModule as any).default || leafletModule;
         
         this.map = this.L.map(this.mapId, {
           crs: this.L.CRS.Simple,
