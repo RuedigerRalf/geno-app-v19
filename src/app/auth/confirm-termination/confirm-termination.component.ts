@@ -1,4 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 
@@ -28,6 +29,7 @@ export class ConfirmTerminationComponent implements OnInit {
   private title = inject(Title);
   private meta = inject(Meta);
   private seoService = inject(SeoService);
+  private platformId = inject(PLATFORM_ID);
   
   private hasDispatched = false;
 
@@ -37,11 +39,12 @@ export class ConfirmTerminationComponent implements OnInit {
     this.title.setTitle(this.pageTitle);
     this.updateMeta();
     this.seoService.updateCanonicalUrl(this.pageUrl);
-
-    // Verhindere mehrfache Ausführung
-    if (this.hasDispatched) {
+    
+    // Only execute in browser, not during SSR
+    if (!isPlatformBrowser(this.platformId) || this.hasDispatched) {
       return;
     }
+    
     this.hasDispatched = true;
 
     const token = this.route.snapshot.queryParams['token'];

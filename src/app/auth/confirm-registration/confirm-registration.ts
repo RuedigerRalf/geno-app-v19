@@ -1,4 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 
@@ -24,6 +25,7 @@ export class ConfirmRegistration implements OnInit {
   private store = inject(Store)
   private activatedRoute = inject(ActivatedRoute)
   private seoService = inject(SeoService);
+  private platformId = inject(PLATFORM_ID);
   
   private hasDispatched = false;
 
@@ -34,8 +36,8 @@ export class ConfirmRegistration implements OnInit {
     this.updateMeta()
     this.seoService.updateCanonicalUrl(this.pageUrl);
 
-    // Verhindere mehrfache Ausführung
-    if (this.hasDispatched) {
+    // Only execute in browser, not during SSR
+    if (!isPlatformBrowser(this.platformId) || this.hasDispatched) {
       return;
     }
     

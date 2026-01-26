@@ -38,7 +38,7 @@ export class ConfirmNewEmailComponent implements OnInit {
 
     // Verhindere mehrfache Ausführung
     if (this.hasDispatched) {
-      console.log('[ConfirmNewEmailComponent] ngOnInit: hasDispatched=true, Abbruch');
+      // console.log('[ConfirmNewEmailComponent] ngOnInit: hasDispatched=true, Abbruch');
       return;
     }
     
@@ -46,20 +46,20 @@ export class ConfirmNewEmailComponent implements OnInit {
 
     // Nur im Browser dispatchen (SSR/Hydration vermeiden)
     const isBrowser = isPlatformBrowser(this.platformId);
-    console.log('[ConfirmNewEmailComponent] Plattformprüfung', { isBrowser });
+    // console.log('[ConfirmNewEmailComponent] Plattformprüfung', { isBrowser });
     if (!isBrowser) {
-      console.log('[ConfirmNewEmailComponent] SSR erkannt: Dispatch übersprungen');
+      // console.log('[ConfirmNewEmailComponent] SSR erkannt: Dispatch übersprungen');
       return;
     }
 
     const token = this.route.snapshot.queryParams['token'];
     const value = this.route.snapshot.queryParams['value'];
 
-    console.log('[ConfirmNewEmailComponent] ngOnInit: Dispatch ConfirmNewMail', { token, value });
+    // console.log('[ConfirmNewEmailComponent] ngOnInit: Dispatch ConfirmNewMail', { token, value });
 
     // Nur dispatchen, wenn beide Parameter vorhanden sind
     if (!token || !value) {
-      console.log('[ConfirmNewEmailComponent] Fehlende Query-Parameter, kein Dispatch', { token, value });
+      // console.log('[ConfirmNewEmailComponent] Fehlende Query-Parameter, kein Dispatch', { token, value });
       return;
     }
 

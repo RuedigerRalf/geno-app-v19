@@ -13,6 +13,7 @@ import { ChangePasswordDto } from '../_interface/ChangePasswordDto';
 import { selectGetUserMail } from '../_store/auth.selectors';
 
 import { ChangeEmailRequest, ConfirmNewEmailDto, ConfirmRegistrationDto, ConfirmterminateMembership } from '../_interface/auth-dto';
+import { TerminateMembershipRequestDto } from '../_interface/terminate-membership-request-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -52,77 +53,62 @@ export class AuthService {
     let mail: string = body.email;
     let encMail: string = this.encryptWithPublicKey(mail);
 
-    const data = { ...body, email: encMail, password: encPassword, pylon: this.getPylon() };
+    let dto = { ...body, email: encMail, password: encPassword, pylon: this.getPylon() };
 
     let url = `${this.Anonymous}` + '/RegisterUser';
-    return this.httpClient.post<RegisterRspDto>(url, data, { headers: this.headers });
+    return this.httpClient.post<RegisterRspDto>(url, dto, { headers: this.headers });
   }
 
   confirmRegistration(body: ConfirmRegistrationDto) {
     let dto = {... body, pylon: this.getPylon() };
-
     let url = `${this.Anonymous}` + '/ConfirmRegistration';
     return this.httpClient.post(url, dto, { headers: this.headers });
   }
 
   login(mail: string, password: string) {
-    const loginData: LoginDto = {
+    let dto: LoginDto = {
       email: this.encryptWithPublicKey(mail),
       password: this.encryptWithPublicKey(password),
       pylon: this.getPylon(),
     };
     let url = `${this.Anonymous}` + '/Login';
-    return this.httpClient.post<LoginRespDto>(url, loginData);
+    return this.httpClient.post<LoginRespDto>(url, dto, { headers: this.headers });
   }
 
   resetPasswordRequest(body: ResetPasswordDto) {
-    const resetPasswordDto: ResetPasswordDto = {
+    let dto: ResetPasswordDto = {
       email: this.encryptWithPublicKey(body.email),
       pylon: this.getPylon(),
     };
     let url = `${this.Anonymous}` + '/ResetPasswordRequest';
-    return this.httpClient.post(url, resetPasswordDto, { headers: this.headers });
+    return this.httpClient.post(url, dto, { headers: this.headers });
   }
 
   changePassword(body: ChangePasswordDto) {
-    const changePasswordDto: ChangePasswordDto = {
-      token: body.token,
-      userId: body.userId,
-      password: this.encryptWithPublicKey(body.password),
-      pylon: this.getPylon(),
-    };
+    let dto = { ...body, password: this.encryptWithPublicKey(body.password), pylon: this.getPylon() };
     let url = `${this.Anonymous}` + '/ChangePassword';
-    return this.httpClient.post(url, changePasswordDto);
+    return this.httpClient.post(url, dto, { headers: this.headers });
   }
 
   confirmNewEmail(body: ConfirmNewEmailDto) {
-    const val: ConfirmNewEmailDto = {
-      token: body.token,
-      value: body.value,
-      pylon: this.getPylon(),
-    };
+    let dto = { ...body, pylon: this.getPylon() };
     let url = `${this.Anonymous}` + '/ConfirmNewEmail';
-    console.log('[AuthService] confirmNewEmail: Aufruf', val, url);
-    return this.httpClient.post(url, val, { headers: this.headers });
+    // console.log('[AuthService] confirmNewEmail: Aufruf', dto, url);
+    return this.httpClient.post(url, dto, { headers: this.headers });
   }
 
   confirmterminateMembership(body: ConfirmterminateMembership) {
     let dto = {... body, pylon: this.getPylon() };
-
     let url = `${this.Anonymous}` + '/ConfirmTerminateMembership';
     return this.httpClient.post(url, dto, { headers: this.headers });
   }
 
   // 24.1.26
   resetEmailRequest(body: ChangeEmailRequest) {
-    const changeEmailRequest: ChangeEmailRequest = {
-      old_email: this.encryptWithPublicKey(body.old_email),
-      new_email: this.encryptWithPublicKey(body.new_email),
-      pylon: this.getPylon(),
-    };
+    let dto = {... body, pylon: this.getPylon() };
     let url = `${this.NoAnonymous}` + '/ResetEmailRequest';
-    console.log('[AuthService] resetEmailRequest: Aufruf', changeEmailRequest, url);
-    return this.httpClient.post(url, changeEmailRequest, { headers: this.headers });
+    // console.log('[AuthService] resetEmailRequest: Aufruf', dto, url);
+    return this.httpClient.post(url, dto, { headers: this.headers });
   }
 
   terminateMembershipRequest() {
@@ -130,12 +116,13 @@ export class AuthService {
     this.store
       .pipe(select(selectGetUserMail))
       .subscribe((mail) => (userMail = mail));
-    const resetPasswordDto: ResetPasswordDto = {
+
+    let dto: TerminateMembershipRequestDto = {
       email: this.encryptWithPublicKey(userMail),
       pylon: 'hasta la vista',
     };
     let url = `${this.NoAnonymous}` + '/TerminateMembershipRequest';
-    return this.httpClient.post(url, resetPasswordDto, { headers: this.headers });
+    return this.httpClient.post(url, dto, { headers: this.headers });
   }
 
 }
