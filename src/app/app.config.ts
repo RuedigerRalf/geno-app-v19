@@ -9,6 +9,7 @@ import { provideEffects } from '@ngrx/effects';
 import { provideRouterStore } from '@ngrx/router-store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { httpTokenInterceptor } from './_interceptor/http-token.interceptor';
+import { httpErrorInterceptor } from './_interceptor/http-error.interceptor';
 import { JwtModule } from "@auth0/angular-jwt";
 import { provideNativeDateAdapter } from '@angular/material/core';
 
@@ -24,7 +25,13 @@ export function tokenGetter() {
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(withFetch(), withInterceptors([httpTokenInterceptor])),
+    provideHttpClient(
+      withFetch(), 
+      withInterceptors([
+        httpErrorInterceptor,  // Error Interceptor zuerst
+        httpTokenInterceptor   // Token Interceptor danach
+      ])
+    ),
     provideZoneChangeDetection({ eventCoalescing: true }), 
     provideRouter(routes, withInMemoryScrolling({
       anchorScrolling: 'enabled'

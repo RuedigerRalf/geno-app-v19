@@ -38,7 +38,9 @@ private baseUrl: string = '';
       mergeMap((response: TokenUrl) => {
         const sasToken = response.token;
         let url2 = `${sasToken}`;
-        return this._http.get(url2, { headers: this.headers, observe: 'events', reportProgress: true, responseType: 'blob'});
+        // Remove Authorization header for Azure Blob SAS token requests
+        const headers = this.headers.delete('Authorization');
+        return this._http.get(url2, { headers: headers, observe: 'events', reportProgress: true, responseType: 'blob'});
       })
     );
   }

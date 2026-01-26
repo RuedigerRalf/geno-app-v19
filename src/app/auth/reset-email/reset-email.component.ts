@@ -1,14 +1,13 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { AbstractControlOptions, FormBuilder, NgForm, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Meta, Title } from '@angular/platform-browser';
 import { Store, select } from '@ngrx/store';
-
-import { selectGetUserMail } from '../../_store/auth.selectors';
-import { ResetEmailDto } from '../../_interface/ConfirmEmailDto';
+import { Router } from '@angular/router';
 
 import { EmailValidator } from '../../_validators/email-validator';
-import { Meta, Title } from '@angular/platform-browser';
 
 import { AuthActions } from '../../_store/auth.actions';
+import { selectGetUserMail } from '../../_store/auth.selectors';
 
 import { MatCardModule } from '@angular/material/card';
 import { TextFieldModule } from '@angular/cdk/text-field';
@@ -19,15 +18,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 
 import { SeoService } from '../../_service/seo.service';
+import { ChangeEmailRequest } from '../../_interface/auth-dto';
 
 @Component({
   selector: 'app-reset-email',
   templateUrl: './reset-email.component.html',
   styleUrl: './reset-email.component.scss',
-  standalone: true,
   imports: [FormsModule, ReactiveFormsModule, MatCardModule, MatFormFieldModule, TextFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatSelectModule]
 })
-export class ResetEmailComponent {
+export class ResetEmailComponent implements OnInit {
 
   @ViewChild('regForm', { static: false })
   myForm!: NgForm;
@@ -40,6 +39,7 @@ export class ResetEmailComponent {
   private fb = inject(FormBuilder);
   private store = inject(Store)
   private seoService = inject(SeoService);
+  private router = inject(Router);
 
   form = this.fb.group({
     old_mail: [''],
@@ -49,12 +49,13 @@ export class ResetEmailComponent {
   },
     { validator: EmailValidator.emailMatchValidator } as AbstractControlOptions);
 
-  constructor() {
-    this.title.setTitle(this.pageTitle);
-    this.updateMeta();
-  }
+  constructor() { }
 
   ngOnInit(): void {
+    this.title.setTitle(this.pageTitle);
+    this.updateMeta();
+    this.seoService.updateCanonicalUrl(this.pageUrl);
+
     let eMail;
     this.store
       .pipe(select(selectGetUserMail))
@@ -63,8 +64,6 @@ export class ResetEmailComponent {
     this.form.patchValue({
       old_mail: eMail,
     });
-
-    this.seoService.updateCanonicalUrl(this.pageUrl);
   }
 
   updateMeta() {
@@ -92,12 +91,13 @@ export class ResetEmailComponent {
       return
     }
 
-    const resetData: ResetEmailDto = {
+    const changeEmailRequestData: ChangeEmailRequest = {
       old_email: data.old_mail,
-      new_email: data.email
+      new_email: data.email,
+      pylon: ''
     };
 
-    this.store.dispatch(AuthActions.changeEmail({ resetEmailDto: resetData }));
+    this.store.dispatch(AuthActions.changeEmail({ changeEmailRequest: changeEmailRequestData }));
     this.cleanForm();
   };
 
@@ -106,5 +106,12 @@ export class ResetEmailComponent {
     this.myForm.resetForm();
   };
 
+  onCancel(evt: Event): void {
+    evt.preventDefault();
+    evt.stopPropagation();
+    this.cleanForm();
+    this.router.navigate(['/userdata/benutzer']);
+  }
 }
+
 

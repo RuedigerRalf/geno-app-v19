@@ -1,94 +1,91 @@
+<section class="py-12 bg-gray-50">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
 
-<div class="container mx-auto pt-1">
-    <div class="bg-white text-gray-800 leading-normal shadow-xl md:max-w-5xl md:mx-auto md:rounded-lg md:px-10 px-4 md:mt-8 mb-16 ">
-        <div class="max-w-3xl flex flex-col mx-auto">
+        <img class="mt-6 mx-auto w-auto" src="/call to action/gd-logo-200.png" alt="genogramm-designer logo" />
 
-            <img class="mt-6 mx-auto w-auto" src="/call to action/gd-logo-200.png" alt="genogramm-designer logo" />
-            
-            <div class="flex py-6 flex-col justify-items-center">
-                <h1 class="text-center text-xl md:text-2xl">
-                    {{ pageTitle }}
-                </h1>
+        <div class="flex py-6 flex-col justify-items-center">
+            <h1 class="text-center text-xl md:text-2xl">
+                {{ pageTitle }}
+            </h1>
 
-                <p class="mt-4 text-center text-sm">
-                    Kennwort vergessen?
-                    <a class="mt-2 text-sm text-green-700" [routerLink]="['/reset-password']">
-                        Hier entlang
-                    </a>
-                </p>
-            </div>
-
-            <form #regForm="ngForm" novalidate [formGroup]="form" (ngSubmit)="loginUser(form.value)">
-                <mat-card class="my-6 mat-elevation-z2">
-                    <mat-card-content class="flex items-center justify-center">
-
-                        <mat-form-field class="w-full">
-                            <mat-label>E-Mail</mat-label>
-                            <input matInput #_email placeholder="E-Mail" formControlName="email">
-                            <mat-hint align="end" aria-live="polite">
-                                {{_email.value.length}} / 50 Zeichen
-                            </mat-hint>
-                            @if (errorHandling('email', 'required')) {
-                            <mat-error>
-                                Pflichteingabefeld
-                            </mat-error>
-                            }
-                            @if (errorHandling('email', 'maxlength')) {
-                            <mat-error>
-                                Die max. Länge für dieses Feld beträgt 50 Zeichen!
-                            </mat-error>
-                            }
-                            @if (errorHandling('email', 'email')) {
-                            <mat-error>
-                                Das ist keine gültige E-Mail !
-                            </mat-error>
-                            }
-
-                        </mat-form-field>
-
-                        <mat-form-field class="w-full">
-                            <mat-label>Kennwort</mat-label>
-                            <input matInput #_password [type]="hide ? 'password' : 'text'" placeholder="Kennwort"
-                                formControlName="password">
-                            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' :
-                                'visibility'}}</mat-icon>
-                            <mat-hint align="end" aria-live="polite">
-                                {{_password.value.length}} / 50 Zeichen
-                            </mat-hint>
-                            @if (errorHandling('password', 'required')) {
-                            <mat-error>
-                                Pflichteingabefeld
-                            </mat-error>
-                            }
-                            @if (errorHandling('password', 'maxlength')) {
-                            <mat-error>
-                                Die max. Länge für dieses Feld beträgt 50 Zeichen!
-                            </mat-error>
-                            }
-                        </mat-form-field>
-
-                        <label class="ohnohoney" for="feld"></label>
-                        <input class="ohnohoney" autocomplete="off" type="text" placeholder="Fliegenfalle"
-                            formControlName="feld">
-                    </mat-card-content>
-
-                    <mat-card-actions class="w-full">
-                        <button mat-raised-button class="w-full" type="submit" color="primary" [disabled]="!form.valid">
-                            Login
-                        </button>
-                    </mat-card-actions>
-
-                    <div class="flex flex-col justify-center mt-8 mb-4">
-                        <p class="text-center text-sm">
-                            Noch kein Konto?
-                            <a class="mt-2 text-sm text-green-700" [routerLink]="['/register']">
-                                Hier entlang
-                            </a>
-                        </p>
-                    </div>
-
-                </mat-card>
-            </form>
+            <p class="mt-4 text-center text-sm">
+                Kennwort vergessen?
+                <a class="mt-2 text-sm text-green-700" [routerLink]="['/reset-password']">
+                    Hier entlang
+                </a>
+            </p>
         </div>
+
+        <form #regForm="ngForm" novalidate [formGroup]="form" (ngSubmit)="loginUser(form.value)">
+            <mat-card class="my-6 mat-elevation-z2">
+                <mat-card-content class="flex items-center justify-center">
+
+                    <mat-form-field class="w-full">
+                        <mat-label>E-Mail</mat-label>
+                        <input matInput #_email placeholder="E-Mail" formControlName="email">
+                        <mat-hint align="end" aria-live="polite">
+                            {{_email.value.length}} / 50 Zeichen
+                        </mat-hint>
+                        @if (errorHandling('email', 'required')) {
+                        <mat-error>
+                            Pflichteingabefeld
+                        </mat-error>
+                        }
+                        @if (errorHandling('email', 'maxlength')) {
+                        <mat-error>
+                            Die max. Länge für dieses Feld beträgt 50 Zeichen!
+                        </mat-error>
+                        }
+                        @if (errorHandling('email', 'email')) {
+                        <mat-error>
+                            Das ist keine gültige E-Mail !
+                        </mat-error>
+                        }
+
+                    </mat-form-field>
+
+                    <mat-form-field class="w-full">
+                        <mat-label>Kennwort</mat-label>
+                        <input matInput #_password [type]="hide ? 'password' : 'text'" placeholder="Kennwort"
+                            formControlName="password">
+                        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' :
+                            'visibility'}}</mat-icon>
+                        <mat-hint align="end" aria-live="polite">
+                            {{_password.value.length}} / 50 Zeichen
+                        </mat-hint>
+                        @if (errorHandling('password', 'required')) {
+                        <mat-error>
+                            Pflichteingabefeld
+                        </mat-error>
+                        }
+                        @if (errorHandling('password', 'maxlength')) {
+                        <mat-error>
+                            Die max. Länge für dieses Feld beträgt 50 Zeichen!
+                        </mat-error>
+                        }
+                    </mat-form-field>
+
+                    <label class="ohnohoney" for="feld"></label>
+                    <input class="ohnohoney" autocomplete="off" type="text" placeholder="Fliegenfalle"
+                        formControlName="feld">
+                </mat-card-content>
+
+                <mat-card-actions class="w-full">
+                    <button mat-raised-button class="w-full" type="submit" color="primary" [disabled]="!form.valid">
+                        Login
+                    </button>
+                </mat-card-actions>
+
+                <div class="flex flex-col justify-center mt-8 mb-4">
+                    <p class="text-center text-sm">
+                        Noch kein Konto?
+                        <a class="mt-2 text-sm text-green-700" [routerLink]="['/register']">
+                            Hier entlang
+                        </a>
+                    </p>
+                </div>
+
+            </mat-card>
+        </form>
     </div>
-</div>
+</section>

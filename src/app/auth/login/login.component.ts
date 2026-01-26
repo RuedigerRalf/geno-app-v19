@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { Validators, FormBuilder, NgForm, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
@@ -20,15 +20,14 @@ import { SeoService } from '../../_service/seo.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  imports: [RouterLink, MatCardModule, MatFormFieldModule, TextFieldModule, FormsModule, ReactiveFormsModule, MatInputModule, MatButtonModule, MatIconModule],
-  standalone: true,
+  imports: [RouterLink, MatCardModule, MatFormFieldModule, TextFieldModule, FormsModule, ReactiveFormsModule, MatInputModule, MatButtonModule, MatIconModule]
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   @ViewChild('regForm', { static: false })
   myForm!: NgForm;
 
-  pageTitle: string = 'Genogramm Designer Login';
+  pageTitle = 'Genogramm Designer Login';
   pageUrl = '/login';
 
   private meta = inject(Meta);
@@ -45,13 +44,11 @@ export class LoginComponent {
     feld: [''],
   })
 
-  constructor() { 
-    this.title.setTitle(this.pageTitle);
-    this.updateMeta();
-  }
+  constructor() { }
 
   ngOnInit(): void {
-
+    this.title.setTitle(this.pageTitle);
+    this.updateMeta();
     this.seoService.updateCanonicalUrl(this.pageUrl);
   }
 
@@ -59,13 +56,6 @@ export class LoginComponent {
     this.meta.updateTag({ name: 'robots', content: 'noindex, nofollow' });
     this.meta.updateTag({ name: 'keywords', content: 'Genogramm Designer, Login' },);
     this.meta.updateTag({ name: 'description', content: 'Login' });
-  }
-
-  getErrorMessage() {
-    if (this.form.controls.email.hasError('required')) {
-      return 'Sie müssen eine E-Mail eingeben';
-    }
-    return this.form.controls.email.hasError('email') ? 'Sie müssen eine gültige E-Mail eingeben' : '';
   }
 
   public errorHandling = (control: string, error: string) => {

@@ -1,67 +1,40 @@
 import { inject, Injectable } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { AuthService } from '../_service/auth.service';
 import { tap } from 'rxjs';
 import { NotificationService } from '../_service/notification.service';
 import { AuthActions } from '../_store/auth.actions';
-import { HttpErrorResponse } from '@angular/common/http';
+
+import { ApiErrorCode, getErrorMessage } from '../_interface/ApiError';
 
 @Injectable()
 export class AlertEffects {
 
   private actions = inject(Actions);
-  private authService = inject(AuthService);
   private notificationService = inject(NotificationService);
-    
-  constructor() {}
 
-  // Register
-    register$ = createEffect(
-      () =>
-        this.actions.pipe(
-          ofType(AuthActions.registerUser),
-          tap(() =>
-            this.notificationService.showNotification(
-              'Einen Moment Geduld bitte. Wir übermitteln Ihre Daten.',
-              'info'
-            )
-          )
-        ),
-      { dispatch: false }
-    );
+  constructor() { }
 
-    registerSuccess$ = createEffect(
-      () =>
-        this.actions.pipe(
-          ofType(AuthActions.registerUserSuccess),
-          tap(() =>
-            this.notificationService.showNotification(
-              'Besten Dank - bitte prüfen Sie Ihr Postfach und \nbestätigen Sie Ihre Registrierung',
-              'info'
-            )
-          )
-        ),
-      { dispatch: false }
-    );
-
-    // Login
-  _datenPruefen$ = createEffect(
+  // 'Login User': props<{ username: string; password: string }>(),
+  loginUser$ = createEffect(
     () =>
       this.actions.pipe(
         ofType(
           AuthActions.loginUser
         ),
-        tap(() =>
+        tap(() => {
           this.notificationService.showNotification(
             'Ihre Angaben werden überprüft.',
             'info'
           )
-        )
+        })
       ),
     { dispatch: false }
   );
 
-  loginSuccess$ = createEffect(
+  // 'Login User Success': props<{ logedUser: LogedUser }>(),
+  loginUserSuccess$ = createEffect(
     () =>
       this.actions.pipe(
         ofType(AuthActions.loginUserSuccess),
@@ -81,79 +54,212 @@ export class AlertEffects {
               )
               break;
           }
-        }
+        })
+      ),
+    { dispatch: false }
+  );
 
-        )
+  // 'Logout User': emptyProps(),
+  logoutUser$ = createEffect(
+    () =>
+      this.actions.pipe(
+        ofType(AuthActions.logoutUser),
+        tap(() => {
+          this.notificationService.showNotification(
+            'Bye Bye ... und komm bald wieder',
+            'info'
+          )
+        })
+      ),
+    { dispatch: false }
+  );
+
+  // Silent Logout: keine Notification
+  // logoutUserSilent$ = createEffect(
+  //   () =>
+  //     this.actions.pipe(
+  //       ofType(AuthActions.logoutUserSilent),
+  //       tap(() => console.log('[AlertEffects] logoutUserSilent ohne Notification'))
+  //     ),
+  //   { dispatch: false }
+  // );
+
+  // 'Register User': props<{ registerDto: RegisterDto }>(),
+  // 'Confirm Registration': props<{ ConfirmRegistrationDto: ConfirmRegistrationDto }>() -- kein Hinweis
+  // 'Change Email': props<{ changeEmailRequest: ChangeEmailRequest }>(),
+  // 'Forgot Password': props<{ forgotPasswordDto: ResetPasswordDto }>(),
+  // 'Change Password': props<{ changePasswordDto: ChangePasswordDto }>(),
+  // 'Confirm New Mail': props<{ confirmNewEmailDto: ConfirmNewEmailDto}>(),
+  // 'Terminate Memmbership': emptyProps(),
+  // 'Confirm Terminate Memmbership': props<{ confirmTerminateMembershipDto: ConfirmEmailDto }>(),
+  submitData$ = createEffect(
+    () =>
+      this.actions.pipe(
+        ofType(
+          AuthActions.registerUser,
+          AuthActions.confirmRegistration,
+          AuthActions.changeEmail,
+          AuthActions.forgotPassword,
+          AuthActions.changePassword,
+          AuthActions.confirmNewMail,
+          AuthActions.terminateMemmbership,
+          AuthActions.confirmTerminateMemmbership
+        ),
+        tap(() => {
+          this.notificationService.showNotification(
+            'Einen Moment Geduld bitte. Wir übermitteln Ihre Daten.',
+            'info'
+          )
+        })
+      ),
+    { dispatch: false }
+  );
+
+  // 'Register User Success': emptyProps(),
+  // 'Change Email Success': emptyProps(),
+  // 'Forgot Password Success': emptyProps(),
+  // 'Terminate Memmbership Success': emptyProps(),   
+  confirmAction$ = createEffect(
+    () =>
+      this.actions.pipe(
+        ofType(
+          AuthActions.registerUserSuccess,
+          AuthActions.changeEmailSuccess,
+          AuthActions.forgotPasswordSuccess,
+          AuthActions.terminateMemmbershipSuccess
+        ),
+        tap(() => {
+          this.notificationService.showNotification(
+            'Besten Dank - bitte prüfen Sie Ihr Postfach\nund bestätigen die Aktion über den zugesandten Link.',
+            'info'
+          )
+        })
+      ),
+    { dispatch: false }
+  );
+
+  // 'Confirm Registration Success': emptyProps(),
+  confirmRegistrationSuccess$ = createEffect(
+    () =>
+      this.actions.pipe(
+        ofType(AuthActions.confirmRegistrationSuccess),
+        tap(() => {
+          this.notificationService.showNotification(
+            'Ihre Registrierung wurde erfolgreich bestätigt.\nSie können sich nun anmelden.',
+            'success'
+          )
+        })
+      ),
+    { dispatch: false }
+  );
+
+  // 'Change Password With Logout': emptyProps(),    
+  changePasswordWithLogout$ = createEffect(
+    () =>
+      this.actions.pipe(
+        ofType(AuthActions.changePasswordWithLogout),
+        tap(() => {
+          this.notificationService.showNotification(
+            'Ihr Kennwort wurde erfolgreich geändert.\nSie werden nun abgemeldet und können sich mit dem neuen Kennwort anmelden.',
+            'success'
+          )
+        })
+      ),
+    { dispatch: false }
+  );
+
+  // 'Confirm New Mail Success with Logout': emptyProps(),
+  confirmNewMailSuccess$ = createEffect(
+    () =>
+      this.actions.pipe(
+        ofType(AuthActions.confirmNewMailWithLogout),
+        tap(() => {
+          this.notificationService.showNotification(
+            'Ihre E-Mail wurde erfolgreich geändert.\nSie werden nun abgemeldet und können sich mit der neuen E-Mail anmelden.',
+            'success'
+          )
+        })
+      ),
+    { dispatch: false }
+  );
+
+  // 'Confirm Terminate Memmbership with Logout': emptyProps(),
+    confirmTerminateMemmbershipWithLogout$ = createEffect(
+    () =>
+      this.actions.pipe(
+        ofType(AuthActions.confirmTerminateMemmbershipWithLogout),
+        tap(() => {
+          this.notificationService.showNotification(
+            'Ihre Mitgliedschaft wurde erfolgreich beendet.',
+            'success'
+          )
+        })
+      ),
+    { dispatch: false }
+  );
+
+  // 'Return to homepage': emptyProps(),
+  returnToHomepage$ = createEffect(
+    () =>
+      this.actions.pipe(
+        ofType(AuthActions.returnToHomepage),
+        tap(() => {
+          this.notificationService.showNotification(
+            'Die Registrierung wurde abgebrochen.\nSie werden zur Startseite weitergeleitet.',
+            'info'
+          )
+        })
       ),
     { dispatch: false }
   );
 
   // Fehlerbehandlung bei Authentifizierungsaktionen
-    _Failure$ = createEffect(
+  // 'Register User Failure': props<{ error: any }>(),
+  // 'Login User Failure': props<{ error: any }>(),
+  // 'Confirm Registration Failure': props<{ error: any }>(),
+  // 'Change Email Failure': props<{ error: any }>(),
+  // 'Change Email Failure': props<{ error: any }>(),
+  // 'Forgot Password Failure': props<{ error: any }>(),
+  // 'Change Password Failure': props<{ error: any }>(),
+  // 'Confirm New Mail Failure': props<{ error: any }>(),
+  // 'Terminate Memmbership Failure': props<{ error: any }>(),
+  // 'Confirm Terminate Memmbership Failure': props<{ error: any }>(),
+
+  _Failure$ = createEffect(
     () =>
       this.actions.pipe(
         ofType(
           AuthActions.registerUserFailure,
           AuthActions.loginUserFailure,
-          AuthActions.changePasswordFailure,
           AuthActions.confirmRegistrationFailure,
           AuthActions.confirmNewMailFailure,
-          AuthActions.terminateMemmbershipFailure
+          AuthActions.forgotPasswordFailure,
+          AuthActions.changePasswordFailure,
+          AuthActions.confirmNewMailFailure,
+          AuthActions.terminateMemmbershipFailure,
+          AuthActions.confirmTerminateMemmbershipFailure
         ),
         tap((action) => {
           const err = action.error;
           let message = '';
+          let severity: 'error' | 'warn' | 'info' = 'error';
 
           if (err instanceof HttpErrorResponse) {
-            // HTTP-spezifische Fehlerbehandlung
-            switch (err.status) {
-              case 400:
-                message = 'Ungültige Eingabe.\nBitte überprüfen Sie Ihre Daten.';
-                break;
-              case 401:
-                message = 'Authentifizierung fehlgeschlagen.\nBitte prüfen Sie Ihre Anmeldedaten.';
-                break;
-              case 403:
-                message = 'Zugriff verweigert.\nSie haben keine Berechtigung für diese Aktion.';
-                break;
-              case 404:
-                message = 'Ressource nicht gefunden.\nBitte versuchen Sie es später erneut.';
-                break;
-              case 409:
-                message = 'Konflikt mit vorhandenen Daten.\nMöglicherweise existiert dieser Eintrag bereits.';
-                break;
-              case 500:
-                message = 'Serverfehler.\nBitte versuchen Sie es später erneut.';
-                break;
-              case 503:
-                message = 'Service vorübergehend nicht verfügbar.\nBitte versuchen Sie es später erneut.';
-                break;
-              case 0:
-                message = 'Keine Verbindung zum Server.\nBitte überprüfen Sie Ihre Internetverbindung.';
-                break;
-              default:
-                // Versuche die Server-Message zu verwenden
-                if (err.error?.message) {
-                  message = `${err.error.message}`;
-                } else if (err.error?.statusText) {
-                  message = `${err.error.statusText}`;
-                } else if (err.message) {
-                  message = `${err.message}`;
-                } else {
-                  message = `Fehler (${err.status}):\nBitte versuchen Sie es später erneut.`;
-                }
-            }
+            message = getErrorMessage(err);
 
-            // Füge Support-Hinweis bei wiederholten Fehlern hinzu
-            if ([500, 503].includes(err.status)) {
-              message += '\n\nWenn der Fehler erneut auftaucht,\nwenden Sie sich bitte an unseren Support.';
+            // Spezifische Codes können die Severity anpassen
+            if (err.error?.code === ApiErrorCode.EMAIL_ALREADY_CONFIRMED) {
+              severity = 'info';
+            }
+            if (err.error?.code === ApiErrorCode.ACCOUNT_NOT_CONFIRMED) {
+              severity = 'warn';
             }
           } else {
             // Allgemeine Fehlerbehandlung für Nicht-HTTP-Fehler
             message = 'Unerwarteter Fehler.\nBitte versuchen Sie es erneut.';
           }
 
-          this.notificationService.showNotification(message, 'error');
+          this.notificationService.showNotification(message, severity);
         })
       ),
     { dispatch: false }

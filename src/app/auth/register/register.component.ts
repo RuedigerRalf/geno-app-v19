@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { AbstractControlOptions, FormBuilder, NgForm, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { RouterLink } from '@angular/router';
@@ -24,11 +24,10 @@ import { SeoService } from '../../_service/seo.service';
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
-  standalone: true,
   imports: [FormsModule, ReactiveFormsModule, MatCardModule, MatFormFieldModule, TextFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatSelectModule, RouterLink]
 })
 
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
 
   @ViewChild('regForm', { static: false })
   myForm!: NgForm;
@@ -75,12 +74,11 @@ export class RegisterComponent {
   },
     { validators: [PasswordValidator.passwordMatchValidator] } as AbstractControlOptions);
 
-  constructor() {
-    this.title.setTitle(this.pageTitle);
-    this.updateMeta();
-  }
+  constructor() { }
 
   ngOnInit(): void {
+    this.title.setTitle(this.pageTitle);
+    this.updateMeta();
     this.seoService.updateCanonicalUrl(this.pageUrl);
   }
 

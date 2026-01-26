@@ -125,6 +125,31 @@ const featureReducer = createReducer(
       val6: '',
     };
   }),
+  on(AuthActions.logoutUserSilent, (state, Action) => {
+    return {
+      ...state,
+      isAuthenticated: false,
+      firma1: '',
+      firma2: '',
+      anrede: '',
+      firstName: '',
+      lastName: '',
+      fullName: '',
+      email: '',
+      rollen: [],
+      token: '',
+      refreshToken: '',
+
+      status: 0,
+      statusText: '',
+      kundennummer: -1,
+
+      error: '',
+      hatadresse: false,
+      val4: false,
+      val6: '',
+    };
+  }),
   on(AuthActions.forgotPasswordSuccess, (state, Action) => {
     return {
       ...state,

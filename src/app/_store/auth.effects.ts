@@ -1,7 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { catchError, concatMap, map, of, exhaustMap } from 'rxjs';
+
 import { AuthService } from '../_service/auth.service';
-import { catchError, concatMap, map, of } from 'rxjs';
 import { AuthActions } from './auth.actions';
 
 @Injectable()
@@ -18,9 +19,7 @@ export class AuthEffects {
       ofType(AuthActions.registerUser),
       concatMap((action) =>
         this.authService.register(action.registerDto).pipe(
-          map(() => {
-            return AuthActions.registerUserSuccess();
-          }),
+          map(() => AuthActions.registerUserSuccess()),
           catchError((error) => of(AuthActions.registerUserFailure({ error })))
         )
       )
@@ -53,16 +52,13 @@ export class AuthEffects {
     { dispatch: false }
   );
 
-confirmMail$ = createEffect(() => {
+  confirmRegistration$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.confirmRegistration),
       concatMap((action) =>
-        this.authService.confirmEmail(action.confirmDto).pipe(
-          map(() => {
-            return AuthActions.confirmRegistrationSuccess();
-          }),
-          catchError((error) =>
-            of(AuthActions.confirmRegistrationFailure({ error }))
+        this.authService.confirmRegistration(action.confirmRegistrationDto).pipe(
+          map(() => AuthActions.confirmRegistrationSuccess()),
+          catchError((error) => of(AuthActions.confirmRegistrationFailure({ error }))
           )
         )
       )
@@ -74,11 +70,8 @@ confirmMail$ = createEffect(() => {
       ofType(AuthActions.forgotPassword),
       concatMap((action) =>
         this.authService.resetPasswordRequest(action.forgotPasswordDto).pipe(
-          map(() => {
-            return AuthActions.forgotPasswordSuccess();
-          }),
-          catchError((error) =>
-            of(AuthActions.forgotPasswordFailure({ error }))
+          map(() => AuthActions.forgotPasswordSuccess()),
+          catchError((error) => of(AuthActions.forgotPasswordFailure({ error }))
           )
         )
       )
@@ -90,46 +83,51 @@ confirmMail$ = createEffect(() => {
       ofType(AuthActions.changePassword),
       concatMap((action) =>
         this.authService.changePassword(action.changePasswordDto).pipe(
-          map(() => {
-            return AuthActions.changePasswordSuccess();
-          }),
-          catchError((error) =>
-            of(AuthActions.changePasswordFailure({ error }))
+          map(() => AuthActions.changePasswordWithLogout()),
+          catchError((error) => of(AuthActions.changePasswordFailure({ error }))
           )
         )
       )
     );
   });
 
-  resetEmail$ = createEffect(() => {
+  changePasswordWithLogout$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AuthActions.changePasswordWithLogout),
+      map(() => AuthActions.logoutUserSilent())
+    );
+  });
+
+  changeEmail$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.changeEmail),
-      concatMap((action) =>
-        this.authService.resetEmailRequest(action.resetEmailDto).pipe(
-          map(() => {
-            return AuthActions.changeEmailSuccess();
-          }),
-          catchError((error) =>
-            of(AuthActions.changeEmailFailure({ error }))
-          )
-        )
-      )
+      exhaustMap((action) => {
+        console.log('[AuthEffects] changeEmail$ effect ausgelöst', action);
+        return this.authService.resetEmailRequest(action.changeEmailRequest).pipe(
+          map(() => AuthActions.changeEmailSuccess()),
+          catchError((error) => of(AuthActions.changeEmailFailure({ error })))
+        );
+      })
     );
   });
 
   confirmNewMail$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.confirmNewMail),
-      concatMap((action) =>
-        this.authService.confirmNewEmail(action.confirmNewEmailDto).pipe(
-          map(() => {
-            return AuthActions.confirmNewMailSuccess();
-          }),
-          catchError((error) =>
-            of(AuthActions.confirmNewMailFailure({ error }))
-          )
-        )
-      )
+      exhaustMap((action) => {
+        console.log('[AuthEffects] confirmNewMail$ effect ausgelöst', action);
+        return this.authService.confirmNewEmail(action.confirmNewEmailDto).pipe(
+          map(() => AuthActions.confirmNewMailWithLogout()),
+          catchError((error) => of(AuthActions.confirmNewMailFailure({ error })))
+        );
+      })
+    );
+  });
+
+  confirmNewMailWithLogout$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AuthActions.confirmNewMailWithLogout),
+      map(() => AuthActions.logoutUserSilent())
     );
   });
 
@@ -159,9 +157,7 @@ confirmMail$ = createEffect(() => {
       ofType(AuthActions.terminateMemmbership),
       concatMap((action) =>
         this.authService.terminateMembershipRequest().pipe(
-          map(() => {
-            return AuthActions.terminateMemmbershipSuccess();
-          }),
+          map(() => AuthActions.terminateMemmbershipSuccess()),
           catchError((error) => of(AuthActions.terminateMemmbershipFailure({ error })))
         )
       )
@@ -172,16 +168,20 @@ confirmMail$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.confirmTerminateMemmbership),
       concatMap((action) =>
-        this.authService.confirmterminateMembership(action.confirmTerminateMembershipDto).pipe(
-          map(() => {
-            return AuthActions.confirmTerminateMemmbershipSuccess();
-          }),
-          catchError((error) =>
-            of(AuthActions.confirmTerminateMemmbershipFailure({ error }))
+        this.authService.confirmterminateMembership(action.confirmterminateMembership).pipe(
+          map(() => AuthActions.confirmTerminateMemmbershipWithLogout()),
+          catchError((error) => of(AuthActions.confirmTerminateMemmbershipFailure({ error }))
           )
         )
       )
     );
   });
 
+  confirmTerminateMemmbershipWithLogout$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AuthActions.confirmTerminateMemmbershipWithLogout),
+      map(() => AuthActions.logoutUserSilent())
+    );
+  });
+  
 }

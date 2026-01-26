@@ -9,7 +9,6 @@ import { BildnachweiseComponent } from './company/bildnachweise/bildnachweise.co
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
-import { ConfirmMailComponent } from './auth/confirm-mail/confirm-mail.component';
 import { ConfirmNewEmailComponent } from './auth/confirm-new-email/confirm-new-email.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { ResetEmailComponent } from './auth/reset-email/reset-email.component';
@@ -20,6 +19,8 @@ import { Symbolpaletten } from './symbolpaletten/symbolpaletten';
 import { TexteBilder } from './texte-bilder/texte-bilder';
 import { DruckExport } from './druck-export/druck-export';
 import { Dienstleistung } from './dienstleistung/dienstleistung';
+import { ConfirmRegistration } from './auth/confirm-registration/confirm-registration';
+import { AuthGuard } from './_store/auth.guard';
 
 export const routes: Routes = [
   // Root Route
@@ -55,10 +56,10 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'change-password', component: ChangePasswordComponent },
-  { path: 'confirm-email', component: ConfirmMailComponent },
+  { path: 'confirm-email', component: ConfirmRegistration},
   { path: 'confirm-new-email', component: ConfirmNewEmailComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
-  { path: 'reset-email', component: ResetEmailComponent },
+  { path: 'reset-email', component: ResetEmailComponent, canActivate: [AuthGuard] },
   { path: 'confirm-termination', component: ConfirmTerminationComponent },
 
   // 404 - Muss immer am Ende stehen

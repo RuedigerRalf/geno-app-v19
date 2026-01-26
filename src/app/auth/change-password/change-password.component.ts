@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { AbstractControlOptions, FormBuilder, NgForm, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChangePasswordDto } from '../../_interface/ChangePasswordDto';
 import { Store } from '@ngrx/store';
@@ -20,12 +20,10 @@ import { MatIconModule } from '@angular/material/icon';
     selector: 'app-change-password',
     templateUrl: './change-password.component.html',
     styleUrl: './change-password.component.scss',
-    imports: [FormsModule, ReactiveFormsModule, MatCardModule, MatFormFieldModule, TextFieldModule, MatInputModule, MatIconModule, MatButtonModule],
-    standalone: true,
+    imports: [FormsModule, ReactiveFormsModule, MatCardModule, MatFormFieldModule, TextFieldModule, MatInputModule, MatIconModule, MatButtonModule]
 })
 
-export class ChangePasswordComponent {
-
+export class ChangePasswordComponent implements OnInit {
   @ViewChild('regForm', { static: false })
   myForm!: NgForm;
 
@@ -67,33 +65,24 @@ export class ChangePasswordComponent {
   },
     { validators: [PasswordValidator.passwordMatchValidator] } as AbstractControlOptions);
 
-  constructor() { 
-    this.title.setTitle(this.pageTitle);
-    this.updateMeta();    
-  }
+  constructor() { }
 
   ngOnInit(): void {
+    this.title.setTitle(this.pageTitle);
+    this.updateMeta();  
+    this.seoService.updateCanonicalUrl(this.pageUrl);
+
     const token = this.activatedRoute.snapshot.queryParams['token'];
     const userid = this.activatedRoute.snapshot.queryParams['userid'];
+    
     this.resetData = { token: token, userId: userid, password: '', pylon: '' };
-
-
-    this.seoService.updateCanonicalUrl(this.pageUrl);
   }
 
   updateMeta() {
     this.meta.updateTag({ name: 'robots', content: 'noindex, nofollow' });
     this.meta.updateTag({ name: 'keywords', content: 'Genogramm Designer, Kennwort ändern' },);
     this.meta.updateTag({ name: 'description', content: 'Kennwort ändern' });
-
   }
-
-  // get password() {
-  //   return this.form.controls['password'];
-  // }
-  // get confirmPassword() {
-  //   return this.form.controls['confirmPassword'];
-  // }
 
   public errorHandling = (control: string, error: string) => {
     return this.form.get(control)?.hasError(error);
@@ -103,8 +92,8 @@ export class ChangePasswordComponent {
     const data = { ...value };
     this.resetData.password = data.password;
 
-    this.store.dispatch(AuthActions.changePassword({ changePasswordDto: this.resetData }));
     this.cleanForm();
+    this.store.dispatch(AuthActions.changePassword({ changePasswordDto: this.resetData }));
   };
 
   public cleanForm() {

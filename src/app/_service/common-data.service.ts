@@ -110,7 +110,7 @@ export const HarryPotterImages: FeatureData[] = [
   {
     imageUrl: '/example-images/Familie Weasley.png',
     imageAlt: 'Familie Weasley',
-    downloadIndex: 0,
+    downloadIndex: 6,
     title: 'Familie Weasley',
     text: 'Eine Abbildung der Familie Weasley aus der Harry Potter Reihe in einem Stammbaum-ähnlichen Format.',
     width: 2200,
@@ -122,7 +122,7 @@ export const DonaldTrumpImages: FeatureData[] = [
   {
     imageUrl: '/example-images/Donald John Trump mit Verwandtschaft.png',
     imageAlt: 'Donald John Trump mit Vorfahren',
-    downloadIndex: 1,
+    downloadIndex: 2,
     title: 'Donald John Trump mit Vorfahren',
     text: 'Eine Abbildung der Familie Donald John Trump mit Vorfahren in einem Stammbaum-ähnlichen Format.',
     width: 4400,
@@ -131,7 +131,7 @@ export const DonaldTrumpImages: FeatureData[] = [
   {
     imageUrl: '/example-images/Donald John Trump mit Ehefrauen, Kindern und Enkeln.png',
     imageAlt: 'Donald John Trump mit Ehefrauen, Kindern und Enkeln',
-    downloadIndex: 2,
+    downloadIndex: 1,
     title: 'Donald John Trump mit Ehefrauen, Kindern und Enkeln',
     text: 'Eine Abbildung der Familie Donald John Trump mit Ehefrauen, Kindern und Enkeln in einem Stammbaum-ähnlichen Format.',
     width: 1800,

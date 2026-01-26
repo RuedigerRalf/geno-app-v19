@@ -7,11 +7,12 @@ import { pki } from 'node-forge';
 
 import { rsaPublicKey } from './common-data.service';
 import { RegisterDto, RegisterRspDto } from '../_interface/Register';
-import { ConfirmDto, ConfirmEmailDto, ConfirmNewEmailDto, ResetEmailDto } from '../_interface/ConfirmEmailDto';
 import { LoginDto, LoginRespDto } from '../_interface/Login';
 import { ResetPasswordDto } from '../_interface/ResetPasswordDto';
 import { ChangePasswordDto } from '../_interface/ChangePasswordDto';
 import { selectGetUserMail } from '../_store/auth.selectors';
+
+import { ChangeEmailRequest, ConfirmNewEmailDto, ConfirmRegistrationDto, ConfirmterminateMembership } from '../_interface/auth-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +40,7 @@ export class AuthService {
     return btoa(rsa.encrypt(valueToEncrypt.toString()));
   }
 
-  getEncrytedDate() {
+  getPylon() {
     let _date = new Date().getDate().toString();
     return this.encryptWithPublicKey(_date);
   }
@@ -48,44 +49,27 @@ export class AuthService {
     let pass: string = body.password;
     let encPassword: string = this.encryptWithPublicKey(pass);
 
-    const registerData: RegisterDto = {
-      firma1: body.firma1,
-      firma2: body.firma2,
-      strasse: body.strasse,
-      plz: body.plz,
-      stadt: body.stadt,
-      staat: body.staat,
-      anrede: body.anrede,
-      vorname: body.vorname,
-      nachname: body.nachname,
-      geburtstag: body.geburtstag,
-      email: body.email,
-      password: encPassword,
-      pylon: this.getEncrytedDate(),
-    };
+    let mail: string = body.email;
+    let encMail: string = this.encryptWithPublicKey(mail);
+
+    const data = { ...body, email: encMail, password: encPassword, pylon: this.getPylon() };
 
     let url = `${this.Anonymous}` + '/RegisterUser';
-    return this.httpClient.post<RegisterRspDto>(url, registerData, {
-      headers: this.headers,
-    });
+    return this.httpClient.post<RegisterRspDto>(url, data, { headers: this.headers });
   }
 
-  confirmEmail(body: ConfirmDto) {
-    let _Dto: ConfirmDto = {
-      token: body.token,
-      userId: body.userId,
-      pylon: this.getEncrytedDate(),
-    };
+  confirmRegistration(body: ConfirmRegistrationDto) {
+    let dto = {... body, pylon: this.getPylon() };
 
-    let url = `${this.Anonymous}` + '/ConfirmEmail';
-    return this.httpClient.post(url, _Dto, { headers: this.headers });
+    let url = `${this.Anonymous}` + '/ConfirmRegistration';
+    return this.httpClient.post(url, dto, { headers: this.headers });
   }
-  
+
   login(mail: string, password: string) {
     const loginData: LoginDto = {
-      email: mail,
+      email: this.encryptWithPublicKey(mail),
       password: this.encryptWithPublicKey(password),
-      pylon: this.getEncrytedDate(),
+      pylon: this.getPylon(),
     };
     let url = `${this.Anonymous}` + '/Login';
     return this.httpClient.post<LoginRespDto>(url, loginData);
@@ -93,8 +77,8 @@ export class AuthService {
 
   resetPasswordRequest(body: ResetPasswordDto) {
     const resetPasswordDto: ResetPasswordDto = {
-      email: body.email,
-      pylon: this.getEncrytedDate(),
+      email: this.encryptWithPublicKey(body.email),
+      pylon: this.getPylon(),
     };
     let url = `${this.Anonymous}` + '/ResetPasswordRequest';
     return this.httpClient.post(url, resetPasswordDto, { headers: this.headers });
@@ -105,30 +89,40 @@ export class AuthService {
       token: body.token,
       userId: body.userId,
       password: this.encryptWithPublicKey(body.password),
-      pylon: this.getEncrytedDate(),
+      pylon: this.getPylon(),
     };
     let url = `${this.Anonymous}` + '/ChangePassword';
     return this.httpClient.post(url, changePasswordDto);
   }
 
-  resetEmailRequest(body: ResetEmailDto) {
-    const resetEmailDto: ResetEmailDto = {
-      old_email: body.old_email,
-      new_email: body.new_email,
-    };
-    let url = `${this.NoAnonymous}` + '/ResetEmailRequest';
-    return this.httpClient.post(url, resetEmailDto, { headers: this.headers });
-  }
-
   confirmNewEmail(body: ConfirmNewEmailDto) {
-    const confirmNewEmailDto: ConfirmNewEmailDto = {
+    const val: ConfirmNewEmailDto = {
       token: body.token,
-      old_email: body.old_email,
-      new_email: body.new_email,
-      pylon: this.getEncrytedDate(),
+      value: body.value,
+      pylon: this.getPylon(),
     };
     let url = `${this.Anonymous}` + '/ConfirmNewEmail';
-    return this.httpClient.post(url, confirmNewEmailDto);
+    console.log('[AuthService] confirmNewEmail: Aufruf', val, url);
+    return this.httpClient.post(url, val, { headers: this.headers });
+  }
+
+  confirmterminateMembership(body: ConfirmterminateMembership) {
+    let dto = {... body, pylon: this.getPylon() };
+
+    let url = `${this.Anonymous}` + '/ConfirmTerminateMembership';
+    return this.httpClient.post(url, dto, { headers: this.headers });
+  }
+
+  // 24.1.26
+  resetEmailRequest(body: ChangeEmailRequest) {
+    const changeEmailRequest: ChangeEmailRequest = {
+      old_email: this.encryptWithPublicKey(body.old_email),
+      new_email: this.encryptWithPublicKey(body.new_email),
+      pylon: this.getPylon(),
+    };
+    let url = `${this.NoAnonymous}` + '/ResetEmailRequest';
+    console.log('[AuthService] resetEmailRequest: Aufruf', changeEmailRequest, url);
+    return this.httpClient.post(url, changeEmailRequest, { headers: this.headers });
   }
 
   terminateMembershipRequest() {
@@ -137,22 +131,11 @@ export class AuthService {
       .pipe(select(selectGetUserMail))
       .subscribe((mail) => (userMail = mail));
     const resetPasswordDto: ResetPasswordDto = {
-      email: userMail,
+      email: this.encryptWithPublicKey(userMail),
       pylon: 'hasta la vista',
     };
     let url = `${this.NoAnonymous}` + '/TerminateMembershipRequest';
     return this.httpClient.post(url, resetPasswordDto, { headers: this.headers });
   }
-
-  confirmterminateMembership(body: ConfirmEmailDto) {
-    const confirmNewEmailDto: ConfirmEmailDto = {
-      token: body.token,
-      userId: body.userId,
-      pylon: this.getEncrytedDate(),
-    };
-    let url = `${this.Anonymous}` + '/ConfirmTerminateMembership';
-    return this.httpClient.post(url, confirmNewEmailDto, { headers: this.headers });
-  }
-  
 
 }

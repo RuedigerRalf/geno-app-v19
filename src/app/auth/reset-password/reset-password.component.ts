@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, NgForm, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { ResetPasswordDto } from '../../_interface/ResetPasswordDto';
@@ -22,7 +22,7 @@ import { SeoService } from '../../_service/seo.service';
   imports: [MatCardModule, MatFormFieldModule, TextFieldModule, MatInputModule, MatButtonModule, FormsModule, ReactiveFormsModule],
   standalone: true,
 })
-export class ResetPasswordComponent {
+export class ResetPasswordComponent implements OnInit {
 
   @ViewChild('regForm', { static: false })
   myForm!: NgForm;
@@ -44,12 +44,11 @@ export class ResetPasswordComponent {
     feld: ['']
   });
 
-  constructor() {
-    this.title.setTitle(this.pageTitle);
-    this.updateMeta()
-  }
+  constructor() { }
 
   ngOnInit(): void {
+    this.title.setTitle(this.pageTitle);
+    this.updateMeta()
     this.seoService.updateCanonicalUrl(this.pageUrl);
   }
 
@@ -71,6 +70,7 @@ export class ResetPasswordComponent {
       email: reset.email,
       pylon: '',
     };
+    
     this.store.dispatch(AuthActions.forgotPassword({ forgotPasswordDto: resetPasswordDto }));
     this.cleanForm();
   };
