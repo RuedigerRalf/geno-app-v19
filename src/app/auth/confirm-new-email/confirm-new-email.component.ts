@@ -7,7 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { AuthActions } from '../../_store/auth.actions';
 import { SeoService } from '../../_service/seo.service';
-import { ConfirmNewEmailDto } from '../../_interface/auth-dto';
+import { ConfirmNewEmailDto } from '../../_interface/confirm-new-email-dto';
 
 @Component({
   selector: 'app-confirm-new-email',

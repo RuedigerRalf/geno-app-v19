@@ -3,6 +3,10 @@ import { Router, RouterLink, RouterLinkActive, RouterOutlet, NavigationEnd, Scro
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 
+import { select, Store } from '@ngrx/store';
+
+import { filter, map, Observable, of, shareReplay } from 'rxjs';
+
 import { MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,12 +16,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 
 import { SsrCookieService } from 'ngx-cookie-service-ssr';
-import { select, Store } from '@ngrx/store';
 
+import { CookieSelection } from './_interface/cookie-selection';
 import { NavItem } from './_interface/NavItem';
-import { filter, map, Observable, of, shareReplay } from 'rxjs';
+
 import { selectIsLoggedIn } from './_store/auth.selectors';
-import { CookieSelection } from './_interface/Cookie';
 import { CookieDialogComponent } from './_components/cookie-dialog/cookie-dialog.component';
 import { FooterComponent } from './_components/footer/footer.component';
 import { AuthActions } from './_store/auth.actions';

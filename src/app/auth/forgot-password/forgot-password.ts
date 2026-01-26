@@ -1,7 +1,6 @@
 import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, NgForm, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { ResetPasswordDto } from '../../_interface/ResetPasswordDto';
 
 import { Meta, Title } from '@angular/platform-browser';
 
@@ -14,15 +13,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 import { SeoService } from '../../_service/seo.service';
+import { ForgotPasswordDto } from '../../_interface/forgot-password-dto';
 
 @Component({
-  selector: 'app-reset-password',
-  templateUrl: './reset-password.component.html',
-  styleUrl: './reset-password.component.scss',
+  selector: 'app-forgot-password',
   imports: [MatCardModule, MatFormFieldModule, TextFieldModule, MatInputModule, MatButtonModule, FormsModule, ReactiveFormsModule],
-  standalone: true,
+  templateUrl: './forgot-password.html',
+  styleUrl: './forgot-password.scss',
 })
-export class ResetPasswordComponent implements OnInit {
+export class ForgotPassword implements OnInit {
 
   @ViewChild('regForm', { static: false })
   myForm!: NgForm;
@@ -66,12 +65,12 @@ export class ResetPasswordComponent implements OnInit {
       return
     }
 
-    const resetPasswordDto: ResetPasswordDto = {
+    const forgotPasswordDto: ForgotPasswordDto = {
       email: reset.email,
       pylon: '',
     };
-    
-    this.store.dispatch(AuthActions.forgotPassword({ forgotPasswordDto: resetPasswordDto }));
+
+    this.store.dispatch(AuthActions.forgotPassword({ forgotPasswordDto }));
     this.cleanForm();
   };
 
@@ -84,3 +83,4 @@ export class ResetPasswordComponent implements OnInit {
     this.myForm.resetForm();
   };
 }
+

@@ -8,7 +8,7 @@ import { AuthActions } from '../../_store/auth.actions';
 import { SeoService } from '../../_service/seo.service';
 
 import { MatButtonModule } from '@angular/material/button';
-import { ConfirmRegistrationDto } from '../../_interface/auth-dto';
+import { ConfirmRegistrationDto } from '../../_interface/confirm-registration-dto';
 
 @Component({
   selector: 'app-confirm-registration',

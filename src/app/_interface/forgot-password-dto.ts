@@ -1,5 +1,4 @@
-export interface ResetPasswordDto {
+export interface ForgotPasswordDto {
     email: string;
     pylon: string;
 }
-

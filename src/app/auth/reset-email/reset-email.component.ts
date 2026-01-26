@@ -18,7 +18,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 
 import { SeoService } from '../../_service/seo.service';
-import { ChangeEmailRequest } from '../../_interface/auth-dto';
+
+import { ChangeEmailRequestDto } from '../../_interface/change-email-request-dto';
 
 @Component({
   selector: 'app-reset-email',
@@ -91,16 +92,16 @@ export class ResetEmailComponent implements OnInit {
       return
     }
 
-    const changeEmailRequestData: ChangeEmailRequest = {
+    const changeEmailRequestDto: ChangeEmailRequestDto = {
       old_email: data.old_mail,
       new_email: data.email,
       pylon: ''
     };
 
-    this.store.dispatch(AuthActions.changeEmail({ changeEmailRequest: changeEmailRequestData }));
+    this.store.dispatch(AuthActions.changeEmail({ changeEmailRequestDto }));
     this.cleanForm();
   };
-
+  
   cleanForm() {
     this.form.reset();
     this.myForm.resetForm();

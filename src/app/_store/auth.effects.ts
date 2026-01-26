@@ -65,11 +65,11 @@ export class AuthEffects {
     );
   });
 
-  resetPasswordRequest$ = createEffect(() => {
+  forgotPasswordRequest$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.forgotPassword),
       concatMap((action) =>
-        this.authService.resetPasswordRequest(action.forgotPasswordDto).pipe(
+        this.authService.forgotPassword(action.forgotPasswordDto).pipe(
           map(() => AuthActions.forgotPasswordSuccess()),
           catchError((error) => of(AuthActions.forgotPasswordFailure({ error }))
           )
@@ -103,7 +103,7 @@ export class AuthEffects {
       ofType(AuthActions.changeEmail),
       exhaustMap((action) => {
         console.log('[AuthEffects] changeEmail$ effect ausgelöst', action);
-        return this.authService.resetEmailRequest(action.changeEmailRequest).pipe(
+        return this.authService.resetEmailRequest(action.changeEmailRequestDto).pipe(
           map(() => AuthActions.changeEmailSuccess()),
           catchError((error) => of(AuthActions.changeEmailFailure({ error })))
         );
@@ -168,7 +168,7 @@ export class AuthEffects {
     return this.actions$.pipe(
       ofType(AuthActions.confirmTerminateMemmbership),
       concatMap((action) =>
-        this.authService.confirmterminateMembership(action.confirmterminateMembership).pipe(
+        this.authService.confirmterminateMembership(action.confirmterminateMembershipDto).pipe(
           map(() => AuthActions.confirmTerminateMemmbershipWithLogout()),
           catchError((error) => of(AuthActions.confirmTerminateMemmbershipFailure({ error }))
           )

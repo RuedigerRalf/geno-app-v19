@@ -56,19 +56,6 @@ export class MailService {
     return this.encryptWithPublicKey(_date);
   }
 
-  // alt
-  // public sendMail(UserMailAdress: string, UserName: string, UserMessage: string) {
-  //   let body = {
-  //     "userMailAdress": this.encryptWithPublicKey(UserMailAdress),
-  //     "userName": this.encryptWithPublicKey(UserName),
-  //     "userMessage": this.encryptWithPublicKey(UserMessage),
-  //     "pylon": this.getPylon()
-  //   };
-
-  //   let url = `${this.baseUrl}` + '/ContactMail';
-  //   return this._http.post(url, body, { headers: this.headers });
-  // }
-
   public sendMail(MailType: number, UserMailAdress: string, UserName: string, UserMessage: string) {
     // MailType:
     // 1 -> Supportanfrage

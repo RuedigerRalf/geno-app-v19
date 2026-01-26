@@ -8,12 +8,16 @@ import { pki } from 'node-forge';
 import { rsaPublicKey } from './common-data.service';
 import { RegisterDto, RegisterRspDto } from '../_interface/Register';
 import { LoginDto, LoginRespDto } from '../_interface/Login';
-import { ResetPasswordDto } from '../_interface/ResetPasswordDto';
+
 import { ChangePasswordDto } from '../_interface/ChangePasswordDto';
 import { selectGetUserMail } from '../_store/auth.selectors';
 
-import { ChangeEmailRequest, ConfirmNewEmailDto, ConfirmRegistrationDto, ConfirmterminateMembership } from '../_interface/auth-dto';
 import { TerminateMembershipRequestDto } from '../_interface/terminate-membership-request-dto';
+import { ConfirmterminateMembershipDto } from '../_interface/confirmterminate-membership-dto';
+import { ConfirmRegistrationDto } from '../_interface/confirm-registration-dto';
+import { ConfirmNewEmailDto } from '../_interface/confirm-new-email-dto';
+import { ChangeEmailRequestDto } from '../_interface/change-email-request-dto';
+import { ForgotPasswordDto } from '../_interface/forgot-password-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -71,16 +75,14 @@ export class AuthService {
       password: this.encryptWithPublicKey(password),
       pylon: this.getPylon(),
     };
+    
     let url = `${this.Anonymous}` + '/Login';
     return this.httpClient.post<LoginRespDto>(url, dto, { headers: this.headers });
   }
 
-  resetPasswordRequest(body: ResetPasswordDto) {
-    let dto: ResetPasswordDto = {
-      email: this.encryptWithPublicKey(body.email),
-      pylon: this.getPylon(),
-    };
-    let url = `${this.Anonymous}` + '/ResetPasswordRequest';
+  forgotPassword(body: ForgotPasswordDto) {
+    let dto = { ...body, email: this.encryptWithPublicKey(body.email), pylon: this.getPylon() };
+    let url = `${this.Anonymous}` + '/ForgotPassword';
     return this.httpClient.post(url, dto, { headers: this.headers });
   }
 
@@ -97,14 +99,14 @@ export class AuthService {
     return this.httpClient.post(url, dto, { headers: this.headers });
   }
 
-  confirmterminateMembership(body: ConfirmterminateMembership) {
+  confirmterminateMembership(body: ConfirmterminateMembershipDto) {
     let dto = {... body, pylon: this.getPylon() };
     let url = `${this.Anonymous}` + '/ConfirmTerminateMembership';
     return this.httpClient.post(url, dto, { headers: this.headers });
   }
 
   // 24.1.26
-  resetEmailRequest(body: ChangeEmailRequest) {
+  resetEmailRequest(body: ChangeEmailRequestDto) {
     let dto = {... body, pylon: this.getPylon() };
     let url = `${this.NoAnonymous}` + '/ResetEmailRequest';
     // console.log('[AuthService] resetEmailRequest: Aufruf', dto, url);

@@ -10,8 +10,7 @@ import { SeoService } from '../../_service/seo.service';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-
-import { ConfirmterminateMembership } from '../../_interface/auth-dto';
+import { ConfirmterminateMembershipDto } from '../../_interface/confirmterminate-membership-dto';
 
 @Component({
     selector: 'app-confirm-termination',
@@ -50,9 +49,9 @@ export class ConfirmTerminationComponent implements OnInit {
     const token = this.route.snapshot.queryParams['token'];
     const userid = this.route.snapshot.queryParams['userid'];
     
-    const confirmterminateMembership: ConfirmterminateMembership = { token: token, userId: userid, pylon: '' };
+    const confirmterminateMembershipDto: ConfirmterminateMembershipDto = { token: token, userId: userid, pylon: '' };
     
-    this.store.dispatch(AuthActions.confirmTerminateMemmbership({ confirmterminateMembership }));
+    this.store.dispatch(AuthActions.confirmTerminateMemmbership({ confirmterminateMembershipDto }));
   }
 
   updateMeta() {

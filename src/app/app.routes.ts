@@ -1,25 +1,29 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+
 import { ImpressComponent } from './company/impress/impress.component';
 import { GdprComponent } from './company/gdpr/gdpr.component';
 import { KontaktComponent } from './company/kontakt/kontakt.component';
 import { FaqComponent } from './company/faq/faq.component';
 import { BildnachweiseComponent } from './company/bildnachweise/bildnachweise.component';
-import { RegisterComponent } from './auth/register/register.component';
-import { LoginComponent } from './auth/login/login.component';
-import { ChangePasswordComponent } from './auth/change-password/change-password.component';
-import { ConfirmNewEmailComponent } from './auth/confirm-new-email/confirm-new-email.component';
-import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
-import { ResetEmailComponent } from './auth/reset-email/reset-email.component';
-import { ConfirmTerminationComponent } from './auth/confirm-termination/confirm-termination.component';
-import { LizenzierungComponent } from './lizenzierung/lizenzierung.component';
+
 import { Programm } from './programm/programm';
 import { Symbolpaletten } from './symbolpaletten/symbolpaletten';
 import { TexteBilder } from './texte-bilder/texte-bilder';
 import { DruckExport } from './druck-export/druck-export';
-import { Dienstleistung } from './dienstleistung/dienstleistung';
+import { LizenzierungComponent } from './lizenzierung/lizenzierung.component';
+import { Dienstleistung } from './dienstleistung/dienstleistung'
+
+import { RegisterComponent } from './auth/register/register.component';
+import { LoginComponent } from './auth/login/login.component';
+import { ChangePasswordComponent } from './auth/change-password/change-password.component';
+import { ConfirmNewEmailComponent } from './auth/confirm-new-email/confirm-new-email.component';
+import { ForgotPassword } from './auth/forgot-password/forgot-password';
+import { ResetEmailComponent } from './auth/reset-email/reset-email.component';
+import { ConfirmTerminationComponent } from './auth/confirm-termination/confirm-termination.component';
 import { ConfirmRegistration } from './auth/confirm-registration/confirm-registration';
+
 import { AuthGuard } from './_store/auth.guard';
 
 export const routes: Routes = [
@@ -58,7 +62,7 @@ export const routes: Routes = [
   { path: 'change-password', component: ChangePasswordComponent },
   { path: 'confirm-email', component: ConfirmRegistration},
   { path: 'confirm-new-email', component: ConfirmNewEmailComponent },
-  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'reset-password', component: ForgotPassword },
   { path: 'reset-email', component: ResetEmailComponent, canActivate: [AuthGuard] },
   { path: 'confirm-termination', component: ConfirmTerminationComponent },
 
