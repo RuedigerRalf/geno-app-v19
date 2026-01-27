@@ -1,8 +1,10 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.dev/guide/theming
 
-
 @use '@angular/material' as mat;
+
+// Self-hosted Fonts
+@use './styles/fonts';
 
 html {
   @include mat.theme((color: (theme-type: light,

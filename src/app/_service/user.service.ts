@@ -52,8 +52,7 @@ export class UserService {
   getUserForEdit() {
     let params = this.getCrudDtoFake();
     let url = `${this.baseUrl}`;
-    return this.httpClient
-      .get<UserForEdit>(url, { headers: this.headers, params: params })
+    return this.httpClient.get<UserForEdit>(url, { headers: this.headers, params: params })
       .pipe(shareReplay());
   };
 
