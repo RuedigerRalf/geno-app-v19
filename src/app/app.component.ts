@@ -54,6 +54,7 @@ export class AppComponent implements OnInit {
 
   navMain: NavItem[] = [
     { title: 'Home', route: '/home', icon: 'dashboard' },
+    { title: 'Home2', route: '/home2', icon: 'dashboard' },
     { title: 'Das Programm', route: '/programm', icon: 'screenshot_monitor' },
     { title: 'Symbolpaletten', route: '/symbolpaletten', icon: 'palette' },
     { title: 'Texte & Bilder', route: '/texte-bilder', icon: 'text_fields' },

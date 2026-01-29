@@ -64,10 +64,10 @@ export class RouteEffects {
   // 'Forgot Password Failure': props<{ error: any }>(),
   // 'Change Password Failure': props<{ error: any }>(),
   // 'Confirm New Mail Failure': props<{ error: any }>(),
-  // 'Terminate Memmbership Success': emptyProps(),
-  // 'Terminate Memmbership Failure': props<{ error: any }>(),
-  // 'Confirm Terminate Memmbership with Logout': emptyProps(),
-  // 'Confirm Terminate Memmbership Failure': props<{ error: any }>(),
+  // 'Terminate Membership Success': emptyProps(),
+  // 'Terminate Membership Failure': props<{ error: any }>(),
+  // 'Confirm Terminate Membership with Logout': emptyProps(),
+  // 'Confirm Terminate Membership Failure': props<{ error: any }>(),
 
   goToHome$ = createEffect(
     () =>
@@ -86,10 +86,10 @@ export class RouteEffects {
           AuthActions.forgotPasswordFailure,
           AuthActions.changePasswordFailure,
           AuthActions.confirmNewMailFailure,
-          AuthActions.terminateMemmbershipSuccess,
-          AuthActions.terminateMemmbershipFailure,
-          AuthActions.confirmTerminateMemmbershipWithLogout,
-          AuthActions.confirmTerminateMemmbershipFailure
+          AuthActions.terminateMembershipSuccess,
+          AuthActions.terminateMembershipFailure,
+          AuthActions.confirmTerminateMembershipWithLogout,
+          AuthActions.confirmTerminateMembershipFailure
         ),
         tap(() => {
           setTimeout(() => this.router.navigate(['/home']), 2000)

@@ -51,7 +51,7 @@ export class ConfirmTerminationComponent implements OnInit {
     
     const confirmterminateMembershipDto: ConfirmterminateMembershipDto = { token: token, userId: userid, pylon: '' };
     
-    this.store.dispatch(AuthActions.confirmTerminateMemmbership({ confirmterminateMembershipDto }));
+    this.store.dispatch(AuthActions.confirmTerminateMembership({ confirmterminateMembershipDto }));
   }
 
   updateMeta() {

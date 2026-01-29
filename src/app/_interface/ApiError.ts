@@ -20,6 +20,8 @@ export enum ApiErrorCode {
   // Account Status (UX-relevante Einschränkungen)
   ACCOUNT_NOT_CONFIRMED = 200, // E-Mail noch nicht bestätigt
   EMAIL_ALREADY_CONFIRMED = 201, // E-Mail bereits bestätigt
+  ACCOUNT_LOCKED = 202,
+  ACCOUNT_DEACTIVATED = 203,
 
   // System-Fehler (500er Bereich)
   SERVER_ERROR = 500,          // Alles Interne (DB-Fehler, Mail-Dienst, Encryption)
@@ -28,20 +30,15 @@ export enum ApiErrorCode {
 
 export const ERROR_MESSAGES: Record<number, string> = {
   [ApiErrorCode.VALIDATION_ERROR]: 'Bitte überprüfen Sie Ihre Eingaben auf Vollständigkeit und Format.',
-  
   [ApiErrorCode.INVALID_CREDENTIALS]: 'Anmeldung fehlgeschlagen.\nE-Mail-Adresse oder Passwort ist nicht korrekt.',
-  
   [ApiErrorCode.ACTION_EXPIRED]: 'Dieser Link ist nicht mehr gültig.\nBitte fordern Sie einen neuen an.',
-  
   [ApiErrorCode.ACTION_FORBIDDEN]: 'Dieser Vorgang ist nicht erlaubt oder Ihr Konto wurde deaktiviert.',
-  
   [ApiErrorCode.CONFLICT]: 'Ein Konto mit dieser E-Mail-Adresse existiert bereits.',
-
   [ApiErrorCode.ACCOUNT_NOT_CONFIRMED]: 'Ihr Konto ist noch nicht aktiviert.\nBitte bestätigen Sie Ihre E-Mail-Adresse.',
-
   [ApiErrorCode.SERVER_ERROR]: 'Ein technischer Fehler ist aufgetreten.\nBitte versuchen Sie es später erneut.',
-  
-  [ApiErrorCode.RATE_LIMIT_EXCEEDED]: 'Zu viele Versuche.\nBitte warten Sie einen Moment, bevor Sie es erneut versuchen.'
+  [ApiErrorCode.RATE_LIMIT_EXCEEDED]: 'Zu viele Versuche.\nBitte warten Sie einen Moment, bevor Sie es erneut versuchen.',
+  [ApiErrorCode.ACCOUNT_LOCKED]: 'Ihr Konto wurde gesperrt.\nBitte kontaktieren Sie den Support.',
+  [ApiErrorCode.ACCOUNT_DEACTIVATED]: 'Ihr Konto wurde deaktiviert.\nBitte kontaktieren Sie den Support.',
 };
 
 export function getErrorMessage(error: any): string {
