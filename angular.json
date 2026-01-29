@@ -28,8 +28,7 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public",
-                "ignore": ["**/*.zip", "**/*.7z", "**/*.md", "**/*.txt", "**/lokale_daten/**"]
+                "input": "public"
               },
               "src/web.config"
             ],
@@ -110,8 +109,7 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public",
-                "ignore": ["**/*.zip", "**/*.7z", "**/*.md", "**/*.txt", "**/lokale_daten/**"]
+                "input": "public"
               }
             ],
             "styles": [
