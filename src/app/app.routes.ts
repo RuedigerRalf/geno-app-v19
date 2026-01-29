@@ -25,13 +25,11 @@ import { ConfirmTerminationComponent } from './auth/confirm-termination/confirm-
 import { ConfirmRegistration } from './auth/confirm-registration/confirm-registration';
 
 import { AuthGuard } from './_store/auth.guard';
-import { Home2 } from './home2/home2';
 
 export const routes: Routes = [
   // Root Route
   { path: '', component: HomeComponent },
   { path: 'home', redirectTo: '', pathMatch: 'full' },
-  { path: 'home2',component: Home2 },
 
   // Redirects für alte Routen
   { path: 'programm/ueberblick', redirectTo: 'programm', pathMatch: 'full' },

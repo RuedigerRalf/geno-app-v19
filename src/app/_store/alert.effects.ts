@@ -90,8 +90,8 @@ export class AlertEffects {
   // 'Forgot Password': props<{ forgotPasswordDto: ResetPasswordDto }>(),
   // 'Change Password': props<{ changePasswordDto: ChangePasswordDto }>(),
   // 'Confirm New Mail': props<{ confirmNewEmailDto: ConfirmNewEmailDto}>(),
-  // 'Terminate Membership': emptyProps(),
-  // 'Confirm Terminate Membership': props<{ confirmTerminateMembershipDto: ConfirmEmailDto }>(),
+  // 'Terminate Memmbership': emptyProps(),
+  // 'Confirm Terminate Memmbership': props<{ confirmTerminateMembershipDto: ConfirmEmailDto }>(),
   submitData$ = createEffect(
     () =>
       this.actions.pipe(
@@ -102,8 +102,8 @@ export class AlertEffects {
           AuthActions.forgotPassword,
           AuthActions.changePassword,
           AuthActions.confirmNewMail,
-          AuthActions.terminateMembership,
-          AuthActions.confirmTerminateMembership
+          AuthActions.terminateMemmbership,
+          AuthActions.confirmTerminateMemmbership
         ),
         tap(() => {
           this.notificationService.showNotification(
@@ -118,7 +118,7 @@ export class AlertEffects {
   // 'Register User Success': emptyProps(),
   // 'Change Email Success': emptyProps(),
   // 'Forgot Password Success': emptyProps(),
-  // 'Terminate Membership Success': emptyProps(),   
+  // 'Terminate Memmbership Success': emptyProps(),   
   confirmAction$ = createEffect(
     () =>
       this.actions.pipe(
@@ -126,7 +126,7 @@ export class AlertEffects {
           AuthActions.registerUserSuccess,
           AuthActions.changeEmailSuccess,
           AuthActions.forgotPasswordSuccess,
-          AuthActions.terminateMembershipSuccess
+          AuthActions.terminateMemmbershipSuccess
         ),
         tap(() => {
           this.notificationService.showNotification(
@@ -169,7 +169,7 @@ export class AlertEffects {
   );
 
   // 'Confirm New Mail Success with Logout': emptyProps(),
-  confirmNewMailWithLogout$ = createEffect(
+  confirmNewMailSuccess$ = createEffect(
     () =>
       this.actions.pipe(
         ofType(AuthActions.confirmNewMailWithLogout),
@@ -183,11 +183,11 @@ export class AlertEffects {
     { dispatch: false }
   );
 
-  // 'Confirm Terminate Membership with Logout': emptyProps(),
-    confirmTerminateMembershipWithLogout$ = createEffect(
+  // 'Confirm Terminate Memmbership with Logout': emptyProps(),
+    confirmTerminateMemmbershipWithLogout$ = createEffect(
     () =>
       this.actions.pipe(
-        ofType(AuthActions.confirmTerminateMembershipWithLogout),
+        ofType(AuthActions.confirmTerminateMemmbershipWithLogout),
         tap(() => {
           this.notificationService.showNotification(
             'Ihre Mitgliedschaft wurde erfolgreich beendet.',
@@ -222,8 +222,8 @@ export class AlertEffects {
   // 'Forgot Password Failure': props<{ error: any }>(),
   // 'Change Password Failure': props<{ error: any }>(),
   // 'Confirm New Mail Failure': props<{ error: any }>(),
-  // 'Terminate Membership Failure': props<{ error: any }>(),
-  // 'Confirm Terminate Membership Failure': props<{ error: any }>(),
+  // 'Terminate Memmbership Failure': props<{ error: any }>(),
+  // 'Confirm Terminate Memmbership Failure': props<{ error: any }>(),
 
   _Failure$ = createEffect(
     () =>
@@ -236,8 +236,8 @@ export class AlertEffects {
           AuthActions.forgotPasswordFailure,
           AuthActions.changePasswordFailure,
           AuthActions.confirmNewMailFailure,
-          AuthActions.terminateMembershipFailure,
-          AuthActions.confirmTerminateMembershipFailure
+          AuthActions.terminateMemmbershipFailure,
+          AuthActions.confirmTerminateMemmbershipFailure
         ),
         tap((action) => {
           const err = action.error;

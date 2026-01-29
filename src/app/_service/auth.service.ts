@@ -109,10 +109,4 @@ export class AuthService {
     return this.httpClient.post(url, dto, { headers: this.headers });
   }
 
-  refreshToken(refreshToken: string) {
-    let dto = { refreshToken, pylon: this.getPylon() };
-    let url = `${this.Anonymous}` + '/RefreshToken';
-    return this.httpClient.post<{ token: string; refreshToken: string }>(url, dto, { headers: this.headers });
-  }
-
 }

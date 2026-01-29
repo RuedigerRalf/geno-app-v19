@@ -228,7 +228,7 @@ export class BenutzerComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result == '1') {
-        this.store.dispatch(AuthActions.terminateMembership());
+        this.store.dispatch(AuthActions.terminateMemmbership());
       }
     });
   }

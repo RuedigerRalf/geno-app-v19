@@ -48,12 +48,6 @@ export const initialState: State = {
   val6: '',
 };
 
-const buildLoggedOutState = (statusText: string, error: any): State => ({
-  ...initialState,
-  statusText,
-  error,
-});
-
 const featureReducer = createReducer(
   initialState,
   on(AuthActions.loginUserSuccess, (state, Action) => {
@@ -84,35 +78,117 @@ const featureReducer = createReducer(
   on(AuthActions.loginUserFailure, (state, Action) => {
     return {
       ...state,
-      ...buildLoggedOutState('Interessent', Action.error),
+      isAuthenticated: false,
+      firma1: '',
+      firma2: '',
+      anrede: '',
+      firstName: '',
+      lastName: '',
+      fullName: '',
+      email: '',
+      rollen: [],
+      token: '',
+      refreshToken: '',
+
+      status: 0,
+      statusText: 'Interessent',
+      kundennummer: -1,
+
+      error: Action.error,
+      hatadresse: false,
+      val4: false,
+      val6: '',
     };
   }),
   on(AuthActions.logoutUser, (state, Action) => {
     return {
       ...state,
-      ...buildLoggedOutState('', ''),
+      isAuthenticated: false,
+      firma1: '',
+      firma2: '',
+      anrede: '',
+      firstName: '',
+      lastName: '',
+      fullName: '',
+      email: '',
+      rollen: [],
+      token: '',
+      refreshToken: '',
+
+      status: 0,
+      statusText: '',
+      kundennummer: -1,
+
+      error: '',
+      hatadresse: false,
+      val4: false,
+      val6: '',
     };
   }),
   on(AuthActions.logoutUserSilent, (state, Action) => {
     return {
       ...state,
-      ...buildLoggedOutState('', ''),
+      isAuthenticated: false,
+      firma1: '',
+      firma2: '',
+      anrede: '',
+      firstName: '',
+      lastName: '',
+      fullName: '',
+      email: '',
+      rollen: [],
+      token: '',
+      refreshToken: '',
+
+      status: 0,
+      statusText: '',
+      kundennummer: -1,
+
+      error: '',
+      hatadresse: false,
+      val4: false,
+      val6: '',
     };
   }),
-  on(AuthActions.refreshTokenSuccess, (state, Action) => {
+  on(AuthActions.forgotPasswordSuccess, (state, Action) => {
     return {
       ...state,
-      token: Action.token,
-      refreshToken: Action.refreshToken,
-      error: null,
+      isAuthenticated: false,
+      firma1: '',
+      firma2: '',
+      anrede: '',
+      firstName: '',
+      lastName: '',
+      fullName: '',
+      email: '',
+      rollen: [],
+      token: '',
+      refreshToken: '',
+
+      status: 0,
+      statusText: 'Interessent',
+      kundennummer: -1,
+
+      error: '',
+      hatadresse: false,
+      val4: false,
+      val6: '',
     };
   }),
-  on(AuthActions.refreshTokenFailure, (state, Action) => {
-    return {
-      ...state,
-      ...buildLoggedOutState('', Action.error),
-    };
-  })
+  // on(AuthActions.refrehTokenSuccess, (state, Action) => {
+  //   return {
+  //     ...state,
+  //     token: Action.refreshTokenRespDto.token,
+  //     refreshToken: Action.refreshTokenRespDto.refreshToken,
+  //   };
+  // }),
+  // on(AuthActions.refrehTokenFailure, (state, Action) => {
+  //   return {
+  //     ...state,
+  //     token: '',
+  //     refreshToken: '',
+  //   };
+  // })
 );
 
 export function reducer(state: State | undefined, action: Action) {

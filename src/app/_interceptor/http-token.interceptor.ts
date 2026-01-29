@@ -7,8 +7,19 @@ export const httpTokenInterceptor: HttpInterceptorFn = (req, next) => {
 
   const store = inject(Store);
 
-  // All Auth1 endpoints must stay anonymous (no Bearer token)
-  const shouldSkip = req.url.includes('api/Auth1') || req.url.includes('blob.core.windows.net');
+  // Whitelist of endpoints that must stay anonymous (no Bearer token)
+  const anonymousPaths = [
+    'api/Auth1/RegisterUser',
+    'api/Auth1/ConfirmRegistration',
+    'api/Auth1/Login',
+    'api/Auth1/ResetPasswordRequest',
+    'api/Auth1/ChangePassword',
+    'api/Auth1/ConfirmNewEmail',
+    'api/Auth1/ConfirmTerminateMembership',
+    'api/Auth1/extern-contact-mail'
+  ];
+
+  const shouldSkip = anonymousPaths.some((path) => req.url.includes(path)) || req.url.includes('blob.core.windows.net');
   if (shouldSkip) {
     return next(req);
   }

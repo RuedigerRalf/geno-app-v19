@@ -28,7 +28,8 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "ignore": ["**/*.zip", "**/*.md"]
               },
               "src/web.config"
             ],
@@ -42,7 +43,7 @@
             "prerender": true,
             "ssr": {
               "entry": "src/server.ts"
-            },
+            }, 
             "allowedCommonJsDependencies": [
               "file-saver",
               "leaflet",
@@ -109,7 +110,8 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "ignore": ["**/*.zip", "**/*.7z", "**/*.md", "**/*.txt", "**/lokale_daten/**"]
               }
             ],
             "styles": [

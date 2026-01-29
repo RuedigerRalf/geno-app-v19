@@ -39,6 +39,7 @@ export const AuthActions = createActionGroup({
     'Change Email': props<{ changeEmailRequestDto: ChangeEmailRequestDto }>(),
     'Change Email Success': emptyProps(),
     'Change Email Failure': props<{ error: any }>(),
+
     // Confirm new Mail
     'Confirm New Mail': props<{ confirmNewEmailDto: ConfirmNewEmailDto}>(),
     'Confirm New Mail with Logout': emptyProps(),
@@ -55,19 +56,14 @@ export const AuthActions = createActionGroup({
     'Change Password Failure': props<{ error: any }>(),
 
     // Terminate Membership
-    'Terminate Membership': emptyProps(),
-    'Terminate Membership Success': emptyProps(),
-    'Terminate Membership Failure': props<{ error: any }>(),
+    'Terminate Memmbership': emptyProps(),
+    'Terminate Memmbership Success': emptyProps(),
+    'Terminate Memmbership Failure': props<{ error: any }>(),
 
     // Confirm termination
-    'Confirm Terminate Membership': props<{ confirmterminateMembershipDto: ConfirmterminateMembershipDto }>(),
-    'Confirm Terminate Membership with Logout': emptyProps(),
-    'Confirm Terminate Membership Failure': props<{ error: any }>(),
-
-    // Refresh Token
-    'Refresh Token': props<{ refreshToken: string }>(),
-    'Refresh Token Success': props<{ token: string; refreshToken: string }>(),
-    'Refresh Token Failure': props<{ error: any }>(),
+    'Confirm Terminate Memmbership': props<{ confirmterminateMembershipDto: ConfirmterminateMembershipDto }>(),
+    'Confirm Terminate Memmbership with Logout': emptyProps(),
+    'Confirm Terminate Memmbership Failure': props<{ error: any }>(),
 }
 });
 
